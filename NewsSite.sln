@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsSite.UI", "WebApplication1\NewsSite.UI.csproj", "{11DEB7E3-A2F8-4149-99EA-606A6FF0D9CD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsSite.BL", "NewsSite.BL\NewsSite.BL.csproj", "{3D590DBA-9278-49A4-8B24-212991FB461C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11DEB7E3-A2F8-4149-99EA-606A6FF0D9CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11DEB7E3-A2F8-4149-99EA-606A6FF0D9CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11DEB7E3-A2F8-4149-99EA-606A6FF0D9CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11DEB7E3-A2F8-4149-99EA-606A6FF0D9CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D590DBA-9278-49A4-8B24-212991FB461C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D590DBA-9278-49A4-8B24-212991FB461C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D590DBA-9278-49A4-8B24-212991FB461C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D590DBA-9278-49A4-8B24-212991FB461C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CF294C2A-C4F3-4703-87A0-C0F68C3A84A5}
+	EndGlobalSection
+EndGlobal
