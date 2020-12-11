@@ -6,7 +6,7 @@ namespace NewsSite.BL.Abstractions
 {
     internal interface IUser
     {
-        Role Role { get; }
+        //string NameOfRole { get; }
 
         string Email { get; set; }
     }

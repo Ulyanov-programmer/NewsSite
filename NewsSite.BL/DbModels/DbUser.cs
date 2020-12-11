@@ -1,40 +1,47 @@
 ﻿using NewsSite.BL.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NewsSite.BL.DbModels
 {
     internal class DbUser : IUser, IDbObject
     {
-        readonly int Id;
+        [Key]
+        public int UserId { get; set; }
+
         public int Identity
         {
-            get => Id;
+            get => UserId;
         }
 
-        readonly string NameOfUser;
+        private string NameOfUser { get; set; }
         public string Name 
         {
             get => NameOfUser;
             set => throw new NotImplementedException();
         }
 
-        internal DbNews News { get; set; }
+        internal List<DbNews> DbNews { get; set; }
 
-        readonly Role RoleOfUser;
-        public Role Role
-        {
-            get => RoleOfUser;
-        }
+        //public Role RoleId { get; set; }
 
-        readonly string EmailOfUser;
+        //public string NameOfRole
+        //{
+        //    get => RoleId.Name;
+        //}
 
-        public DbUser(string nameOfUser, Role roleOfUser, string emailOfUser)
+        private string EmailOfUser { get; set; }
+
+        public DbUser(string nameOfUser, string emailOfUser)
         {
             NameOfUser = nameOfUser;
-            RoleOfUser = roleOfUser;
+            //RoleId = roleOfUser;
             EmailOfUser = emailOfUser;
         }
+
+        public DbUser() { }
 
         public string Email
         {

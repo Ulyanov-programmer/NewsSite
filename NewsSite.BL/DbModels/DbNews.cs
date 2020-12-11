@@ -1,26 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using Aspose.Words;
+using System.ComponentModel.DataAnnotations;
 using NewsSite.BL.Abstractions;
 
 namespace NewsSite.BL.DbModels
 {
     internal class DbNews : IDbObject
     {
-        readonly int Id;
+        [Key]
+        public int NewsId { get; set; }
         public int Identity
         {
-            get => Id;
+            get => NewsId;
         }
 
-        readonly string NameOfNews;
+        private string NameOfNews { get; set; }
 
-        public DbNews(string nameOfNews, string name, string pathToDocument)
+        public DbNews(string nameOfNews, string pathToDocument)
         {
             NameOfNews = nameOfNews;
-            Name = name;
             PathToDocument = pathToDocument;
         }
+
+        public DbNews() { }
 
         public string Name
         {
@@ -28,6 +30,9 @@ namespace NewsSite.BL.DbModels
             set => throw new NotImplementedException();
         }
 
-        public string PathToDocument { get; internal set; }
+        public string PathToDocument { get; set; }
+
+        public int UserId { get; set; }
+        public DbUser DbUserId { get; set; }
     }
 }

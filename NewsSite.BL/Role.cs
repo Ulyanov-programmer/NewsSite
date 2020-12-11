@@ -2,15 +2,19 @@
 using NewsSite.BL.DbModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace NewsSite.BL
 {
     internal class Role : IDbObject
     {
-        readonly int Id;
+        public Role() { }
+
+        [Key]
+        public int RoleId { get; set; }
         public int Identity
         {
-            get => Id;
+            get => RoleId;
         }
 
         private string NameOfRole { get; set; }
@@ -20,7 +24,6 @@ namespace NewsSite.BL
             set => throw new NotImplementedException();
         }
 
-        public List<DbUser> Users { get; set; }
-
+        public List<DbUser> DbUsers { get; set; }
     }
 }
