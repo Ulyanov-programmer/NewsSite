@@ -1,0 +1,90 @@
+﻿@import "../css/NullStyle.css";
+
+$TextColor: white;
+$BorderColor: black;
+$BackgroundColor: #DCDCDC;
+$FirstColor: #C0C0C0;
+
+header{
+	min-height: 70px;
+	min-width: 100%;
+
+	.Title_Container{
+		display: flex;
+		justify-content: center;
+	}
+	.NavigationMenu{
+		display: flex;
+		justify-content: center;
+
+		min-width: 100%;
+
+		border-bottom: solid 1px $BorderColor;
+		border-top: solid 1px $BorderColor;
+
+		background-color: $FirstColor;
+		.NavigationMenu_ButtonContainer{
+
+			.NavigationMenu_Button{
+			font-size: 100%;
+
+			text-decoration: none;
+			color: black;
+
+			margin: 0px 7px;
+			}
+		}
+	}
+}
+
+.LayoutBody {
+	display: flex;
+	flex-direction: column;
+
+	background-color: $BackgroundColor;
+
+	font-size: 30px;
+
+	min-height: 100vh;
+
+	.MainContentContainer{
+		display: flex;
+		flex-direction: column;
+
+		flex-grow: 1;
+
+		.NewsBlock_Container{
+			display: flex;
+			justify-content: center;
+
+			min-width: 100%;
+
+			.NewsBlock{
+				display: flex;
+				flex-direction: column;
+
+				min-width: 80%;
+
+				.NewsBlock_Item{
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+
+						padding: 10px 0px;
+
+						flex-grow: 1;
+					}
+			}
+		}
+	}
+}
+
+footer{
+	min-height: 10%;
+
+	border-top: solid 0.5px $BorderColor;
+
+	font-size: 20px;
+
+	background-color: $FirstColor;
+}
