@@ -1,0 +1,53 @@
+﻿@import "DefaultStyles.scss";
+
+.NewsContainer {
+	display: flex;
+	flex-direction: column;
+
+	margin: 0 auto;
+
+	max-width: 80%;
+
+	top: 0;
+	left: 0;
+
+	align-items: center;
+	align-content: center; 
+	justify-content: center;
+
+	.NewsContainer_Paragraph{
+		display: flex;
+		flex-direction: column;
+
+		align-items: center;
+		align-content: center; 
+		justify-content: center;
+
+		margin: 10px 0px 20px;
+
+		.NewsContainer_Paragraph__Title{
+			font-size: 40px;
+
+			margin: 0px 0px 20px;
+		}
+
+		.NewsContainer_Paragraph__Text{
+			display: block;
+		}
+	}
+
+	.NewsContainer_ReferenceContainer{
+			display: flex;
+			flex-direction: column;
+
+			.NewsContainer__Reference{
+				display: block;
+			}
+		}
+}
+
+.NewsContainer_TitleContainer{
+	font-size: 55px;
+
+	margin: 20px 0px 50px;
+}
