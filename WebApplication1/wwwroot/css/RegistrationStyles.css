@@ -8,12 +8,25 @@
 
 .FormContainer {
   display: flex;
-  justify-content: center;
   flex: 1 0 auto;
-  max-height: 50%;
+  max-height: 30%;
 }
-.FormContainer .RegistredForm {
+.FormContainer .AddNewObjectForm {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex: 1 0 auto;
+}
+.FormContainer .AddNewObjectForm .AddNewObjectForm_ButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin: 5px 5px;
+}
+.FormContainer .AddNewObjectForm .AddNewObjectForm_ButtonContainer .InputFile {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+}
+.FormContainer .AddNewObjectForm .AddNewObjectForm_ButtonContainer .InputFile_Lable {
+  background-color: #C0C0C0;
 }

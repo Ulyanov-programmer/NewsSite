@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Add the News Page";
+}
+
+<head>
+    <link rel="stylesheet" href="../css/AddNewsStyles.css">
+</head>
+<div class="FormContainer">
+    <form action="#" class="AddNewObjectForm">
+        <div class="AddNewObjectForm_ButtonContainer">
+            <input class="InputFile"
+                   id="DocFile"
+                   type="file"
+                   required accept=".doc,.docx">
+            <label for="DocFile" class="InputFile_Lable">
+                <span class="InputFile__Text">Выберите файл для загрузки...</span>
+            </label>
+        </div>
+        <div class="AddNewObjectForm_ButtonContainer">
+            <span class="InputFile__Text">Впишите название новости:</span>
+            <input class="InputText" type="text" required>
+        </div>
+        <div class="AddNewObjectForm_ButtonContainer">
+            <span class="InputFile__Text">Ваше имя:</span>
+            <input class="InputText" type="text" required>
+        </div>
+    </form>
+</div>

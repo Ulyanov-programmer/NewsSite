@@ -10,15 +10,32 @@
 
 .FormContainer{
 	display: flex;
-	justify-content: center;
+
 	flex: 1 0 auto;
 
-	max-height: 50%;
+	max-height: 30%;
 
-	.RegistredForm {
+	.AddNewObjectForm {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+
+		flex: 1 0 auto;
 		
+		.AddNewObjectForm_ButtonContainer{
+			display: flex;
+			justify-content: center;
+
+			margin: 5px 5px;
+
+			.InputFile{
+				opacity: 0;
+  				visibility: hidden;
+  				position: absolute;
+			}
+			.InputFile_Lable{
+				background-color: #C0C0C0;
+			}
+		}	
 	}
 }
