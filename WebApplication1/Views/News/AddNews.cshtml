@@ -1,4 +1,6 @@
-﻿@{
+﻿@using NewsSite.UI.ViewModels
+@model AddNewsVM
+@{
     ViewData["Title"] = "Add the News Page";
 }
 
@@ -6,9 +8,10 @@
     <link rel="stylesheet" href="../css/AddNewsStyles.css">
 </head>
 <div class="FormContainer">
-    <form action="#" class="AddNewObjectForm">
+    <form asp-action="AddNews" class="AddNewObjectForm">
         <div class="AddNewObjectForm_ButtonContainer">
-            <input class="InputFile"
+            <input asp-for="DocFile"
+                   class="InputFile"
                    id="DocFile"
                    type="file"
                    required accept=".doc,.docx">
@@ -18,11 +21,13 @@
         </div>
         <div class="AddNewObjectForm_ButtonContainer">
             <span class="InputFile__Text">Впишите название новости:</span>
-            <input class="InputText" type="text" required>
+            <input asp-for="NameOfNews" class="InputText" type="text" required>
         </div>
         <div class="AddNewObjectForm_ButtonContainer">
             <span class="InputFile__Text">Ваше имя:</span>
-            <input class="InputText" type="text" required>
+            <input asp-for="NameOfAuhtor" class="InputText" type="text" required>
         </div>
+
+        <button class="RegContainer_Submit" type="submit"> Отправить новость </button>
     </form>
 </div>

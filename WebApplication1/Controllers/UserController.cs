@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NewsSite.BL;
 using NewsSite.BL.Abstractions;
 using System;
 using System.Linq;
@@ -8,6 +9,13 @@ namespace NewsSite.UI.Controllers
 {
     public class UserController : Controller, IAppController
     {
+        public NewsSiteContext Context { get; }
+
+        public UserController(NewsSiteContext context)
+        {
+            Context = context;
+        }
+
         [HttpGet]
         public IActionResult Registration()
         {
@@ -20,7 +28,7 @@ namespace NewsSite.UI.Controllers
             return View();
         }
 
-        IActionResult IAppController.RedirectToHomePage()
+        IActionResult RedirectToHomePage()
         {
             return RedirectToAction("Index", "Home");
         }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NewsSite.BL;
 using NewsSite.BL.Abstractions;
 using System;
 using System.Linq;
@@ -9,13 +10,19 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller, IAppController
     {
+        public NewsSiteContext Context { get; }
+
+        public HomeController(NewsSiteContext context)
+        {
+            Context = context;
+        }
 
         public IActionResult Index()
         {
             return View();
         }
 
-        IActionResult IAppController.RedirectToHomePage()
+        IActionResult RedirectToHomePage()
         {
             return RedirectToAction("Index");
         }
