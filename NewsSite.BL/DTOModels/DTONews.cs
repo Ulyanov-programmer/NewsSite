@@ -4,22 +4,34 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NewsSite.BL.Models
+namespace NewsSite.BL.DTOModels
 {
-    class DTONews : IDTOModel
+    public class DTONews : IDTOModel
     {
-        readonly DbNews DbObject;
+        private readonly DbNews DbObject;
 
         IDbObject IDTOModel.DbObjectOfDTOModel => DbObject;
 
-        public DTONews(DbNews dbObject)
+        internal DTONews(DbNews dbObject)
         {
             DbObject = dbObject;
         }
 
-        public string GetInfo()
+        public DTONews(string nameOfNews, string pathToDocument)
         {
-            return @$"Новость ""{DbObject.Name}"", путь - {DbObject.PathToDocument}";
+            DbObject = new DbNews(nameOfNews, pathToDocument);
+        }
+
+        public List<string> GetInfo()
+        {
+            var info = new List<string>
+            {
+                DbObject.Name,
+                DbObject.PathToDocument,
+                DbObject.UserId.ToString()
+            };
+
+            return info;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using NewsSite.BL.Abstractions;
+using NewsSite.BL.DTOModels;
 
 namespace NewsSite.BL.DbModels
 {
@@ -20,6 +21,13 @@ namespace NewsSite.BL.DbModels
         {
             NameOfNews = nameOfNews;
             PathToDocument = pathToDocument;
+        }
+
+        public DbNews(DTONews dtoModel)
+        {
+            var infoOfModel = dtoModel.GetInfo();
+            NameOfNews = infoOfModel[0];
+            PathToDocument = infoOfModel[1];
         }
 
         public DbNews() { }

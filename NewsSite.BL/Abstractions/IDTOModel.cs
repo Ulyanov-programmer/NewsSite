@@ -4,9 +4,9 @@ using System.Text;
 
 namespace NewsSite.BL.Abstractions
 {
-    internal interface IDTOModel
+    public interface IDTOModel
     {
-        public string GetInfo();
+        public List<string> GetInfo();
 
         internal IDbObject DbObjectOfDTOModel { get; }
     }

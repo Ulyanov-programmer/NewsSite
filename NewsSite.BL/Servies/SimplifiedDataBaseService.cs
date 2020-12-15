@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NewsSite.BL
+namespace NewsSite.BL.Servies
 {
-    class SimplifiedDataBaseService : ISimplifiedService
+    internal class SimplifiedDataBaseService : ISimplifiedService
     {
         private readonly NewsSiteContext _context;
 
@@ -14,18 +14,13 @@ namespace NewsSite.BL
             _context = context;
         }
 
-        public NewsSiteContext Context 
-        { 
-            get => _context; 
-            set => throw new NotImplementedException(); 
-        }
-
-        public IDTOModel ReturnEntityFromDb()
+        public NewsSiteContext Context
         {
-            throw new NotImplementedException();
+            get => _context;
+            set => throw new NotImplementedException();
         }
 
-        IDTOModel ISimplifiedService.ReturnEntityFromDb()
+        public IDTOModel ReturnEntityFromDb(IDTOModel inputDTO)
         {
             throw new NotImplementedException();
         }

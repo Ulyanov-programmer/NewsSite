@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace NewsSite.BL.Abstractions
 {
-    internal interface IService
+    interface IService
     {
-        NewsSiteContext Context { get; set; }
+        NewsSiteContext Context { get; }
 
-        internal IDbObject AddEntityToDb();
+        Task<bool> AddEntityToDb(IDTOModel inputDTO);
 
-        internal IDTOModel ReturnEntityFromDb();
+        IDbObject ReturnEntityFromDb(IDTOModel inputDTO);
     }
 }

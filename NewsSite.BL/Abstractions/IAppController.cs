@@ -7,6 +7,6 @@ namespace NewsSite.BL.Abstractions
 {
     public interface IAppController
     {
-        public IActionResult RedirectToHomePage();
+        public NewsSiteContext Context { get; }
     }
 }

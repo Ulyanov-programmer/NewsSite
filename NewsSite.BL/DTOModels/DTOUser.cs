@@ -18,9 +18,15 @@ namespace NewsSite.BL.Models
             DbObject = dbUser;
         }
 
-        public string GetInfo()
+        public List<string> GetInfo()
         {
-            return $"Пользователь {DbObject.Name}, {DbObject.Email}";
+            var info = new List<string>
+            {
+                DbObject.Name,
+                DbObject.Email
+            };
+
+            return info;
         }
     }
 }
