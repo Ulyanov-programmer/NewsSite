@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NewsSite.BL.Abstractions
 {
-    internal interface IUser
+    public interface IUser
     {
         //string NameOfRole { get; }
 

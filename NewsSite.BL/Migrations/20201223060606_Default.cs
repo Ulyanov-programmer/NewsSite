@@ -10,41 +10,41 @@ namespace NewsSite.BL.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.UserId);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "News",
                 columns: table => new
                 {
-                    NewsId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     PathToDocument = table.Column<string>(nullable: true),
-                    DbUserIdUserId = table.Column<int>(nullable: true)
+                    DbUserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_News", x => x.NewsId);
+                    table.PrimaryKey("PK_News", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_News_Users_DbUserIdUserId",
-                        column: x => x.DbUserIdUserId,
+                        name: "FK_News_Users_DbUserId",
+                        column: x => x.DbUserId,
                         principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_News_DbUserIdUserId",
+                name: "IX_News_DbUserId",
                 table: "News",
-                column: "DbUserIdUserId");
+                column: "DbUserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

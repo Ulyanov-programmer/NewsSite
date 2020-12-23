@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using NewsSite.BL;
 using NewsSite.BL.Abstractions;
 using NewsSite.BL.DTOModels;
@@ -14,9 +15,12 @@ namespace NewsSite.UI.Controllers
     {
         public NewsSiteContext Context { get; }
 
-        public NewsController(NewsSiteContext context)
+        public IWebHostEnvironment HostingEnvironment { get; }
+
+        public NewsController(NewsSiteContext context, IWebHostEnvironment hostingEnvironment)
         {
             Context = context;
+            HostingEnvironment = hostingEnvironment;
         }
 
         public IActionResult Watch()
@@ -36,9 +40,10 @@ namespace NewsSite.UI.Controllers
             if (ModelState.IsValid)
             {
                 var author = DBManager.ReturnEntity(Context, model.NameOfAuhtor, typeof(DTOUser));
+                var news = new DTONews(author as DTOUser, model.NameOfNews, model.DocFile.FileName);
 
-                await DBManager.AddEntity(Context, author);
-                await FileManager.SaveFile(model.DocFile);
+                await DBManager.AddEntity(Context, news);
+                await FileManager.SaveFile(model.DocFile, HostingEnvironment.WebRootPath);
             }
 
             return RedirectToHomePage();

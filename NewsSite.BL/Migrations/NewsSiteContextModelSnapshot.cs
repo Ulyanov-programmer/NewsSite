@@ -20,10 +20,13 @@ namespace NewsSite.BL.Migrations
 
             modelBuilder.Entity("NewsSite.BL.DbModels.DbNews", b =>
                 {
-                    b.Property<int>("NewsId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("DbUserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -31,19 +34,16 @@ namespace NewsSite.BL.Migrations
                     b.Property<string>("PathToDocument")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.HasKey("Id");
 
-                    b.HasKey("NewsId");
-
-                    b.HasIndex("UserId");
+                    b.HasIndex("DbUserId");
 
                     b.ToTable("News");
                 });
 
             modelBuilder.Entity("NewsSite.BL.DbModels.DbUser", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -54,16 +54,16 @@ namespace NewsSite.BL.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId");
+                    b.HasKey("Id");
 
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("NewsSite.BL.DbModels.DbNews", b =>
                 {
-                    b.HasOne("NewsSite.BL.DbModels.DbUser", "DbUserId")
+                    b.HasOne("NewsSite.BL.DbModels.DbUser", "DbUser")
                         .WithMany("DbNews")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("DbUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using NewsSite.BL;
 using NewsSite.BL.Abstractions;
 using NewsSite.BL.DTOModels;
@@ -12,10 +13,12 @@ namespace NewsSite.UI.Controllers
     public class UserController : Controller, IAppController
     {
         public NewsSiteContext Context { get; }
+        public IWebHostEnvironment HostingEnvironment { get; }
 
-        public UserController(NewsSiteContext context)
+        public UserController(NewsSiteContext context, IWebHostEnvironment hostingEnvironment)
         {
             Context = context;
+            HostingEnvironment = hostingEnvironment;
         }
 
         [HttpGet]

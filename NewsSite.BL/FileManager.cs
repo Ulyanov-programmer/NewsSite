@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,11 +9,9 @@ namespace NewsSite.BL
 {
     public static class FileManager
     {
-        static IHostingEnvironment WebHostBuilder;
-
-        public static async Task<bool> SaveFile(IFormFile file)
+        public static async Task<bool> SaveFile(IFormFile file, string pathTo_wwwroot)
         {
-            using var stream = new FileStream(WebHostBuilder.WebRootPath, FileMode.Create);
+            using var stream = new FileStream($@"{pathTo_wwwroot}\NewsFiles\{file.FileName}", FileMode.Create);
 
             await file.CopyToAsync(stream);
 

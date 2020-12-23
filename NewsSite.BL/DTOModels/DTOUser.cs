@@ -8,7 +8,7 @@ namespace NewsSite.BL.DTOModels
 {
     public class DTOUser : IDTOModel
     {
-        readonly DbUser DbObject;
+        readonly internal DbUser DbObject;
 
         IDbObject IDTOModel.DbObjectOfDTOModel => DbObject;
 

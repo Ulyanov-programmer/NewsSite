@@ -17,9 +17,9 @@ namespace NewsSite.BL.DTOModels
             DbObject = dbObject;
         }
 
-        public DTONews(int authorId, string nameOfNews, string pathToDocument)
+        public DTONews(DTOUser author, string nameOfNews, string pathToDocument)
         {
-            DbObject = new DbNews(authorId, nameOfNews, pathToDocument);
+            DbObject = new DbNews(author.DbObject.Id, nameOfNews, pathToDocument);
         }
 
         public List<string> GetInfo()
@@ -28,7 +28,7 @@ namespace NewsSite.BL.DTOModels
             {
                 DbObject.Name,
                 DbObject.PathToDocument,
-                DbObject.UserId.ToString()
+                DbObject.DbUserId.ToString()
             };
 
             return info;

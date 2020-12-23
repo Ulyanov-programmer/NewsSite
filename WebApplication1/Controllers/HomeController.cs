@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using NewsSite.BL;
 using NewsSite.BL.Abstractions;
 using System;
@@ -11,10 +12,12 @@ namespace WebApplication1.Controllers
     public class HomeController : Controller, IAppController
     {
         public NewsSiteContext Context { get; }
+        public IWebHostEnvironment HostingEnvironment { get; }
 
-        public HomeController(NewsSiteContext context)
+        public HomeController(NewsSiteContext context, IWebHostEnvironment hostingEnvironment)
         {
             Context = context;
+            HostingEnvironment = hostingEnvironment;
         }
 
         public IActionResult Index()

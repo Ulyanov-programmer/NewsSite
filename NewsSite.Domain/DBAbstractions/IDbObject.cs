@@ -3,15 +3,17 @@ using System.Collections.Generic;
 
 namespace NewsSite.BL.Abstractions
 {
-    internal interface IDbObject
+    public interface IDbObject
     {
-        int Identity
+        int Id
         {
             get;
+            set;
         }
         string Name
         {
             get;
+            set;
         }
     }
 }
