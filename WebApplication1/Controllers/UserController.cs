@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NewsSite.BL;
 using NewsSite.BL.Abstractions;
+using NewsSite.BL.DTOModels;
+using NewsSite.UI.ViewModels;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,6 +21,15 @@ namespace NewsSite.UI.Controllers
         [HttpGet]
         public IActionResult Registration()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Registration(RegistrationVM model)
+        {
+            IDTOModel userDTO = new DTOUser(model.NameOfUser, model.EmailOfuser);
+
+            await DBManager.AddEntity(Context, userDTO);
             return View();
         }
 

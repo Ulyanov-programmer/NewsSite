@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NewsSite.BL.DbModels
 {
@@ -20,7 +19,6 @@ namespace NewsSite.BL.DbModels
         public string Name 
         {
             get => NameOfUser;
-            set => throw new NotImplementedException();
         }
 
         internal List<DbNews> DbNews { get; set; }
@@ -46,7 +44,6 @@ namespace NewsSite.BL.DbModels
         public string Email
         {
             get => EmailOfUser;
-            set => throw new NotImplementedException();
         }
     }
 }

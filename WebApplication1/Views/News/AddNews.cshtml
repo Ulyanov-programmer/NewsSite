@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/AddNewsStyles.css">
 </head>
 <div class="FormContainer">
-    <form asp-action="AddNews" class="AddNewObjectForm">
+    <form asp-action="AddNews" class="AddNewObjectForm" enctype="multipart/form-data">
         <div class="AddNewObjectForm_ButtonContainer">
             <input asp-for="DocFile"
                    class="InputFile"

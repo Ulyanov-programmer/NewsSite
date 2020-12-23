@@ -17,9 +17,9 @@ namespace NewsSite.BL.DTOModels
             DbObject = dbObject;
         }
 
-        public DTONews(string nameOfNews, string pathToDocument)
+        public DTONews(int authorId, string nameOfNews, string pathToDocument)
         {
-            DbObject = new DbNews(nameOfNews, pathToDocument);
+            DbObject = new DbNews(authorId, nameOfNews, pathToDocument);
         }
 
         public List<string> GetInfo()

@@ -8,6 +8,6 @@ namespace NewsSite.BL.Abstractions
     {
         NewsSiteContext Context { get; set; }
 
-        IDTOModel ReturnEntityFromDb(IDTOModel inputDTO);
+        IDTOModel ReturnEntityFromDb(string nameOfEntity, Type typeOfEntity);
     }
 }

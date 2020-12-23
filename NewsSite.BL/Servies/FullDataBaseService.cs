@@ -3,6 +3,7 @@ using NewsSite.BL.DbModels;
 using NewsSite.BL.DTOModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace NewsSite.BL.Servies
@@ -43,9 +44,28 @@ namespace NewsSite.BL.Servies
             return true;
         }
 
-        public IDbObject ReturnEntityFromDb(IDTOModel inputDTO)
+        public IDTOModel ReturnEntityFromDb(string nameOfEntity, Type typeOfEntity)
         {
-            throw new NotImplementedException();
+            IDTOModel dbEntity;
+
+            if (typeOfEntity.GetType().Name == "DTONews")
+            {
+                dbEntity = new DTONews(_context.News.FirstOrDefault(news => news.Name == nameOfEntity));
+            }
+            else if (typeOfEntity.GetType().Name == "DTOUser")
+            {
+                dbEntity = new DTOUser(_context.Users.FirstOrDefault(user => user.Name == nameOfEntity));
+            }
+            else
+            {
+                throw new TypeAccessException("Входной тип данных не соответствует ни одному из поддерживаемых в методе!");
+            }
+
+            if (dbEntity != null)
+            {
+                return dbEntity;
+            }
+            else { throw new NullReferenceException("Метод не смог найти сущность для возврата!"); }
         }   
     }
 }

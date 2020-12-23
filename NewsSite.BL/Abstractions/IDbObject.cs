@@ -12,7 +12,6 @@ namespace NewsSite.BL.Abstractions
         string Name
         {
             get;
-            set;
         }
     }
 }

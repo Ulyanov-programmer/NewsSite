@@ -1,4 +1,6 @@
-﻿@{
+﻿@using NewsSite.UI.ViewModels;
+@model RegistrationVM;
+@{
     ViewData["Title"] = "Registration Page";
 }
 
@@ -11,14 +13,22 @@
     </span>
 </div>
 <div class="FormContainer">
-    <form action="post" class="AddNewObjectForm">
+    <form asp-action="Registration" class="AddNewObjectForm">
         <div class="AddNewObjectForm_ButtonContainer">
             <span class="RegistredForm_ButtonContainer__PreInput"> Ваше имя: </span>
-            <input type="text" class="RegistredForm_ButtonContainer__Input" required>
+            <input asp-for="NameOfUser" type="text" class="RegistredForm_ButtonContainer__Input" required>
         </div>
         <div class="AddNewObjectForm_ButtonContainer">
             <span class="RegistredForm_ButtonContainer__PreInput"> Ваш Email: </span>
-            <input type="Email" class="RegistredForm_ButtonContainer__Input" required>
+            <input asp-for="EmailOfuser" type="email" class="RegistredForm_ButtonContainer__Input" required>
         </div>
+        <div class="AddNewObjectForm_ButtonContainer">
+            <span class="RegistredForm_ButtonContainer__PreInput"> Повторите ваш Email: </span>
+            <input asp-for="EmailOfuserConfirm" type="email" class="RegistredForm_ButtonContainer__Input" required>
+        </div>
+
+        <button type="submit">
+            <span> Отправить </span>
+        </button>
     </form>
 </div>

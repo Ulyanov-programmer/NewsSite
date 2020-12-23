@@ -35,8 +35,9 @@ namespace NewsSite.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                IDTOModel newsDTO = new DTONews(model.NameOfNews, model.DocFile.FileName);
-                DBManager.AddEntity(Context, newsDTO);
+                var author = DBManager.ReturnEntity(Context, model.NameOfAuhtor, typeof(DTOUser));
+
+                await DBManager.AddEntity(Context, author);
                 await FileManager.SaveFile(model.DocFile);
             }
 

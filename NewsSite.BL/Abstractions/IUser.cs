@@ -8,6 +8,6 @@ namespace NewsSite.BL.Abstractions
     {
         //string NameOfRole { get; }
 
-        string Email { get; set; }
+        string Email { get; }
     }
 }

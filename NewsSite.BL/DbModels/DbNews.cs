@@ -17,8 +17,9 @@ namespace NewsSite.BL.DbModels
 
         private string NameOfNews { get; set; }
 
-        public DbNews(string nameOfNews, string pathToDocument)
+        public DbNews(int authorId, string nameOfNews, string pathToDocument)
         {
+            UserId = authorId;
             NameOfNews = nameOfNews;
             PathToDocument = pathToDocument;
         }

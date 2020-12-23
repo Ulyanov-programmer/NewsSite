@@ -11,6 +11,6 @@ namespace NewsSite.BL.Abstractions
 
         Task<bool> AddEntityToDb(IDTOModel inputDTO);
 
-        IDbObject ReturnEntityFromDb(IDTOModel inputDTO);
+        IDTOModel ReturnEntityFromDb(string nameOfEntity, Type typeOfEntity);
     }
 }

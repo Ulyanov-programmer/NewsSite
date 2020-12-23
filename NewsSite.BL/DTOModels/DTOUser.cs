@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NewsSite.BL.Models
+namespace NewsSite.BL.DTOModels
 {
     public class DTOUser : IDTOModel
     {
@@ -16,6 +16,11 @@ namespace NewsSite.BL.Models
         internal DTOUser(DbUser dbUser)
         {
             DbObject = dbUser;
+        }
+
+        public DTOUser(string name, string email)
+        {
+            DbObject = new DbUser(name, email);
         }
 
         public List<string> GetInfo()
