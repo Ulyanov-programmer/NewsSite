@@ -12,14 +12,15 @@ namespace NewsSite.BL.DTOModels
 
         IDbObject IDTOModel.DbObjectOfDTOModel => DbObject;
 
+
         internal DTONews(DbNews dbObject)
         {
             DbObject = dbObject;
         }
 
-        public DTONews(DTOUser author, string nameOfNews, string pathToDocument)
+        public DTONews(DTOUser author, string nameOfNews, string nameOfDocument)
         {
-            DbObject = new DbNews(author.DbObject.Id, nameOfNews, pathToDocument);
+            DbObject = new DbNews(author.DbObject.Id, nameOfNews, $"{FileManager.PathToDocFolder}{nameOfDocument}");
         }
 
         public List<string> GetInfo()
@@ -33,5 +34,39 @@ namespace NewsSite.BL.DTOModels
 
             return info;
         }
+
+        public string GetNameOfNews()
+        {
+            if (string.IsNullOrWhiteSpace(DbObject.Name) is false)
+            {
+                return DbObject.Name;
+            }
+            else
+            {
+                return "";
+            }
+        }
+        public string GetPathToDocument()
+        {
+            if (string.IsNullOrWhiteSpace(DbObject.Name) is false)
+            {
+                return DbObject.PathToDocument;
+            }
+            else
+            {
+                return "";
+            }
+        }
+        //public string GetNameOfNews()
+        //{
+        //    if (string.IsNullOrWhiteSpace(DbObject.Name) is false)
+        //    {
+        //        return DbObject.Name;
+        //    }
+        //    else
+        //    {
+        //        return "";
+        //    }
+        //}
     }
 }

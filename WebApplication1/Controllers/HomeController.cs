@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using NewsSite.BL;
 using NewsSite.BL.Abstractions;
+using NewsSite.BL.DbModels;
+using NewsSite.BL.DTOModels;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -22,7 +24,8 @@ namespace WebApplication1.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var lastNews = DBManager.ReturnEntities(Context, 10);
+            return View(lastNews);
         }
 
         IActionResult RedirectToHomePage()

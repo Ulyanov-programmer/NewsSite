@@ -19,14 +19,16 @@ namespace NewsSite.BL
             return true;
         }
 
-        //public static IDTOModel ReturnEntity(NewsSiteContext context, IDTOModel inputInfoNodel)
-        //{
-        //    var service = new SimplifiedDataBaseService(context);
+        public static IEnumerable<IDTOModel> ReturnEntities(NewsSiteContext context,
+                                                            int count,
+                                                            bool lastEntities = true)
+        {
+            var service = new SimplifiedDataBaseService(context);
 
-        //    var modelFromDb = service.ReturnEntityFromDb(inputInfoNodel);
+            var modelFromDb = service.ReturnMultipleNews(count, lastEntities);
 
-        //    return modelFromDb;
-        //}
+            return modelFromDb;
+        }
 
         public static IDTOModel ReturnEntity(NewsSiteContext context, string nameOfEntity, Type typeOfEntity)
         {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using NewsSite.BL.DTOModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,11 +10,13 @@ namespace NewsSite.BL
 {
     public static class FileManager
     {
-        public static async Task<bool> SaveFile(IFormFile file, string pathTo_wwwroot)
-        {
-            using var stream = new FileStream($@"{pathTo_wwwroot}\NewsFiles\{file.FileName}", FileMode.Create);
+        internal const string PathToDocFolder = @"C:\Users\colda\source\repos\NewsSite\WebApplication1\wwwroot\NewsFiles\";
 
-            await file.CopyToAsync(stream);
+        public static async Task<bool> SaveFileOfNews(IFormFile fileFromForm, string pathSave)
+        {
+            using var stream = new FileStream(pathSave, FileMode.Create);
+
+            await fileFromForm.CopyToAsync(stream);
 
             return true;
         }

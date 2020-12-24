@@ -43,7 +43,7 @@ namespace NewsSite.UI.Controllers
                 var news = new DTONews(author as DTOUser, model.NameOfNews, model.DocFile.FileName);
 
                 await DBManager.AddEntity(Context, news);
-                await FileManager.SaveFile(model.DocFile, HostingEnvironment.WebRootPath);
+                await FileManager.SaveFileOfNews(model.DocFile, news.GetPathToDocument());
             }
 
             return RedirectToHomePage();

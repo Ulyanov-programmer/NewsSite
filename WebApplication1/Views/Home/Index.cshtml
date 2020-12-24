@@ -1,32 +1,18 @@
-﻿@{
+﻿@using NewsSite.BL.DTOModels;
+@model IEnumerable<DTONews>;
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="NewsBlock_Container">
     <ul class="NewsBlock">
-        <li class="NewsBlock_Item">
-            <span class="NewsBlock_Item__Title">Name</span>
-            <span class="NewsBlock_Item_Content">Content</span>
-        </li>
-        <li class="NewsBlock_Item">
-            <span class="NewsBlock_Item__Title">Name</span>
-            <span class="NewsBlock_Item_Content">Content</span>
-        </li>
-        <li class="NewsBlock_Item">
-            <span class="NewsBlock_Item__Title">Name</span>
-            <span class="NewsBlock_Item_Content">Content</span>
-        </li>
-        <li class="NewsBlock_Item">
-            <span class="NewsBlock_Item__Title">Name</span>
-            <span class="NewsBlock_Item_Content">Content</span>
-        </li>
-        <li class="NewsBlock_Item">
-            <span class="NewsBlock_Item__Title">Name</span>
-            <span class="NewsBlock_Item_Content">Content</span>
-        </li>
-        <li class="NewsBlock_Item">
-            <span class="NewsBlock_Item__Title">Name</span>
-            <span class="NewsBlock_Item_Content">Content</span>
-        </li>
+        @foreach (var newsItem in Model)
+         {
+            <li class="NewsBlock_Item">
+                <span class="NewsBlock_Item__Title">@newsItem.GetNameOfNews()</span>
+                <span class="NewsBlock_Item_Content">Content</span>
+            </li>
+         }
     </ul>
 </div>
