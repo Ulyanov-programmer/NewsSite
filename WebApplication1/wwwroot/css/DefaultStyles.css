@@ -1,5 +1,10 @@
 @import "../css/NullStyle.css";
+body {
+  font-family: ms sans serif;
+}
+
 header {
+  padding: 10px 0px 20px 0px;
   min-height: 70px;
   min-width: 100%;
 }
@@ -7,19 +12,25 @@ header .Title_Container {
   display: flex;
   justify-content: center;
 }
+header .Title_Container .Title_Container_Title {
+  font-size: 40px;
+  font-family: Bahnschrift;
+}
 header .NavigationMenu {
   display: flex;
   justify-content: center;
   min-width: 100%;
-  border-bottom: solid 1px black;
-  border-top: solid 1px black;
-  background-color: #C0C0C0;
+  background-color: #CDCBCB;
+}
+header .NavigationMenu .NavigationMenu_ButtonContainer {
+  margin: 0 5px;
+  border-left: solid 2px black;
+  border-right: solid 2px black;
 }
 header .NavigationMenu .NavigationMenu_ButtonContainer .NavigationMenu_Button {
-  font-size: 100%;
   text-decoration: none;
   color: black;
-  margin: 0px 7px;
+  margin: 0px 5px;
 }
 
 .LayoutBody {
@@ -48,13 +59,22 @@ header .NavigationMenu .NavigationMenu_ButtonContainer .NavigationMenu_Button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 10px 0px;
-  flex-grow: 1;
+  background-color: #CDCBCB;
+  margin: 10px 0px;
+  padding: 5px 0px;
+}
+.LayoutBody .MainContentContainer .NewsBlock_Container .NewsBlock .NewsBlock_Item .NewsBlock_Item__Ref {
+  display: flex;
+  justify-content: center;
+}
+.LayoutBody .MainContentContainer .NewsBlock_Container .NewsBlock .NewsBlock_Item .NewsBlock_Item__Ref .NewsBlock_Item__Ref__Title {
+  color: black;
+  font-size: 40px;
 }
 
 footer {
   min-height: 10%;
   border-top: solid 0.5px black;
   font-size: 20px;
-  background-color: #C0C0C0;
+  background-color: #CDCBCB;
 }

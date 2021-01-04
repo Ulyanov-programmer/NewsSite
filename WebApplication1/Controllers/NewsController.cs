@@ -25,9 +25,9 @@ namespace NewsSite.UI.Controllers
         {
             var newsDTO = Manager.ReturnEntity(Context, newsName, typeof(DTONews)) as DTONews;
 
-            var paragraphs = new DTONews_Text(newsDTO.GetNameOfDoc());
+            var watchModel = new DTONews_Text(newsDTO.GetNameOfDoc(), newsName);
 
-            return View(paragraphs);
+            return View(watchModel);
         }
 
         [HttpGet]

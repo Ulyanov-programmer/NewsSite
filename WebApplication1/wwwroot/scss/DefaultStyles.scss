@@ -1,17 +1,27 @@
 @import "../css/NullStyle.css";
 
-$TextColor: white;
+$TextColor: black;
 $BorderColor: black;
 $BackgroundColor: #DCDCDC;
-$FirstColor: #C0C0C0;
+$SecondBackgroundColor: #CDCBCB;
+
+body{
+	font-family: ms sans serif;
+}
 
 header{
+	padding: 10px 0px 20px 0px;
 	min-height: 70px;
 	min-width: 100%;
 
 	.Title_Container{
 		display: flex;
 		justify-content: center;
+
+		.Title_Container_Title{
+			font-size: 40px;
+			font-family: Bahnschrift;
+		}
 	}
 	.NavigationMenu{
 		display: flex;
@@ -19,19 +29,18 @@ header{
 
 		min-width: 100%;
 
-		border-bottom: solid 1px $BorderColor;
-		border-top: solid 1px $BorderColor;
-
-		background-color: $FirstColor;
+		background-color: $SecondBackgroundColor;
 		.NavigationMenu_ButtonContainer{
+			margin: 0 5px;
+
+			border-left: solid 2px $BorderColor;
+			border-right: solid 2px $BorderColor;
 
 			.NavigationMenu_Button{
-			font-size: 100%;
+				text-decoration: none;
+				color: $TextColor;
 
-			text-decoration: none;
-			color: black;
-
-			margin: 0px 7px;
+				margin: 0px 5px;
 			}
 		}
 	}
@@ -70,9 +79,21 @@ header{
 						flex-direction: column;
 						justify-content: center;
 						
-						padding: 10px 0px;
+						background-color: $SecondBackgroundColor;
 
-						flex-grow: 1;
+						margin: 10px 0px;
+						padding: 5px 0px;
+
+						.NewsBlock_Item__Ref{
+							display: flex;
+							justify-content: center;
+
+							.NewsBlock_Item__Ref__Title{
+								color: $TextColor;
+
+								font-size: 40px;
+							}
+						}
 					}
 			}
 		}
@@ -82,9 +103,9 @@ header{
 footer{
 	min-height: 10%;
 
-	border-top: solid 0.4px $BorderColor;
+	border-top: solid 0.5px $BorderColor;
 
 	font-size: 20px;
 
-	background-color: $FirstColor;
+	background-color: $SecondBackgroundColor;
 }

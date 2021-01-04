@@ -8,11 +8,14 @@ namespace NewsSite.BL.DTOModels
 {
     public class DTONews_Text
     {
-        public List<string> Paragraphs = new List<string>();
+        public readonly List<string> Paragraphs = new List<string>();
 
-        public DTONews_Text(string nameOfDoc)
+        public readonly string Title;
+
+        public DTONews_Text(string nameOfDoc, string titleOfNews)
         {
             Paragraphs = EditTextOfNews(nameOfDoc).ToList();
+            Title = titleOfNews;
         }
 
         private static IEnumerable<string> EditTextOfNews(string nameOfDoc)
