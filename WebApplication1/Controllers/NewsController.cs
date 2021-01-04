@@ -3,10 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using NewsSite.BL;
 using NewsSite.BL.Abstractions;
 using NewsSite.BL.DTOModels;
-using NewsSite.BL.Servies;
 using NewsSite.UI.ViewModels;
-using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace NewsSite.UI.Controllers
@@ -23,9 +20,14 @@ namespace NewsSite.UI.Controllers
             HostingEnvironment = hostingEnvironment;
         }
 
-        public IActionResult Watch()
+        [HttpGet]
+        public IActionResult Watch(string newsName)
         {
-            return View();
+            var newsDTO = Manager.ReturnEntity(Context, newsName, typeof(DTONews)) as DTONews;
+
+            var paragraphs = new DTONews_Text(newsDTO.GetNameOfDoc());
+
+            return View(paragraphs);
         }
 
         [HttpGet]
@@ -39,17 +41,17 @@ namespace NewsSite.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var author = DBManager.ReturnEntity(Context, model.NameOfAuhtor, typeof(DTOUser));
+                var author = Manager.ReturnEntity(Context, model.NameOfAuhtor, typeof(DTOUser));
                 var news = new DTONews(author as DTOUser, model.NameOfNews, model.DocFile.FileName);
 
-                await DBManager.AddEntity(Context, news);
+                await Manager.AddEntity(Context, news);
                 await FileManager.SaveFileOfNews(model.DocFile, news.GetPathToDocument());
             }
 
             return RedirectToHomePage();
         }
 
-        IActionResult RedirectToHomePage()
+        private IActionResult RedirectToHomePage()
         {
             return RedirectToAction("Index", "Home");
         }

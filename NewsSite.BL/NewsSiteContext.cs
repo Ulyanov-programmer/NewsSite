@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NewsSite.BL.DbModels;
-using System;
 
 namespace NewsSite.BL
 {

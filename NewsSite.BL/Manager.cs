@@ -1,14 +1,12 @@
 ﻿using NewsSite.BL.Abstractions;
-using NewsSite.BL.DTOModels;
 using NewsSite.BL.Servies;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace NewsSite.BL
 {
-    public static class DBManager
+    public static class Manager
     {
         public static async Task<bool> AddEntity(NewsSiteContext context, IDTOModel dTOModel)
         {

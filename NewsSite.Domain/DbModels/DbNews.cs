@@ -1,7 +1,5 @@
-﻿using System;
+﻿using NewsSite.BL.Abstractions;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using NewsSite.BL.Abstractions;
 
 namespace NewsSite.BL.DbModels
 {

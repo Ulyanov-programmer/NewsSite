@@ -4,8 +4,6 @@ using NewsSite.BL;
 using NewsSite.BL.Abstractions;
 using NewsSite.BL.DTOModels;
 using NewsSite.UI.ViewModels;
-using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace NewsSite.UI.Controllers
@@ -32,7 +30,7 @@ namespace NewsSite.UI.Controllers
         {
             IDTOModel userDTO = new DTOUser(model.NameOfUser, model.EmailOfuser);
 
-            await DBManager.AddEntity(Context, userDTO);
+            await Manager.AddEntity(Context, userDTO);
             return View();
         }
 
@@ -42,7 +40,7 @@ namespace NewsSite.UI.Controllers
             return View();
         }
 
-        IActionResult RedirectToHomePage()
+        private IActionResult RedirectToHomePage()
         {
             return RedirectToAction("Index", "Home");
         }

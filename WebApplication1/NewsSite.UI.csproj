@@ -22,8 +22,4 @@
     <ProjectReference Include="..\NewsSite.BL\NewsSite.BL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\NewsFiles\" />
-  </ItemGroup>
-
 </Project>

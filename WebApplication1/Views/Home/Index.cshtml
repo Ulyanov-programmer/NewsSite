@@ -10,8 +10,11 @@
         @foreach (var newsItem in Model)
          {
             <li class="NewsBlock_Item">
-                <span class="NewsBlock_Item__Title">@newsItem.GetNameOfNews()</span>
-                <span class="NewsBlock_Item_Content">Content</span>
+                <a href="/News/Watch?videoName=@newsItem.GetNameOfNews()"
+                   class="NewsBlock_Item__Title">
+
+                   <span class="NewsBlock_Item__Title">@newsItem.GetNameOfNews()</span>
+                </a>
             </li>
          }
     </ul>

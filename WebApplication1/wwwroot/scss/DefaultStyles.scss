@@ -1,4 +1,4 @@
-﻿@import "../css/NullStyle.css";
+@import "../css/NullStyle.css";
 
 $TextColor: white;
 $BorderColor: black;
@@ -69,7 +69,7 @@ header{
 						display: flex;
 						flex-direction: column;
 						justify-content: center;
-
+						
 						padding: 10px 0px;
 
 						flex-grow: 1;
@@ -82,7 +82,7 @@ header{
 footer{
 	min-height: 10%;
 
-	border-top: solid 0.5px $BorderColor;
+	border-top: solid 0.4px $BorderColor;
 
 	font-size: 20px;
 

@@ -1,8 +1,7 @@
 ﻿using NewsSite.BL.Abstractions;
 using NewsSite.BL.DbModels;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace NewsSite.BL.DTOModels
 {
@@ -57,16 +56,18 @@ namespace NewsSite.BL.DTOModels
                 return "";
             }
         }
-        //public string GetNameOfNews()
-        //{
-        //    if (string.IsNullOrWhiteSpace(DbObject.Name) is false)
-        //    {
-        //        return DbObject.Name;
-        //    }
-        //    else
-        //    {
-        //        return "";
-        //    }
-        //}
+        public string GetNameOfDoc()
+        {
+            if (string.IsNullOrWhiteSpace(DbObject.PathToDocument) is false)
+            {
+                string nameOfDoc = DbObject.PathToDocument.Split('\\').Last();
+
+                return nameOfDoc;
+            }
+            else
+            {
+                return "";
+            }
+        }
     }
 }

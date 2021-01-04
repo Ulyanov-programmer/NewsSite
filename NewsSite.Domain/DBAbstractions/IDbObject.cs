@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace NewsSite.BL.Abstractions
+﻿namespace NewsSite.BL.Abstractions
 {
     public interface IDbObject
     {

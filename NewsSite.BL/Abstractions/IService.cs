@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace NewsSite.BL.Abstractions
 {
-    interface IService
+    internal interface IService
     {
         NewsSiteContext Context { get; }
 

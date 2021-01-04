@@ -1,8 +1,6 @@
 ﻿using NewsSite.BL.Abstractions;
 using NewsSite.BL.DbModels;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace NewsSite.BL.DTOModels
 {

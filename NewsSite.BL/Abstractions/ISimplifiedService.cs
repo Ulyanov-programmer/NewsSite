@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NewsSite.BL.Abstractions
 {
-    interface ISimplifiedService
+    internal interface ISimplifiedService
     {
         NewsSiteContext Context { get; set; }
 

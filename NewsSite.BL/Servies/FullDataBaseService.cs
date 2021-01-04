@@ -2,7 +2,6 @@
 using NewsSite.BL.DbModels;
 using NewsSite.BL.DTOModels;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
