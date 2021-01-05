@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NewsSite.BL.Servies
+namespace NewsSite.BL.Managers
 {
     /// <summary>
     /// Представляет класс, содержащий функционал для доступа к базе данных (с частичным функционалом).

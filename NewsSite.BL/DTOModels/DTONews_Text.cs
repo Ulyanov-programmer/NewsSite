@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using NewsSite.BL.Managers;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -46,7 +47,7 @@ namespace NewsSite.BL.DTOModels
             string textOfDoc;
 
             using (StreamReader sr = new StreamReader
-                  ($"{FileManager.PathToTxtDocFolder}{nameOfDoc}.txt", Encoding.UTF8))
+                  ($@"{FileManager.PathToTxtDocFolder}\{nameOfDoc}.txt", Encoding.UTF8))
             {
                 textOfDoc = sr.ReadToEnd();
             }

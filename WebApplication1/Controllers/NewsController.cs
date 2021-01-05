@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using NewsSite.BL;
 using NewsSite.BL.Abstractions;
 using NewsSite.BL.DTOModels;
+using NewsSite.BL.Managers;
 using NewsSite.UI.ViewModels;
 using System.Threading.Tasks;
 
@@ -23,7 +24,7 @@ namespace NewsSite.UI.Controllers
         [HttpGet]
         public IActionResult Watch(string newsName)
         {
-            var newsDTO = Manager.ReturnEntity(Context, newsName, typeof(DTONews)) as DTONews;
+            var newsDTO = OperationManager.ReturnEntity(Context, newsName, typeof(DTONews)) as DTONews;
 
             var watchModel = new DTONews_Text(newsDTO.GetNameOfDoc(), newsName);
 
@@ -41,10 +42,10 @@ namespace NewsSite.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var author = Manager.ReturnEntity(Context, model.NameOfAuhtor, typeof(DTOUser));
+                var author = OperationManager.ReturnEntity(Context, model.NameOfAuhtor, typeof(DTOUser));
                 var news = new DTONews(author as DTOUser, model.NameOfNews, model.DocFile.FileName);
 
-                await Manager.AddEntity(Context, news);
+                await OperationManager.AddEntity(Context, news);
                 await FileManager.SaveFileOfNews(model.DocFile, news.GetPathToDocument());
             }
 

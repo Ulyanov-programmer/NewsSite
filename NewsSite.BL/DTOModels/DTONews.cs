@@ -1,5 +1,6 @@
 ﻿using NewsSite.BL.Abstractions;
 using NewsSite.BL.DbModels;
+using NewsSite.BL.Managers;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -44,7 +45,7 @@ namespace NewsSite.BL.DTOModels
         ///                               будет использовано для создания DbNews.PathToDocument . </param>
         public DTONews(DTOUser author, string nameOfNews, string nameOfDocument)
         {
-            DbObject = new DbNews(author.DbObject.Id, nameOfNews, $"{FileManager.PathToDocFolder}{nameOfDocument}");
+            DbObject = new DbNews(author.DbObject.Id, nameOfNews, $@"{FileManager.PathToDocFolder}\{nameOfDocument}");
         }
 
         /// <summary>

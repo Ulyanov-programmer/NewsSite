@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NewsSite.BL.Servies
+namespace NewsSite.BL.Managers
 {
     /// <summary>
     /// Представляет класс, содержащий функционал для доступа к базе данных (с полным функционалом).
@@ -109,6 +109,6 @@ namespace NewsSite.BL.Servies
                 return dbEntity;
             }
             else { throw new NullReferenceException("Метод не смог найти сущность для возврата!"); }
-        }   
+        }
     }
 }

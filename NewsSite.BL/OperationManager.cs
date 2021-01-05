@@ -1,12 +1,12 @@
 ﻿using NewsSite.BL.Abstractions;
-using NewsSite.BL.Servies;
+using NewsSite.BL.Managers;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace NewsSite.BL
 {
-    public static class Manager
+    public static class OperationManager
     {
         public static async Task<bool> AddEntity(NewsSiteContext context, IDTOModel dTOModel)
         {
