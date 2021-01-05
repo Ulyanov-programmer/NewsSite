@@ -6,19 +6,42 @@ using System.Text.RegularExpressions;
 
 namespace NewsSite.BL.DTOModels
 {
+    /// <summary>
+    /// Содержит форматированный текст документа, определяемого при создании объекта.
+    /// </summary>
     public class DTONews_Text
     {
+        /// <summary>
+        /// Содержит текст документа, разбитый на параграфы.
+        /// </summary>
         public readonly List<string> Paragraphs = new List<string>();
 
+        /// <summary>
+        /// Заголовок новости.
+        /// </summary>
         public readonly string Title;
 
+        /// <summary>
+        /// Создаёт новый экземпляр DTONews_Text.
+        /// </summary>
+        /// <param name="nameOfDoc"> Имя документа (не полный путь и без формата файла), из которого будет взят текст для этого объекта. </param>
+        /// <param name="titleOfNews"> Название (заголовок) новости. </param>
         public DTONews_Text(string nameOfDoc, string titleOfNews)
         {
-            Paragraphs = EditTextOfNews(nameOfDoc).ToList();
+            Paragraphs = EditTextFromFIle(nameOfDoc).ToList();
             Title = titleOfNews;
         }
 
-        private static IEnumerable<string> EditTextOfNews(string nameOfDoc)
+        /// <summary>
+        /// Форматирует текст документа из файла.
+        /// </summary>
+        /// 
+        /// <param name="nameOfDoc"> Имя документа (не полный путь и без формата файла), из которого будет взят текст для этого объекта. </param>
+        /// 
+        /// <returns>
+        /// Коллекция строк на которые был разбит текст документа (разбивает по параграфам).
+        /// </returns>
+        private static IEnumerable<string> EditTextFromFIle(string nameOfDoc)
         {
             string textOfDoc;
 

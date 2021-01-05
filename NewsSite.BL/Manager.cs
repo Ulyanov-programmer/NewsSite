@@ -10,7 +10,7 @@ namespace NewsSite.BL
     {
         public static async Task<bool> AddEntity(NewsSiteContext context, IDTOModel dTOModel)
         {
-            var service = new FullDataBaseService(context);
+            var service = new FullDBManager(context);
 
             await service.AddEntityToDb(dTOModel);
 
@@ -21,7 +21,7 @@ namespace NewsSite.BL
                                                             int count,
                                                             bool lastEntities = true)
         {
-            var service = new SimplifiedDataBaseService(context);
+            var service = new SimplifiedDBManager(context);
 
             var modelFromDb = service.ReturnMultipleNews(count, lastEntities);
 
@@ -30,7 +30,7 @@ namespace NewsSite.BL
 
         public static IDTOModel ReturnEntity(NewsSiteContext context, string nameOfEntity, Type typeOfEntity)
         {
-            var service = new SimplifiedDataBaseService(context);
+            var service = new SimplifiedDBManager(context);
 
             var modelFromDb = service.ReturnEntityFromDb(nameOfEntity, typeOfEntity);
 
