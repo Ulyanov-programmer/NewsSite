@@ -50,7 +50,7 @@ namespace NewsSite.BL.Managers
         /// </returns>
         public static async Task<bool> SaveFileOfNews(IFormFile fileFromForm, string pathSave = "")
         {
-            if (fileFromForm.ContentType != ".doc" || fileFromForm.ContentType != ".docx")
+            if (fileFromForm.ContentType != ".docx")
             { return false; }
 
             string nameOfDoc = fileFromForm.FileName.Remove
@@ -64,10 +64,9 @@ namespace NewsSite.BL.Managers
             ExistsDirectories_IfNotThenCreate();
 
             using (var stream = new FileStream(pathSave, FileMode.Create))
-            {
-                await fileFromForm.CopyToAsync(stream);
-            }
-            SaveNewsAsDoc(pathSave, nameOfDoc);
+            { await fileFromForm.CopyToAsync(stream); }
+
+            SaveNewsAsText(pathSave, nameOfDoc);
 
             return true;
         }
@@ -77,7 +76,7 @@ namespace NewsSite.BL.Managers
         /// </summary>
         /// <param name="pathToDoc"> Путь к документу, откуда будет взят текст. </param>
         /// <param name="nameOfFile"> Название файла, из которого будет взят текст. </param>
-        private static void SaveNewsAsDoc(string pathToDoc, string nameOfFile)
+        private static void SaveNewsAsText(string pathToDoc, string nameOfFile)
         {
             string text;
 
