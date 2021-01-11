@@ -45,8 +45,9 @@ namespace NewsSite.UI.Controllers
                 var author = OperationManager.ReturnEntity(Context, model.NameOfAuhtor, typeof(DTOUser));
                 var news = new DTONews(author as DTOUser, model.NameOfNews, model.DocFile.FileName);
 
+                //TODO: Сделать эти операции параллельными.
                 await OperationManager.AddEntity(Context, news);
-                await FileManager.SaveFileOfNews(model.DocFile, news.GetPathToDocument());
+                await FileManager.SaveFileOfNews(model.DocFile);
             }
 
             return RedirectToHomePage();

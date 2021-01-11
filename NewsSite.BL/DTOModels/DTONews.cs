@@ -108,7 +108,10 @@ namespace NewsSite.BL.DTOModels
         {
             if (string.IsNullOrWhiteSpace(DbObject.PathToDocument) is false)
             {
-                string nameOfDoc = DbObject.PathToDocument.Split('\\').Last();
+                string nameOfDocWithFormat = DbObject.PathToDocument.Split('\\').Last();
+
+                string nameOfDoc = nameOfDocWithFormat.Remove
+                                  (nameOfDocWithFormat.IndexOf(".docx"));
 
                 return nameOfDoc;
             }
