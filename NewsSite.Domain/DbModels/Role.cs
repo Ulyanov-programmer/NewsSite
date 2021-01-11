@@ -5,10 +5,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NewsSite.BL
 {
-    /// <summary>
-    /// Этот класс содержит функционал, который будет реализован в будущем. 
-    /// На данный момент он бесполезен.
-    /// </summary>
     internal class Role : IDbObject
     {
         public Role() { }
