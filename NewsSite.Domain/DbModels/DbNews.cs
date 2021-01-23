@@ -17,12 +17,12 @@ namespace NewsSite.BL.DbModels
         /// Уникальный идентификатор в базе данных для этой новости.
         /// </summary>
         [Key]
-        public int Id { get; set; }
+        public int Id { get; private set; }
 
         /// <summary>
         /// Имя (представляет заголовок) этой новости базе данных.
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
         /// <summary>
         /// Путь к документу, в котором находится или будет 

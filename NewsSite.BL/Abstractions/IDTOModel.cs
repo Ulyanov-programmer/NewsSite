@@ -12,7 +12,7 @@ namespace NewsSite.BL.Abstractions
         /// Возвращает информацию DTO-объекта в виде коллекции строк.
         /// </summary>
         /// <returns></returns>
-        public List<string> GetInfo();
+        public IEnumerable<string> GetInfo();
 
         /// <summary>
         /// Представляет собой объект IDbObject, данные которого являются основой этого IDTOModel.
