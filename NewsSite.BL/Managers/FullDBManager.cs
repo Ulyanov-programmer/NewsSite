@@ -55,13 +55,13 @@ namespace NewsSite.BL.Managers
         /// </returns>
         public async Task<bool> AddEntityToDb(IDTOModel inputDTO)
         {
-            if (inputDTO.GetType().Name == "DTONews")
+            if (inputDTO.GetType() == typeof(DTONews))
             {
                 DbNews news = inputDTO.DbObjectOfDTOModel as DbNews;
                 _context.News.Add(news);
                 await _context.SaveChangesAsync();
             }
-            else if (inputDTO.GetType().Name == "DTOUser")
+            else if (inputDTO.GetType() == typeof(DTOUser))
             {
                 DbUser user = inputDTO.DbObjectOfDTOModel as DbUser;
                 _context.Users.Add(user);
@@ -91,11 +91,11 @@ namespace NewsSite.BL.Managers
         {
             IDTOModel dbEntity;
 
-            if (typeOfEntity.GetType().Name == "DTONews")
+            if (typeOfEntity == typeof(DTONews))
             {
                 dbEntity = new DTONews(_context.News.FirstOrDefault(news => news.Name == nameOfEntity));
             }
-            else if (typeOfEntity.GetType().Name == "DTOUser")
+            else if (typeOfEntity == typeof(DTOUser))
             {
                 dbEntity = new DTOUser(_context.Users.FirstOrDefault(user => user.Name == nameOfEntity));
             }

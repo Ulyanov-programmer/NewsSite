@@ -53,12 +53,12 @@ namespace NewsSite.BL.Managers
         {
             IDTOModel dtoModel;
 
-            if (typeOfReturnedDTOs.Name == "DTONews")
+            if (typeOfReturnedDTOs == typeof(DTONews))
             {
                 var dbModel = _context.News.FirstOrDefault(news => news.Name == nameOfEntity);
                 dtoModel = new DTONews(dbModel);
             }
-            else if (typeOfReturnedDTOs.Name == "DTOUser")
+            else if (typeOfReturnedDTOs == typeof(DTOUser))
             {
                 var users = _context.Users.ToList();
 
