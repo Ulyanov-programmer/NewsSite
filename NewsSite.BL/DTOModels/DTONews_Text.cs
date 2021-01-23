@@ -15,12 +15,12 @@ namespace NewsSite.BL.DTOModels
         /// <summary>
         /// Содержит текст документа, разбитый на параграфы.
         /// </summary>
-        public readonly List<string> Paragraphs = new List<string>();
+        public IEnumerable<string> Paragraphs { get; private set; }
 
         /// <summary>
         /// Заголовок новости.
         /// </summary>
-        public readonly string Title;
+        public string Title { get; private set; }
 
         /// <summary>
         /// Создаёт новый экземпляр DTONews_Text.
@@ -44,6 +44,7 @@ namespace NewsSite.BL.DTOModels
         /// </returns>
         private static IEnumerable<string> EditTextFromFIle(string nameOfDoc)
         {
+            
             string textOfDoc;
 
             using (StreamReader sr = new StreamReader
