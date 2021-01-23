@@ -48,7 +48,7 @@ namespace NewsSite.BL.DTOModels
             string textOfDoc;
 
             using (StreamReader sr = new StreamReader
-                  ($@"{FileManager.PathToTxtDocFolder}\{nameOfDoc}.txt", Encoding.UTF8))
+                  ($@"{FileManager.PathToTxtDocFolder}\{nameOfDoc}.dat", Encoding.UTF8))
             {
                 textOfDoc = sr.ReadToEnd();
             }

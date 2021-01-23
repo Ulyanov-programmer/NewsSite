@@ -1,9 +1,13 @@
-﻿using Aspose.Words;
-using Aspose.Words.Saving;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.IO;
+using System.IO.Compression;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.XPath;
 
 namespace NewsSite.BL.Managers
 {
@@ -31,7 +35,7 @@ namespace NewsSite.BL.Managers
         /// <param name="fileFromForm"> Объект IFormFile, содержащий 
         ///                             непосредственно файл из веб-формы, который будет сохранён. </param>
         /// <param name="pathSave"> 
-        /// Путь по которому будет сохранён файл. Может быть (и является по умолчанию) null или пустой строкой.
+        /// Путь по которому будет сохранён файл. Может быть (и является по умолчанию) пустой строкой.
         /// В этом случае, путь будет создан в теле метода:
         ///     <code>
         ///         if (string.IsNullOrEmpty(pathSave))
@@ -46,6 +50,12 @@ namespace NewsSite.BL.Managers
         /// </returns>
         public static async Task<bool> SaveFileOfNews(IFormFile fileFromForm, string pathSave = "")
         {
+            if (fileFromForm.ContentType != ".docx")
+            { return false; }
+
+            string nameOfDoc = fileFromForm.FileName.Remove
+                              (fileFromForm.FileName.IndexOf(".docx"));
+
             if (string.IsNullOrEmpty(pathSave))
             {
                 pathSave = $@"{PathToDocFolder}\{fileFromForm.FileName}";
@@ -54,10 +64,9 @@ namespace NewsSite.BL.Managers
             ExistsDirectories_IfNotThenCreate();
 
             using (var stream = new FileStream(pathSave, FileMode.Create))
-            {
-                await fileFromForm.CopyToAsync(stream);
-            }
-            SaveNewsAsTxt(pathSave, fileFromForm.FileName);
+            { await fileFromForm.CopyToAsync(stream); }
+
+            SaveNewsAsText(pathSave, nameOfDoc);
 
             return true;
         }
@@ -67,14 +76,30 @@ namespace NewsSite.BL.Managers
         /// </summary>
         /// <param name="pathToDoc"> Путь к документу, откуда будет взят текст. </param>
         /// <param name="nameOfFile"> Название файла, из которого будет взят текст. </param>
-        private static void SaveNewsAsTxt(string pathToDoc, string nameOfFile)
+        private static void SaveNewsAsText(string pathToDoc, string nameOfFile)
         {
-            var loadOptions = new TxtLoadOptions();
-            var txtSaveOptions = new TxtSaveOptions();
+            string text;
 
-            Document doc = new Document(pathToDoc, loadOptions);
+            var nsMgr = new XmlNamespaceManager(new NameTable());
+            nsMgr.AddNamespace("w", "http://schemas.openxmlformats.org/wordprocessingml/2006/main");
 
-            doc.Save($@"{PathToTxtDocFolder}\{nameOfFile}.txt", txtSaveOptions);
+            using (var archive = ZipFile.OpenRead(pathToDoc))
+            {
+                #region readingFile
+
+                text = XDocument.Load(archive.GetEntry(@"word/document2.xml").Open())
+                                .XPathSelectElements("//w:p", nsMgr)
+                                .Aggregate(new StringBuilder(), (sb, p) => p
+                                    .XPathSelectElements(".//w:t|.//w:tab|.//w:br", nsMgr)
+                                    .Select(e => { return e.Name.LocalName switch { "br" => "\r\n", "tab" => "\t", _ => e.Value, }; })
+                                    .Aggregate(sb, (sb1, v) => sb1.Append(v)))
+                                .ToString();
+
+                #endregion
+            }
+
+            using var sw = new StreamWriter($@"{PathToTxtDocFolder}\{nameOfFile}.dat", true, Encoding.UTF8);
+            sw.Write(text);
         }
 
         /// <summary>
@@ -85,7 +110,6 @@ namespace NewsSite.BL.Managers
         {
             if (File.Exists(PathToDocFolder) is false || File.Exists(PathToTxtDocFolder) is false)
             {
-                //TODO: Возможно пересоздаёт папки, исправить.
                 Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\NewsSite");
                 Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\NewsSite\NewsFiles");
                 Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\NewsSite\NewsTxtFiles");
