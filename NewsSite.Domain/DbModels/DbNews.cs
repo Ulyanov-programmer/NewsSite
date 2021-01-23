@@ -6,9 +6,9 @@ namespace NewsSite.BL.DbModels
     public class DbNews : IDbObject
     {
         [Key]
-        public int Id { get; set; }
+        public int Id { get; private set; }
 
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
         public DbNews(int authorId, string nameOfNews, string pathToDocument)
         {
