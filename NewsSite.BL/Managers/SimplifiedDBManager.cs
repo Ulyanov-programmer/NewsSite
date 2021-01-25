@@ -53,12 +53,12 @@ namespace NewsSite.BL.Managers
         {
             IDTOModel dtoModel;
 
-            if (typeOfReturnedDTOs.Name == "DTONews")
+            if (typeOfReturnedDTOs == typeof(DTONews))
             {
                 var dbModel = _context.News.FirstOrDefault(news => news.Name == nameOfEntity);
                 dtoModel = new DTONews(dbModel);
             }
-            else if (typeOfReturnedDTOs.Name == "DTOUser")
+            else if (typeOfReturnedDTOs == typeof(DTOUser))
             {
                 var users = _context.Users.ToList();
 
@@ -89,10 +89,10 @@ namespace NewsSite.BL.Managers
         /// </returns>
         /// 
         /// <exception cref="NullReferenceException"> Если не была найдена сущность для возврата. </exception>
-        public List<DTONews> ReturnMultipleNews(int count, bool lastNews)
+        public ICollection<DTONews> ReturnMultipleNews(int count, bool lastNews)
         {
-            List<DTONews> dtoNews = new List<DTONews>();
-            List<DbNews> dbNews;
+            ICollection<DTONews> dtoNews = new List<DTONews>();
+            IEnumerable<DbNews> dbNews;
 
             if (lastNews)
             {

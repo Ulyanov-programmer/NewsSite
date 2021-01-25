@@ -46,7 +46,7 @@ namespace NewsSite.BL.DTOModels
         /// Возвращает информацию DTO-объекта в виде коллекции строк.
         /// </summary>
         /// <returns></returns>
-        public List<string> GetInfo()
+        public IEnumerable<string> GetInfo()
         {
             var info = new List<string>
             {

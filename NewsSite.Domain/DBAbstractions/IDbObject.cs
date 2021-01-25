@@ -12,7 +12,6 @@
         int Id
         {
             get;
-            set;
         }
         /// <summary>
         /// Имя этого имплементатора IDbObject.
@@ -20,7 +19,6 @@
         string Name
         {
             get;
-            set;
         }
     }
 }

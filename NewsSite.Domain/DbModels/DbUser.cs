@@ -19,20 +19,24 @@ namespace NewsSite.BL.DbModels
         /// Уникальный идентификатор в базе данных для этого пользователя.
         /// </summary>
         [Key]
-        public int Id { get; set; }
+        public int Id { get; private set; }
 
         /// <summary>
         /// Имя этого пользователя.
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
+        public ICollection<DbNews> DbNews { get; private set; }
+
+        //public Role RoleId { get; set; }
+        
         /// <summary>
         /// Почтовый адрес пользователя.
         /// </summary>
-        public string Email { get; set; }
-
+        public string Email { get; private set; }
+        
         #endregion
-
+        
         #region constructors
 
         /// <summary>

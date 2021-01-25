@@ -14,10 +14,10 @@ namespace NewsSite.BL
         public Role() { }
 
         [Key]
-        public int Id { get; set; }
+        public int Id { get; private set; }
 
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
-        public List<DbUser> DbUsers { get; set; }
+        public ICollection<DbUser> DbUsers { get; private set; }
     }
 }
