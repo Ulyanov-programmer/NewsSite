@@ -10,7 +10,7 @@ using System.IO;
 using Xunit;
 using NewsSite.Tests.TestSupportClasses;
 
-namespace NewsSite.Tests.UnitTests
+namespace NewsSite.Tests.IntegrationTests
 {
     public class OperationManagerTests
     {
@@ -31,19 +31,19 @@ namespace NewsSite.Tests.UnitTests
             {
                 case InitializationVariants.Good:
 
-                    Assert.True(dbNews_Mosk.MoskLog.Result, 
+                    Assert.True(dbNews_Mosk.MoskLog.Result,
                         "The MoskLog should Result.True because InitializationVariants is Good and the method must be executed.");
                     break;
 
                 case InitializationVariants.Null:
 
-                    Assert.False(dbNews_Mosk.MoskLog.Result, 
+                    Assert.False(dbNews_Mosk.MoskLog.Result,
                         "The MoskLog should Result.False because InitializationVariants is Null and the method should not be executed.");
                     break;
 
                 case InitializationVariants.Empty:
 
-                    Assert.False(dbNews_Mosk.MoskLog.Result, 
+                    Assert.False(dbNews_Mosk.MoskLog.Result,
                         "The MoskLog should Result.False because InitializationVariants is Empty and the method should not be executed.");
                     break;
             }
@@ -52,14 +52,14 @@ namespace NewsSite.Tests.UnitTests
         public static DbContextOptions<NewsSiteContext> GetDbContextOptions()
         {
             IConfiguration configuration = new ConfigurationBuilder()
-                 //Enter your path to the appsettings.json file for this project below.
+                //Enter your path to the appsettings.json file for this project below.
                 .SetBasePath(@"")
                 .AddJsonFile("appsettings.json")
                 .Build();
 
 
             return new DbContextOptionsBuilder<NewsSiteContext>()
-                   //Enter the connection string from appsettings.json below.
+                  //Enter the connection string from appsettings.json below.
                   .UseSqlServer(new SqlConnection(configuration.GetConnectionString("DefaultConnection"))).Options;
 
         }

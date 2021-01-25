@@ -11,7 +11,7 @@ namespace NewsSite.Tests.ViewModelsMosks.Mosks
 
         internal readonly InitializationVariants InitVariant;
 
-        internal DbNews DbNewsObject = new DbNews();
+        internal readonly DbNews DbNewsObject = new DbNews();
 
         internal DbNews_Mosk(InitializationVariants variant)
         {
@@ -19,28 +19,22 @@ namespace NewsSite.Tests.ViewModelsMosks.Mosks
             {
                 case InitializationVariants.Good:
 
-                    DbNewsObject.Id = 0;
-                    DbNewsObject.Name = $"NewsFrom{DateTime.Now}";
-                    DbNewsObject.PathToDocument = $@"TestFiles\{DbNewsObject.Name}.txt";
-                    DbNewsObject.DbUserId = 1;
+                    DbNewsObject = new DbNews(1, $"NewsFrom{DateTime.Now}",
+                                                 $@"TestFiles\{DbNewsObject.Name}.txt");
                     InitVariant = variant;
 
                     break;
                 case InitializationVariants.Null:
 
-                    DbNewsObject.Id = 0;
-                    DbNewsObject.Name = null;
-                    DbNewsObject.PathToDocument = null;
-                    DbNewsObject.DbUserId = 0;
+                    DbNewsObject = new DbNews(0, null, null);
+
                     InitVariant = variant;
 
                     break;
                 case InitializationVariants.Empty:
 
-                    DbNewsObject.Id = 0;
-                    DbNewsObject.Name = string.Empty;
-                    DbNewsObject.PathToDocument = string.Empty;
-                    DbNewsObject.DbUserId = 0;
+                    DbNewsObject = new DbNews(0, string.Empty, string.Empty);
+
                     InitVariant = variant;
 
                     break;

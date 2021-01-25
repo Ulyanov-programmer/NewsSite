@@ -49,12 +49,6 @@ namespace NewsSite.BL.DbModels
                 Name = nameOfNews;
                 PathToDocument = pathToDocument;
             }
-            else
-            {
-                DbUserId = 1;
-                Name = "Новость была создана некорректно!";
-                PathToDocument = "Новость была создана некорректно!";
-            }
         }
 
         /// <summary>

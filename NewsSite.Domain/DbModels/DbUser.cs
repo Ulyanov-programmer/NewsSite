@@ -26,8 +26,6 @@ namespace NewsSite.BL.DbModels
         /// </summary>
         public string Name { get; private set; }
 
-        public ICollection<DbNews> DbNews { get; private set; }
-
         //public Role RoleId { get; set; }
         
         /// <summary>
@@ -51,11 +49,6 @@ namespace NewsSite.BL.DbModels
                 Name = nameOfUser;
                 Email = emailOfUser;
             }
-            else
-            {
-                Name = "Пользователь был создан неправильно!";
-                Email = "Пользователь был создан неправильно!";
-            }
         }
 
         /// <summary>
@@ -66,11 +59,11 @@ namespace NewsSite.BL.DbModels
         #endregion
 
         #region FK_params
-        
+
         /// <summary>
         /// Коллекция, представляющая все новости, автором которых является этот пользователь.
         /// </summary>
-        public List<DbNews> DbNews { get; set; }
+        public ICollection<DbNews> DbNews { get; private set; }
 
         #endregion
     }
