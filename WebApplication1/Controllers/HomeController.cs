@@ -18,7 +18,9 @@ namespace WebApplication1.Controllers
 
         public IActionResult Index()
         {
-            var lastNews = OperationManager.ReturnEntities(Context, 5);
+            var operManager = new OperationManager();
+
+            var lastNews = operManager.ReturnEntities(Context, 5);
             return View(lastNews);
         }
 

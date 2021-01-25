@@ -7,7 +7,7 @@ namespace NewsSite.BL
     {
         public NewsSiteContext(DbContextOptions<NewsSiteContext> options) : base(options)
         {
-
+            //TODO: Уделять экземпляр контекста после операций.
         }
 
         internal DbSet<DbUser> Users { get; set; }

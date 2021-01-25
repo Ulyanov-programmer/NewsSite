@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NewsSite.Domain\NewsSite.Domain.csproj" />
+    <ProjectReference Include="..\NewsSite.Domain\NewsSite.Entities.csproj" />
   </ItemGroup>
 
 </Project>

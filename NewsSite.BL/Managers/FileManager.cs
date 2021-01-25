@@ -19,13 +19,13 @@ namespace NewsSite.BL.Managers
         /// <summary>
         /// Константа пути к папке, содержащей файлы документов (.doc, .docx) с новостями. 
         /// </summary>
-        internal static string PathToDocFolder = Environment.GetFolderPath
+        internal static readonly string PathToDocFolder = Environment.GetFolderPath
                                                 (Environment.SpecialFolder.MyDocuments) + @"\NewsSite\NewsFiles";
 
         /// <summary>
         /// Константа пути к папке, содержащей текстовые файлы документов (.txt) с новостями. 
         /// </summary>
-        internal static string PathToTxtDocFolder = Environment.GetFolderPath
+        internal static readonly string PathToTxtDocFolder = Environment.GetFolderPath
                                                    (Environment.SpecialFolder.MyDocuments) + @"\NewsSite\NewsTxtFiles";
 
         /// <summary>

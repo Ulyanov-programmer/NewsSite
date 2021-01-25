@@ -1,4 +1,5 @@
-﻿using NewsSite.BL.Abstractions;
+﻿using Microsoft.EntityFrameworkCore;
+using NewsSite.BL.Abstractions;
 using NewsSite.BL.DbModels;
 using NewsSite.BL.DTOModels;
 using System;
@@ -13,7 +14,7 @@ namespace NewsSite.BL.Managers
     /// <remarks>
     /// Реализует: <c>IDbManager</c>
     /// </remarks>
-    internal class FullDBManager : IDbManager
+    internal class FullDBManager : IDbManager, ILogger
     {
         /// <summary>
         /// Объект контекста, необходимый для доступа к данным БД.
@@ -58,12 +59,14 @@ namespace NewsSite.BL.Managers
             if (inputDTO.GetType().Name == "DTONews")
             {
                 DbNews news = inputDTO.DbObjectOfDTOModel as DbNews;
+
                 _context.News.Add(news);
                 await _context.SaveChangesAsync();
             }
             else if (inputDTO.GetType().Name == "DTOUser")
             {
                 DbUser user = inputDTO.DbObjectOfDTOModel as DbUser;
+
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
             }
@@ -73,6 +76,49 @@ namespace NewsSite.BL.Managers
             }
 
             return true;
+        }
+
+        public async Task<Log> AddEntityToDb(IDbObject inputDbObject)
+        {
+            try
+            {
+                if (inputDbObject.GetType() == typeof(DbNews))
+                {
+                    var newNews = inputDbObject as DbNews;
+
+                    _context.News.Add(newNews);
+                    await _context.SaveChangesAsync();
+                }
+                else if (inputDbObject.GetType() == typeof(DbUser))
+                {
+                    var newUser = inputDbObject as DbUser;
+
+                    _context.Users.Add(newUser);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    throw new TypeAccessException("Invalid type for IDbObject argument.");
+                }
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return WriteLog(NameOfManager, "AddEntityToDb", ex);
+            }
+            catch (DbUpdateException ex)
+            {
+                return WriteLog(NameOfManager, "AddEntityToDb", ex);
+            }
+            catch (TypeAccessException ex)
+            {
+                return WriteLog(NameOfManager, "AddEntityToDb", ex);
+            }
+            catch (Exception ex)
+            {
+                return WriteLog(NameOfManager, "AddEntityToDb", ex);
+            }
+
+            return WriteLog(NameOfManager, "AddEntityToDb");
         }
 
         /// <summary>
@@ -110,5 +156,21 @@ namespace NewsSite.BL.Managers
             }
             else { throw new NullReferenceException("Метод не смог найти сущность для возврата!"); }
         }
+
+        #region Logging
+
+        public Log WriteLog(string nameOfController, string nameOfMethod, Exception ex)
+        {
+            return new Log(nameOfController, nameOfMethod, ex.InnerException.Message);
+        }
+
+        public Log WriteLog(string nameOfController, string nameOfMethod)
+        {
+            return new Log(nameOfController, nameOfMethod, "The method completed successfully", true);
+        }
+
+        #endregion
+
+        public const string NameOfManager = "FullDBManager";
     }
 }

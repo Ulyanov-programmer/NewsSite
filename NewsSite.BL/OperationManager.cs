@@ -1,4 +1,5 @@
-﻿using NewsSite.BL.Abstractions;
+﻿using Microsoft.EntityFrameworkCore;
+using NewsSite.BL.Abstractions;
 using NewsSite.BL.Managers;
 using System;
 using System.Collections.Generic;
@@ -6,20 +7,36 @@ using System.Threading.Tasks;
 
 namespace NewsSite.BL
 {
-    public static class OperationManager
+    /// <summary>
+    /// Статический класс, выполняющий функции передачи данных из слоя интерфейса в бизнес-логику и обратно.
+    /// </summary>
+    public class OperationManager : ILogger
     {
-        public static async Task<bool> AddEntity(NewsSiteContext context, IDTOModel dTOModel)
+        public async Task<bool> AddEntity(NewsSiteContext context, IDTOModel dtoModel)
         {
             var service = new FullDBManager(context);
 
-            await service.AddEntityToDb(dTOModel);
+            await service.AddEntityToDb(dtoModel);
 
             return true;
         }
 
-        public static IEnumerable<IDTOModel> ReturnEntities(NewsSiteContext context,
-                                                            int count,
-                                                            bool lastEntities = true)
+        public async Task<Log> AddEntity(NewsSiteContext context, IDbObject dbObject)
+        {
+            var service = new FullDBManager(context);
+
+            var log = await service.AddEntityToDb(dbObject);
+
+            if (log.Result is false){
+                return log;
+            }
+            else{
+                return WriteLog("OperationManager", "AddEntity");
+            }
+        }
+
+        public IEnumerable<IDTOModel> ReturnEntities(NewsSiteContext context, int count,
+                                                                              bool lastEntities = true)
         {
             var service = new SimplifiedDBManager(context);
 
@@ -28,7 +45,7 @@ namespace NewsSite.BL
             return modelFromDb;
         }
 
-        public static IDTOModel ReturnEntity(NewsSiteContext context, string nameOfEntity, Type typeOfEntity)
+        public IDTOModel ReturnEntity(NewsSiteContext context, string nameOfEntity, Type typeOfEntity)
         {
             var service = new SimplifiedDBManager(context);
 
@@ -36,5 +53,20 @@ namespace NewsSite.BL
 
             return modelFromDb;
         }
+
+        #region Logging
+
+        public Log WriteLog(string nameOfController, string nameOfMethod, Exception ex)
+        {
+            return new Log(nameOfController, nameOfMethod, ex.InnerException.Message);
+        }
+
+        public Log WriteLog(string nameOfController, string nameOfMethod)
+        {
+            return new Log(nameOfController, nameOfMethod, "Methods completed successfully", true);
+        }
+
+        #endregion
+        
     }
 }

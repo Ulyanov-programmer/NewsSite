@@ -30,7 +30,9 @@ namespace NewsSite.UI.Controllers
         {
             IDTOModel userDTO = new DTOUser(model.NameOfUser, model.EmailOfuser);
 
-            await OperationManager.AddEntity(Context, userDTO);
+            var operManager = new OperationManager();
+
+            await operManager.AddEntity(Context, userDTO);
             return View();
         }
 

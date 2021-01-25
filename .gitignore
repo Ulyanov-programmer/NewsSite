@@ -339,3 +339,4 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /WebApplication1/wwwroot/NewsFiles/Документ 1.docx
+/NewsSite.XUnitTests/ViewModelsMosks/Mosks/RegistrationVM_Mosk.cs

@@ -24,7 +24,9 @@ namespace NewsSite.UI.Controllers
         [HttpGet]
         public IActionResult Watch(string newsName)
         {
-            var newsDTO = OperationManager.ReturnEntity(Context, newsName, typeof(DTONews)) as DTONews;
+            var operManager = new OperationManager();
+
+            var newsDTO = operManager.ReturnEntity(Context, newsName, typeof(DTONews)) as DTONews;
 
             var watchModel = new DTONews_Text(newsDTO.GetNameOfDoc(), newsName);
 
@@ -42,11 +44,13 @@ namespace NewsSite.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var author = OperationManager.ReturnEntity(Context, model.NameOfAuhtor, typeof(DTOUser));
+                var operManager = new OperationManager();
+
+                var author = operManager.ReturnEntity(Context, model.NameOfAuhtor, typeof(DTOUser));
                 var news = new DTONews(author as DTOUser, model.NameOfNews, model.DocFile.FileName);
 
                 //TODO: Сделать эти операции параллельными.
-                await OperationManager.AddEntity(Context, news);
+                await operManager.AddEntity(Context, news);
                 await FileManager.SaveFileOfNews(model.DocFile);
             }
 
