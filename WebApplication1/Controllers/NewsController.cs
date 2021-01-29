@@ -11,13 +11,10 @@ namespace NewsSite.UI.Controllers
 {
     public class NewsController : Controller, IAppController
     {
-        public NewsSiteContext Context { get; }
-
         public IWebHostEnvironment HostingEnvironment { get; }
 
-        public NewsController(NewsSiteContext context, IWebHostEnvironment hostingEnvironment)
+        public NewsController(IWebHostEnvironment hostingEnvironment)
         {
-            Context = context;
             HostingEnvironment = hostingEnvironment;
         }
 
@@ -26,7 +23,7 @@ namespace NewsSite.UI.Controllers
         {
             var operManager = new OperationManager();
 
-            var newsDTO = operManager.ReturnEntity(Context, newsName, typeof(DTONews)) as DTONews;
+            var newsDTO = operManager.ReturnEntity(newsName, typeof(DTONews)) as DTONews;
 
             var watchModel = new DTONews_Text(newsDTO.GetNameOfDoc(), newsName);
 
@@ -46,11 +43,11 @@ namespace NewsSite.UI.Controllers
             {
                 var operManager = new OperationManager();
 
-                var author = operManager.ReturnEntity(Context, model.NameOfAuhtor, typeof(DTOUser));
+                var author = operManager.ReturnEntity(model.NameOfAuhtor, typeof(DTOUser));
                 var news = new DTONews(author as DTOUser, model.NameOfNews, model.DocFile.FileName);
 
                 //TODO: Сделать эти операции параллельными.
-                await operManager.AddEntity(Context, news);
+                await operManager.AddEntity(news);
                 await FileManager.SaveFileOfNews(model.DocFile);
             }
 

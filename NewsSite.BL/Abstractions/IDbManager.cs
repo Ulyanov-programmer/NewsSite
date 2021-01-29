@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System;
 using System.Threading.Tasks;
 
 namespace NewsSite.BL.Abstractions
@@ -8,11 +11,6 @@ namespace NewsSite.BL.Abstractions
     /// </summary>
     internal interface IDbManager
     {
-        /// <summary>
-        /// Объект контекста, необходимый для доступа к данным БД.
-        /// </summary>
-        NewsSiteContext Context { get; }
-
         /// <summary>
         /// Добавляет сущность в базу данных на основе параметров входного IDTOModel. 
         /// </summary>

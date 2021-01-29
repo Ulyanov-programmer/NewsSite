@@ -1,8 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using NewsSite.BL.Abstractions;
 using NewsSite.BL.DbModels;
 using NewsSite.BL.DTOModels;
 using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,18 +27,9 @@ namespace NewsSite.BL.Managers
         /// <summary>
         /// Создаёт экземпляр FullDBManager.
         /// </summary>
-        /// <param name="context"> Объект контекста для этого экземпляра, необходимый для доступа к БД. </param>
-        internal FullDBManager(NewsSiteContext context)
+        internal FullDBManager()
         {
-            _context = context;
-        }
-
-        /// <summary>
-        /// Реализует публичный доступ к чтению приватного параметра <c>NewsSiteContext _context</c>.
-        /// </summary>
-        public NewsSiteContext Context
-        {
-            get => _context;
+            _context = new NewsSiteContext(GetDbContextOptions());
         }
 
         /// <summary>
@@ -170,6 +164,36 @@ namespace NewsSite.BL.Managers
         }
 
         #endregion
+
+        private DbContextOptions<NewsSiteContext> GetDbContextOptions()
+        {
+            /* Specifies the fully qualified path to the directory of the appsettings.json file.
+               The first argument is the directory where appsettings.json is located, 
+               the second is the full path to that directory. */
+
+            string pathToAppsettingsDir = Path.GetFullPath(@"NewsSite\WebApplication1\", AppDomain.CurrentDomain.BaseDirectory
+                                              .Remove(AppDomain.CurrentDomain.BaseDirectory.IndexOf("NewsSite")));
+            #region Easy to read version. 
+
+            //string basePath = AppDomain.CurrentDomain.BaseDirectory;
+            //basePath = basePath.Remove(basePath.IndexOf("NewsSite."));
+
+            //string relativePath = @"WebApplication1\";
+
+            //string pathToAppsettingsDir = Path.GetFullPath(relativePath, basePath);
+
+            #endregion
+
+            IConfiguration configuration = new ConfigurationBuilder()
+                .SetBasePath(pathToAppsettingsDir)
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+
+            return new DbContextOptionsBuilder<NewsSiteContext>()
+                  //Enter the connection string from appsettings.json below.
+                  .UseSqlServer(new SqlConnection(configuration.GetConnectionString("DefaultConnection"))).Options;
+        }
 
         public const string NameOfManager = "FullDBManager";
     }

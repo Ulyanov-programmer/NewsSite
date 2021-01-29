@@ -8,11 +8,6 @@ namespace NewsSite.BL.Abstractions
     internal interface ISimplifiedDbManager
     {
         /// <summary>
-        /// Объект контекста, необходимый для доступа к данным БД.
-        /// </summary>
-        NewsSiteContext Context { get; }
-
-        /// <summary>
         /// Возвращает сущность из БД, проводя поиск по входному значению его имени
         /// (по параметру Name, имеющегося у имплементаторов IDbObject).
         /// </summary>

@@ -32,7 +32,7 @@ namespace NewsSite.UI.Controllers
 
             var operManager = new OperationManager();
 
-            await operManager.AddEntity(Context, userDTO);
+            await operManager.AddEntity(userDTO);
             return View();
         }
 

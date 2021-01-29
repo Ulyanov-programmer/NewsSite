@@ -21,26 +21,21 @@ namespace NewsSite.Tests.ViewModelsMosks.Mosks
 
                     DbNewsObject = new DbNews(1, $"NewsFrom{DateTime.Now}",
                                                  $@"TestFiles\{DbNewsObject.Name}.txt");
-                    InitVariant = variant;
 
                     break;
                 case InitializationVariants.Null:
 
                     DbNewsObject = new DbNews(0, null, null);
 
-                    InitVariant = variant;
-
                     break;
                 case InitializationVariants.Empty:
 
                     DbNewsObject = new DbNews(0, string.Empty, string.Empty);
 
-                    InitVariant = variant;
-
-                    break;
-                default:
                     break;
             }
+
+            InitVariant = variant;
         }
     }
 }

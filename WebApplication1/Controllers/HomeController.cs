@@ -7,12 +7,10 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller, IAppController
     {
-        public NewsSiteContext Context { get; }
         public IWebHostEnvironment HostingEnvironment { get; }
 
-        public HomeController(NewsSiteContext context, IWebHostEnvironment hostingEnvironment)
+        public HomeController(IWebHostEnvironment hostingEnvironment)
         {
-            Context = context;
             HostingEnvironment = hostingEnvironment;
         }
 
@@ -20,7 +18,7 @@ namespace WebApplication1.Controllers
         {
             var operManager = new OperationManager();
 
-            var lastNews = operManager.ReturnEntities(Context, 5);
+            var lastNews = operManager.ReturnEntities(5);
             return View(lastNews);
         }
 

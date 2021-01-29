@@ -16,14 +16,14 @@ namespace NewsSite.Tests.IntegrationTests
     {
         [Theory]
         [ClassData(typeof(DbNews_Data))]
-        internal void OperationManager_AddEntity_Test(DbNews_Mosk dbNews_Mosk)
+        internal void AddEntity_Test(DbNews_Mosk dbNews_Mosk)
         {
             //Arrange
             using var context = new NewsSiteContext(GetDbContextOptions());
             var operManager = new OperationManager();
 
             //Act
-            var log = operManager.AddEntity(context, dbNews_Mosk.DbNewsObject).Result;
+            var log = operManager.AddEntity(dbNews_Mosk.DbNewsObject).Result;
             dbNews_Mosk.MoskLog = new MoskLog(dbNews_Mosk.InitVariant, log);
 
             //Assert
@@ -49,11 +49,28 @@ namespace NewsSite.Tests.IntegrationTests
             }
         }
 
-        public static DbContextOptions<NewsSiteContext> GetDbContextOptions()
+        //TODO: Убрать копирование этого метода в нескольких классах.
+        private static DbContextOptions<NewsSiteContext> GetDbContextOptions()
         {
+            /* Specifies the fully qualified path to the directory of the appsettings.json file.
+               The first argument is the directory where appsettings.json is located, 
+               the second is the full path to that directory. */
+
+            string pathToAppsettingsDir = Path.GetFullPath(@"NewsSite\WebApplication1\", AppDomain.CurrentDomain.BaseDirectory
+                                              .Remove(AppDomain.CurrentDomain.BaseDirectory.IndexOf("NewsSite")));
+            #region Easy to read version. 
+
+            //string basePath = AppDomain.CurrentDomain.BaseDirectory;
+            //basePath = basePath.Remove(basePath.IndexOf("NewsSite."));
+
+            //string relativePath = @"WebApplication1\";
+
+            //string pathToAppsettingsDir = Path.GetFullPath(relativePath, basePath);
+
+            #endregion
+
             IConfiguration configuration = new ConfigurationBuilder()
-                //Enter your path to the appsettings.json file for this project below.
-                .SetBasePath(@"")
+                .SetBasePath(pathToAppsettingsDir)
                 .AddJsonFile("appsettings.json")
                 .Build();
 
@@ -61,7 +78,6 @@ namespace NewsSite.Tests.IntegrationTests
             return new DbContextOptionsBuilder<NewsSiteContext>()
                   //Enter the connection string from appsettings.json below.
                   .UseSqlServer(new SqlConnection(configuration.GetConnectionString("DefaultConnection"))).Options;
-
         }
     }
 }
