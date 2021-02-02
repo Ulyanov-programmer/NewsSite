@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NewsSite.BL;
 using NewsSite.BL.Abstractions;
+using NewsSite.BL.Managers;
 
 namespace WebApplication1.Controllers
 {
@@ -16,9 +17,9 @@ namespace WebApplication1.Controllers
 
         public IActionResult Index()
         {
-            var operManager = new OperationManager();
+            var simpleDBManager = new SimplifiedDBManager();
 
-            var lastNews = operManager.ReturnEntities(5);
+            var lastNews = simpleDBManager.ReturnMultipleNews(5);
             return View(lastNews);
         }
 

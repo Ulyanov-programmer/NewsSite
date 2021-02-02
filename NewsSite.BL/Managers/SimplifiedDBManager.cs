@@ -17,7 +17,7 @@ namespace NewsSite.BL.Managers
     /// <remarks>
     /// Реализует: <c>ISimplifiedDbManager</c>
     /// </remarks>
-    internal class SimplifiedDBManager : ISimplifiedDbManager
+    public class SimplifiedDBManager : DbManager, ISimplifiedDbManager
     {
         /// <summary>
         /// Объект контекста, необходимый для доступа к данным БД.
@@ -28,7 +28,7 @@ namespace NewsSite.BL.Managers
         /// Создаёт экземпляр SimplifiedDBManager.
         /// </summary>
         /// <param name="context"> Объект контекста для этого экземпляра, необходимый для доступа к БД. </param>
-        internal SimplifiedDBManager()
+        public SimplifiedDBManager()
         {
             _context = new NewsSiteContext(GetDbContextOptions());
         }
@@ -85,7 +85,7 @@ namespace NewsSite.BL.Managers
         /// </returns>
         /// 
         /// <exception cref="NullReferenceException"> Если не была найдена сущность для возврата. </exception>
-        public ICollection<DTONews> ReturnMultipleNews(int count, bool lastNews)
+        public ICollection<DTONews> ReturnMultipleNews(int count, bool lastNews = true)
         {
             ICollection<DTONews> dtoNews = new List<DTONews>();
             IEnumerable<DbNews> dbNews;
@@ -153,37 +153,6 @@ namespace NewsSite.BL.Managers
                 return dtoNews;
             }
             else { throw new NullReferenceException("Метод не смог найти сущности для возврата!"); }
-        }
-
-        private DbContextOptions<NewsSiteContext> GetDbContextOptions()
-        {
-            /* Specifies the fully qualified path to the directory of the appsettings.json file.
-               The first argument is the directory where appsettings.json is located, 
-               the second is the full path to that directory. */
-
-            string pathToAppsettingsDir = Path.GetFullPath(@"NewsSite\WebApplication1\", AppDomain.CurrentDomain.BaseDirectory
-                                              .Remove(AppDomain.CurrentDomain.BaseDirectory.IndexOf("NewsSite")));
-
-            #region Easy to read version. 
-
-            //string basePath = AppDomain.CurrentDomain.BaseDirectory;
-            //basePath = basePath.Remove(basePath.IndexOf("NewsSite."));
-
-            //string relativePath = @"WebApplication1\";
-
-            //string pathToAppsettingsDir = Path.GetFullPath(relativePath, basePath);
-
-            #endregion
-
-            IConfiguration configuration = new ConfigurationBuilder()
-                .SetBasePath(pathToAppsettingsDir)
-                .AddJsonFile("appsettings.json")
-                .Build();
-
-
-            return new DbContextOptionsBuilder<NewsSiteContext>()
-                  //Enter the connection string from appsettings.json below.
-                  .UseSqlServer(new SqlConnection(configuration.GetConnectionString("DefaultConnection"))).Options;
         }
     }
 }
