@@ -1,10 +1,11 @@
-﻿using NewsSite.Tests.ViewModelsMosks.Mosks;
+﻿using NewsSite.Tests.EntitiesMosks.Mosks;
+using NewsSite.Tests.ViewModelsMosks.Mosks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NewsSite.Tests.ViewModelsMosks.Data
+namespace NewsSite.Tests.EntitiesMosks.Data
 {
     class DbNews_Data : IEnumerable<object[]>
     {

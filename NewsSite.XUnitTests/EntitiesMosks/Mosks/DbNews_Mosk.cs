@@ -1,19 +1,17 @@
 ﻿using NewsSite.BL.DbModels;
+using NewsSite.Tests.Abstractions;
 using NewsSite.Tests.TestSupportClasses;
+using NewsSite.Tests.ViewModelsMosks.Mosks;
 using System;
 using System.Text;
 
-namespace NewsSite.Tests.ViewModelsMosks.Mosks
+namespace NewsSite.Tests.EntitiesMosks.Mosks
 {
-    class DbNews_Mosk
+    class DbNews_Mosk : MoskObject
     {
-        internal MoskLog MoskLog { get; set; }
-
-        internal readonly InitializationVariants InitVariant;
-
         internal readonly DbNews DbNewsObject = new DbNews();
 
-        internal DbNews_Mosk(InitializationVariants variant)
+        internal DbNews_Mosk(InitializationVariants variant) : base(variant)
         {
             switch (variant)
             {
@@ -34,8 +32,6 @@ namespace NewsSite.Tests.ViewModelsMosks.Mosks
 
                     break;
             }
-
-            InitVariant = variant;
         }
     }
 }
