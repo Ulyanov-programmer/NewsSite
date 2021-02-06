@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using NewsSite.BL.Abstractions;
 using NewsSite.BL.DbModels;
 using NewsSite.BL.DTOModels;
+using NewsSite.BL.DTOModels.NullClasses;
 using System;
 using System.IO;
 using System.Linq;
@@ -52,14 +53,14 @@ namespace NewsSite.BL.Managers
         {
             if (inputDTO.GetType() == typeof(DTONews))
             {
-                DbNews news = inputDTO.DbObjectOfDTOModel as DbNews;
+                DbNews news = inputDTO.DbObject as DbNews;
 
                 _context.News.Add(news);
                 await _context.SaveChangesAsync();
             }
             else if (inputDTO.GetType() == typeof(DTOUser))
             {
-                DbUser user = inputDTO.DbObjectOfDTOModel as DbUser;
+                DbUser user = inputDTO.DbObject as DbUser;
 
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
@@ -127,28 +128,44 @@ namespace NewsSite.BL.Managers
         /// 
         /// <exception cref="TypeAccessException"> Если значение typeOfEntity не соответствует ни одному из поддерживаемых в методе. </exception>
         /// <exception cref="NullReferenceException"> Если не была найдена сущность для возврата. </exception>
-        public IDTOModel ReturnEntityFromDb(string nameOfEntity, Type typeOfEntity)
+        public IDTOModel ReturnEntityOrNullDTOFromDb(string nameOfEntity, Type typeOfEntity)
         {
             IDTOModel dbEntity;
+            try
+            {
+                if (typeOfEntity == typeof(DTONews))
+                {
+                    dbEntity = new DTONews(_context.News.First(news => news.Name == nameOfEntity));
+                }
+                else if (typeOfEntity == typeof(DTOUser))
+                {
+                    dbEntity = new DTOUser(_context.Users.First(user => user.Name == nameOfEntity));
+                }
+                else
+                {
+                    throw new TypeAccessException
+                  ("Входной тип данных не соответствует ни одному из поддерживаемых в методе!");
+                }
 
-            if (typeOfEntity == typeof(DTONews))
-            {
-                dbEntity = new DTONews(_context.News.FirstOrDefault(news => news.Name == nameOfEntity));
-            }
-            else if (typeOfEntity == typeof(DTOUser))
-            {
-                dbEntity = new DTOUser(_context.Users.FirstOrDefault(user => user.Name == nameOfEntity));
-            }
-            else
-            {
-                throw new TypeAccessException("Входной тип данных не соответствует ни одному из поддерживаемых в методе!");
-            }
 
-            if (dbEntity != null)
-            {
-                return dbEntity;
+                if (dbEntity != null)
+                {
+                    return dbEntity;
+                }
+                else { throw new NullReferenceException("Метод не смог найти сущность для возврата!"); }
             }
-            else { throw new NullReferenceException("Метод не смог найти сущность для возврата!"); }
+            catch (TypeAccessException)
+            {
+                return new NullDTO(typeOfEntity);
+            }
+            catch (NullReferenceException)
+            {
+                return new NullDTO(typeOfEntity);
+            }
+            catch (InvalidOperationException)
+            {
+                return new NullDTO(typeOfEntity);
+            }
         }
 
         public const string NameOfManager = "FullDBManager";

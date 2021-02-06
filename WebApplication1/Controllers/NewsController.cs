@@ -39,7 +39,7 @@ namespace NewsSite.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var author = new FullDBManager().ReturnEntityFromDb(model.NameOfAuhtor, typeof(DTOUser));
+                var author = new FullDBManager().ReturnEntityOrNullDTOFromDb(model.NameOfAuhtor, typeof(DTOUser));
 
                 var news = new DTONews(author as DTOUser, model.NameOfNews, model.DocFile.FileName);
 

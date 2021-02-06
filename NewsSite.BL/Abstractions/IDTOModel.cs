@@ -8,15 +8,16 @@ namespace NewsSite.BL.Abstractions
     public interface IDTOModel
     {
         /// <summary>
-        /// [устарело] 
-        /// Возвращает информацию DTO-объекта в виде коллекции строк.
+        /// Возвращает имя этого DTO объекта.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<string> GetInfo();
+        public string GetName();
 
         /// <summary>
         /// Представляет собой объект IDbObject, данные которого являются основой этого IDTOModel.
         /// </summary>
-        internal IDbObject DbObjectOfDTOModel { get; }
+        internal IDbObject DbObject { get; }
+
+        public bool Equals(IDbObject dbObject);
     }
 }

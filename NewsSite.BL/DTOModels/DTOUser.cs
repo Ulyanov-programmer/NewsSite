@@ -16,12 +16,12 @@ namespace NewsSite.BL.DTOModels
         /// <summary>
         /// Приватный объект DbNews, данные которого являются основой этого DTONews.
         /// </summary>
-        internal readonly DbUser DbObject;
+        internal readonly DbUser _dbObject;
 
         /// <summary>
         /// [не функционально] Реализует доступ к свойству DbNews DbObject этого экземпляра DTONews.
         /// </summary>
-        IDbObject IDTOModel.DbObjectOfDTOModel => DbObject;
+        IDbObject IDTOModel.DbObject => _dbObject;
 
         /// <summary>
         /// Создаёт экземпляр DTOUser.
@@ -29,8 +29,9 @@ namespace NewsSite.BL.DTOModels
         /// <param name="dbUser"> объект DbUser, являющегося основой DTOUser. </param>
         internal DTOUser(DbUser dbUser)
         {
-            DbObject = dbUser;
+            _dbObject = dbUser;
         }
+
         /// <summary>
         /// Создаёт экземпляр DTOUser, создавая объект DbUser на основе входных параметров.
         /// </summary>
@@ -38,23 +39,50 @@ namespace NewsSite.BL.DTOModels
         /// <param name="email"> Будет применено для значения DbUser.Email. </param>
         public DTOUser(string name, string email)
         {
-            DbObject = new DbUser(name, email);
+            _dbObject = new DbUser(name, email);
         }
 
         /// <summary>
-        /// [устарело] 
-        /// Возвращает информацию DTO-объекта в виде коллекции строк.
+        /// Возвращает информацию DTO-объекта в виде строки.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<string> GetInfo()
+        public string GetInfo()
         {
-            var info = new List<string>
-            {
-                DbObject.Name,
-                DbObject.Email
-            };
+            return $"{GetName()}, {GetEmail()}";
+        }
 
-            return info;
+        public string GetName()
+        {
+            if (string.IsNullOrWhiteSpace(_dbObject.Name) is false)
+            {
+                return _dbObject.Name;
+            }
+            else
+            {
+                return "NameIsNullOrWhiteSpace";
+            }
+        }
+
+        public string GetEmail()
+        {
+            if (string.IsNullOrWhiteSpace(_dbObject.Email) is false)
+            {
+                return $"***{_dbObject.Email.Remove(0, 3)}";
+            }
+            else
+            {
+                return "EmailIsNullOrWhiteSpace";
+            }
+        }
+
+        public bool Equals(IDbObject dbObject)
+        {
+            if (_dbObject.Id == dbObject.Id &&
+                _dbObject.Name == dbObject.Name)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

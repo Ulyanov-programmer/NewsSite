@@ -26,6 +26,6 @@ namespace NewsSite.BL.Abstractions
         /// <param name="nameOfEntity"> Имя искомой сущности (в базе данных будет проводится поиск по столбцу Name). </param>
         /// <param name="typeOfEntity"> Тип искомой сущности. </param>
         /// <returns> Объект IDTOModel с данными о найденной сущности. </returns>
-        IDTOModel ReturnEntityFromDb(string nameOfEntity, Type typeOfEntity);
+        IDTOModel ReturnEntityOrNullDTOFromDb(string nameOfEntity, Type typeOfEntity);
     }
 }

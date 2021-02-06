@@ -18,12 +18,12 @@ namespace NewsSite.BL.DTOModels
         /// <summary>
         /// Приватный объект DbNews, данные которого являются основой этого DTONews.
         /// </summary>
-        private readonly DbNews DbObject;
+        private readonly DbNews _dbObject;
 
         /// <summary>
         /// [не функционально] Реализует доступ к свойству DbNews DbObject этого экземпляра DTONews.
         /// </summary>
-        IDbObject IDTOModel.DbObjectOfDTOModel => DbObject;
+        IDbObject IDTOModel.DbObject => _dbObject;
 
         /// <summary>
         /// Создаёт экземпляр DTONews.
@@ -31,7 +31,7 @@ namespace NewsSite.BL.DTOModels
         /// <param name="dbNews"> объект DbNews, являющегося основой DTONews. </param>
         internal DTONews(DbNews dbNews)
         {
-            DbObject = dbNews;
+            _dbObject = dbNews;
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace NewsSite.BL.DTOModels
         ///                               будет использовано для создания DbNews.PathToDocument . </param>
         public DTONews(DTOUser author, string nameOfNews, string nameOfDocument)
         {
-            DbObject = new DbNews(author.DbObject.Id, nameOfNews, $@"{FileManager.PathToDocFolder}\{nameOfDocument}");
+            _dbObject = new DbNews(author._dbObject.Id, nameOfNews, $@"{FileManager.PathToDocFolder}\{nameOfDocument}");
         }
 
         /// <summary>
@@ -53,16 +53,9 @@ namespace NewsSite.BL.DTOModels
         /// Возвращает информацию DTO-объекта в виде коллекции строк.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<string> GetInfo()
+        public string GetInfo()
         {
-            var info = new List<string>
-            {
-                DbObject.Name,
-                DbObject.PathToDocument,
-                DbObject.DbUserId.ToString()
-            };
-
-            return info;
+            return $"{GetName()}";
         }
 
         /// <summary>
@@ -70,11 +63,11 @@ namespace NewsSite.BL.DTOModels
         /// Если значение является null, пустой строкой или состоящей только из пробелов, возвращает "DefaultName".
         /// </summary>
         /// <returns></returns>
-        public string GetNameOfNews()
+        public string GetName()
         {
-            if (string.IsNullOrWhiteSpace(DbObject.Name) is false)
+            if (string.IsNullOrWhiteSpace(_dbObject.Name) is false)
             {
-                return DbObject.Name;
+                return _dbObject.Name;
             }
             else
             {
@@ -89,9 +82,9 @@ namespace NewsSite.BL.DTOModels
         /// <returns></returns>
         public string GetPathToDocument()
         {
-            if (string.IsNullOrWhiteSpace(DbObject.Name) is false)
+            if (string.IsNullOrWhiteSpace(_dbObject.Name) is false)
             {
-                return DbObject.PathToDocument;
+                return _dbObject.PathToDocument;
             }
             else
             {
@@ -106,9 +99,9 @@ namespace NewsSite.BL.DTOModels
         /// <returns></returns>
         public string GetNameOfDoc()
         {
-            if (string.IsNullOrWhiteSpace(DbObject.PathToDocument) is false)
+            if (string.IsNullOrWhiteSpace(_dbObject.PathToDocument) is false)
             {
-                string nameOfDocWithFormat = DbObject.PathToDocument.Split('\\').Last();
+                string nameOfDocWithFormat = _dbObject.PathToDocument.Split('\\').Last();
 
                 string nameOfDoc = nameOfDocWithFormat.Remove
                                   (nameOfDocWithFormat.IndexOf(".docx"));
@@ -119,6 +112,16 @@ namespace NewsSite.BL.DTOModels
             {
                 return "Path is not found";
             }
+        }
+
+        public bool Equals(IDbObject dbObject)
+        {
+            if (_dbObject.Id == dbObject.Id &&
+                _dbObject.Name == dbObject.Name)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
