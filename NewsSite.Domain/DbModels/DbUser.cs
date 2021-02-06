@@ -24,13 +24,15 @@ namespace NewsSite.BL.DbModels
         /// <summary>
         /// Имя этого пользователя.
         /// </summary>
+        [Required]
         public string Name { get; private set; }
 
         //public Role RoleId { get; set; }
-        
+
         /// <summary>
         /// Почтовый адрес пользователя.
         /// </summary>
+        [Required]
         public string Email { get; private set; }
         
         #endregion

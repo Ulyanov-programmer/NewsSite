@@ -22,12 +22,14 @@ namespace NewsSite.BL.DbModels
         /// <summary>
         /// Имя (представляет заголовок) этой новости базе данных.
         /// </summary>
+        [Required]
         public string Name { get; private set; }
 
         /// <summary>
         /// Путь к документу, в котором находится или будет 
         /// находится документ в формате .docx, содержащий контент новости.
         /// </summary>
+        [Required]
         public string PathToDocument { get; set; }
 
         #endregion
