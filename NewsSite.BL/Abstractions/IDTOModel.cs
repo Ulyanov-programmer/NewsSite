@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using NewsSite.Entities.DBAbstractions;
+using System.Collections.Generic;
 
 namespace NewsSite.BL.Abstractions
 {

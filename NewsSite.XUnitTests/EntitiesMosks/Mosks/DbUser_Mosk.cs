@@ -1,6 +1,6 @@
 ﻿using NewsSite.BL.Abstractions;
-using NewsSite.BL.DbModels;
 using NewsSite.BL.DTOModels;
+using NewsSite.Entities.DbModels;
 using NewsSite.Tests.Abstractions;
 using NewsSite.Tests.ViewModelsMosks.Mosks;
 using System;

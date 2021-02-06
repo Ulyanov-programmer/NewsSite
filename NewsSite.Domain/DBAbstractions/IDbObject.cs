@@ -1,4 +1,4 @@
-﻿namespace NewsSite.BL.Abstractions
+﻿namespace NewsSite.Entities.DBAbstractions
 {
     /// <summary>
     /// Представляет абстракцию объекта базы данных. Рекомендуется имплементировать классам, 

@@ -1,7 +1,7 @@
-﻿using NewsSite.BL.Abstractions;
+﻿using NewsSite.Entities.DBAbstractions;
 using System.ComponentModel.DataAnnotations;
 
-namespace NewsSite.BL.DbModels
+namespace NewsSite.Entities.DbModels
 {
     /// <summary>
     /// Класс, использующийся и как таблица для Entity Framework. Содержит данные о сохранённых новостях.

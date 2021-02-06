@@ -1,4 +1,4 @@
-﻿using NewsSite.BL.DbModels;
+﻿using NewsSite.Entities.DbModels;
 using NewsSite.Tests.Abstractions;
 using NewsSite.Tests.TestSupportClasses;
 using NewsSite.Tests.ViewModelsMosks.Mosks;

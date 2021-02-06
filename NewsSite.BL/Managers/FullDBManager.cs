@@ -2,9 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using NewsSite.BL.Abstractions;
-using NewsSite.BL.DbModels;
 using NewsSite.BL.DTOModels;
 using NewsSite.BL.DTOModels.NullClasses;
+using NewsSite.Entities.DBAbstractions;
+using NewsSite.Entities.DbModels;
 using System;
 using System.IO;
 using System.Linq;

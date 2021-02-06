@@ -1,4 +1,4 @@
-﻿namespace NewsSite.BL.Abstractions
+﻿namespace NewsSite.Entities.DBAbstractions
 {
     /// <summary>
     /// Абстракция пользователя сайта. 

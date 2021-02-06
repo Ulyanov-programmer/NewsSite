@@ -1,13 +1,12 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using NewsSite.BL.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace NewsSite.BL.Managers
+namespace NewsSite.BL.Abstractions
 {
     public abstract class DbManager
     {

@@ -1,8 +1,8 @@
-﻿using NewsSite.BL.Abstractions;
+﻿using NewsSite.Entities.DBAbstractions;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace NewsSite.BL.DbModels
+namespace NewsSite.Entities.DbModels
 {
     /// <summary>
     /// Класс, использующийся и как таблица для Entity Framework. Содержит данные о сохранённых пользователях.
@@ -14,7 +14,7 @@ namespace NewsSite.BL.DbModels
     public class DbUser : IUser, IDbObject
     {
         #region params
-        
+
         /// <summary>
         /// Уникальный идентификатор в базе данных для этого пользователя.
         /// </summary>
@@ -34,9 +34,9 @@ namespace NewsSite.BL.DbModels
         /// </summary>
         [Required]
         public string Email { get; private set; }
-        
+
         #endregion
-        
+
         #region constructors
 
         /// <summary>

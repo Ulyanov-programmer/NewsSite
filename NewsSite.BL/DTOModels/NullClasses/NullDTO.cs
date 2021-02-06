@@ -1,5 +1,6 @@
 ﻿using NewsSite.BL.Abstractions;
 using NewsSite.BL.DbModels;
+using NewsSite.Entities.DBAbstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;
