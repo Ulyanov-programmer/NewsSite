@@ -1,13 +1,10 @@
 ﻿using NewsSite.Entities.DbModels;
 using NewsSite.Tests.Abstractions;
-using NewsSite.Tests.TestSupportClasses;
-using NewsSite.Tests.ViewModelsMosks.Mosks;
 using System;
-using System.Text;
 
 namespace NewsSite.Tests.EntitiesMosks.Mosks
 {
-    class DbNews_Mosk : MoskObject
+    internal class DbNews_Mosk : MoskObject
     {
         internal readonly DbNews DbNewsObject = new DbNews();
 

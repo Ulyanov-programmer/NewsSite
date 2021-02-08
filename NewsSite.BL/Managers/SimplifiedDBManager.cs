@@ -1,12 +1,8 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using NewsSite.BL.Abstractions;
+﻿using NewsSite.BL.Abstractions;
 using NewsSite.BL.DTOModels;
 using NewsSite.Entities.DbModels;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace NewsSite.BL.Managers
@@ -15,7 +11,7 @@ namespace NewsSite.BL.Managers
     /// Представляет класс, содержащий функционал для доступа к базе данных (с частичным функционалом).
     /// </summary>
     /// <remarks>
-    /// Реализует: <c>ISimplifiedDbManager</c>
+    /// Реализует: DbManager, ISimplifiedDbManager
     /// </remarks>
     public class SimplifiedDBManager : DbManager, ISimplifiedDbManager
     {
@@ -25,9 +21,8 @@ namespace NewsSite.BL.Managers
         private readonly NewsSiteContext _context;
 
         /// <summary>
-        /// Создаёт экземпляр SimplifiedDBManager.
+        /// Создаёт экземпляр FullDBManager и инициализирует объект контекста на основе опций из appsettings.json.
         /// </summary>
-        /// <param name="context"> Объект контекста для этого экземпляра, необходимый для доступа к БД. </param>
         public SimplifiedDBManager()
         {
             _context = new NewsSiteContext(GetDbContextOptions());
@@ -39,22 +34,22 @@ namespace NewsSite.BL.Managers
         /// </summary>
         /// 
         /// <param name="nameOfEntity"> Имя искомой сущности (в базе данных будет проводится поиск по столбцу Name). </param>
-        /// <param name="typeOfEntity"> Тип искомой сущности (должен быть реализатором IDTOModel). </param>
+        /// <param name="typeOfReturnedDTO"> Тип искомой сущности (должен быть реализатором IDTOModel). </param>
         /// 
         /// <returns> Объект IDTOModel с данными о найденной сущности. </returns>
         /// 
         /// <exception cref="TypeAccessException"> Если значение typeOfEntity не соответствует ни одному из поддерживаемых в методе. </exception>
         /// <exception cref="NullReferenceException"> Если не была найдена сущность для возврата. </exception>
-        public IDTOModel ReturnEntityFromDb(string nameOfEntity, Type typeOfReturnedDTOs)
+        public IDTOModel ReturnEntityFromDb(string nameOfEntity, Type typeOfReturnedDTO)
         {
             IDTOModel dtoModel;
 
-            if (typeOfReturnedDTOs == typeof(DTONews))
+            if (typeOfReturnedDTO == typeof(DTONews))
             {
                 var dbModel = _context.News.FirstOrDefault(news => news.Name == nameOfEntity);
                 dtoModel = new DTONews(dbModel);
             }
-            else if (typeOfReturnedDTOs == typeof(DTOUser))
+            else if (typeOfReturnedDTO == typeof(DTOUser))
             {
                 var users = _context.Users.ToList();
 

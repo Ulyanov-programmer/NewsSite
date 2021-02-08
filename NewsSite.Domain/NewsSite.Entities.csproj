@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\colda\source\repos\NewsSite\NewsSite.Domain\NewsSite.Entities.xml</DocumentationFile>
+  </PropertyGroup>
+
 </Project>

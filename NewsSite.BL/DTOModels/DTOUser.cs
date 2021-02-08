@@ -1,7 +1,6 @@
 ﻿using NewsSite.BL.Abstractions;
 using NewsSite.Entities.DBAbstractions;
 using NewsSite.Entities.DbModels;
-using System.Collections.Generic;
 
 namespace NewsSite.BL.DTOModels
 {
@@ -14,15 +13,21 @@ namespace NewsSite.BL.DTOModels
     /// </remarks>
     public class DTOUser : IDTOModel
     {
+        #region params
+        
         /// <summary>
         /// Приватный объект DbNews, данные которого являются основой этого DTONews.
         /// </summary>
         internal readonly DbUser _dbObject;
 
         /// <summary>
-        /// [не функционально] Реализует доступ к свойству DbNews DbObject этого экземпляра DTONews.
+        /// Реализует доступ к свойству DbNews DbObject этого экземпляра DTONews.
         /// </summary>
         IDbObject IDTOModel.DbObject => _dbObject;
+
+        #endregion
+
+        #region constructors
 
         /// <summary>
         /// Создаёт экземпляр DTOUser.
@@ -43,8 +48,13 @@ namespace NewsSite.BL.DTOModels
             _dbObject = new DbUser(name, email);
         }
 
+        #endregion
+
+        #region methods
+
         /// <summary>
         /// Возвращает информацию DTO-объекта в виде строки.
+        /// (совмещает результат GetName() и GetEmail())
         /// </summary>
         /// <returns></returns>
         public string GetInfo()
@@ -52,6 +62,12 @@ namespace NewsSite.BL.DTOModels
             return $"{GetName()}, {GetEmail()}";
         }
 
+        /// <summary>
+        /// Возвращает значение _dbObject.Name этого DTO объекта.
+        /// Если значение является null, пустой строкой или состоит только из пробелов, 
+        /// возвращает "NameIsNullOrWhiteSpace".
+        /// </summary>
+        /// <returns></returns>
         public string GetName()
         {
             if (string.IsNullOrWhiteSpace(_dbObject.Name) is false)
@@ -64,6 +80,15 @@ namespace NewsSite.BL.DTOModels
             }
         }
 
+        /// <summary>
+        /// Возвращает значение _dbObject.Email этого DTO объекта.
+        /// Если значение является null, пустой строкой или состоит только из пробелов, 
+        /// возвращает "EmailIsNullOrWhiteSpace".
+        /// </summary>
+        /// <returns></returns>
+        /// <remarks>
+        /// Внимание! У возвращаемого Email первые три символа будут заменены на звёздочки (*).
+        /// </remarks>
         public string GetEmail()
         {
             if (string.IsNullOrWhiteSpace(_dbObject.Email) is false)
@@ -76,6 +101,13 @@ namespace NewsSite.BL.DTOModels
             }
         }
 
+        #endregion
+
+        /// <summary>
+        /// Сравнивает объект DbObject этой DTO-модели с другим объектом IDbObject.
+        /// </summary>
+        /// <param name="dbObject"> Объект IDbObject, который будет сравнён с объектом DbObject этой DTO-модели. </param>
+        /// <returns></returns>
         public bool Equals(IDbObject dbObject)
         {
             if (_dbObject.Id == dbObject.Id &&

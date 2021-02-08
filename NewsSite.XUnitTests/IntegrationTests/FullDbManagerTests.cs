@@ -1,17 +1,10 @@
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using NewsSite.BL;
-using NewsSite.Tests.ViewModelsMosks.Mosks;
-using System;
-using Microsoft.Extensions.Configuration.FileExtensions;
-using System.IO;
-using Xunit;
-using NewsSite.Tests.TestSupportClasses;
-using NewsSite.BL.Managers;
-using NewsSite.Tests.EntitiesMosks.Mosks;
-using NewsSite.Tests.EntitiesMosks.Data;
 using NewsSite.BL.DTOModels;
+using NewsSite.BL.Managers;
+using NewsSite.Tests.Abstractions;
+using NewsSite.Tests.EntitiesMosks.Data;
+using NewsSite.Tests.EntitiesMosks.Mosks;
+using NewsSite.Tests.TestSupportClasses;
+using Xunit;
 
 namespace NewsSite.Tests.IntegrationTests
 {

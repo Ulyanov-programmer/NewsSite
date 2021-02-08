@@ -1,8 +1,7 @@
-﻿using NewsSite.Tests.ViewModelsMosks.Mosks;
-using System;
+﻿using NewsSite.Tests.Abstractions;
+using NewsSite.Tests.ViewModelsMosks.Mosks;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 
 namespace NewsSite.Tests.ViewModelsMosks
 {

@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NewsSite.Entities</name>
+    </assembly>
+    <members>
+        <member name="T:NewsSite.Entities.DBAbstractions.IDbObject">
+            <summary>
+            Представляет абстракцию объекта базы данных. Рекомендуется имплементировать классам, 
+            использующихся в Entity Framework для создания таблиц.
+            </summary>
+        </member>
+        <member name="P:NewsSite.Entities.DBAbstractions.IDbObject.Id">
+            <summary>
+            Уникальный идентификатор этого имплементатора IDbObject.
+            </summary>
+        </member>
+        <member name="P:NewsSite.Entities.DBAbstractions.IDbObject.Name">
+            <summary>
+            Имя этого имплементатора IDbObject.
+            </summary>
+        </member>
+        <member name="T:NewsSite.Entities.DBAbstractions.IUser">
+            <summary>
+            Абстракция пользователя сайта. 
+            <remark>
+                Рекомендуется имплементировать для классов-таблиц, сохраняющих данные о пользователях.
+            </remark>
+            </summary>
+        </member>
+        <member name="P:NewsSite.Entities.DBAbstractions.IUser.Email">
+            <summary>
+            Почтовый адрес имплементатора IUser.
+            </summary>
+        </member>
+        <member name="T:NewsSite.Entities.DbModels.DbNews">
+            <summary>
+            Класс, использующийся и как таблица для Entity Framework. Содержит данные о сохранённых новостях.
+            </summary>
+            <remarks>
+                Реализует: IDbObject
+            </remarks>
+        </member>
+        <member name="P:NewsSite.Entities.DbModels.DbNews.Id">
+            <summary>
+            Уникальный идентификатор в базе данных для этой новости.
+            </summary>
+        </member>
+        <member name="P:NewsSite.Entities.DbModels.DbNews.Name">
+            <summary>
+            Имя (представляет заголовок) этой новости базе данных.
+            </summary>
+        </member>
+        <member name="P:NewsSite.Entities.DbModels.DbNews.PathToDocument">
+            <summary>
+            Путь к документу, в котором находится или будет 
+            находится документ в формате .docx, содержащий контент новости.
+            </summary>
+        </member>
+        <member name="M:NewsSite.Entities.DbModels.DbNews.#ctor(System.Int32,System.String,System.String)">
+            <summary>
+            Создаёт новый экземпляр DbNews на основе входных параметров.
+            </summary>
+            <param name="authorId"> Значение Id в базе данных от автора этой новости. </param>
+            <param name="nameOfNews"> Название (заголовок) новости. </param>
+            <param name="pathToDocument"> Путь к документу, в котором находится или будет 
+                                          находится документ в формате .docx, содержащий контент новости. </param>
+        </member>
+        <member name="M:NewsSite.Entities.DbModels.DbNews.#ctor">
+            <summary>
+            Пустой конструктор, необходимый для инициализации данных из БД.
+            </summary>
+        </member>
+        <member name="P:NewsSite.Entities.DbModels.DbNews.DbUserId">
+            <summary>
+            Значение Id в базе данных от автора этой новости.
+            </summary>
+        </member>
+        <member name="T:NewsSite.Entities.DbModels.DbUser">
+            <summary>
+            Класс, использующийся и как таблица для Entity Framework. Содержит данные о сохранённых пользователях.
+            </summary>
+            <remarks>
+                Реализует: IDbObject,
+                           IUser
+            </remarks>
+        </member>
+        <member name="P:NewsSite.Entities.DbModels.DbUser.Id">
+            <summary>
+            Уникальный идентификатор в базе данных для этого пользователя.
+            </summary>
+        </member>
+        <member name="P:NewsSite.Entities.DbModels.DbUser.Name">
+            <summary>
+            Имя этого пользователя.
+            </summary>
+        </member>
+        <member name="P:NewsSite.Entities.DbModels.DbUser.Email">
+            <summary>
+            Почтовый адрес пользователя.
+            </summary>
+        </member>
+        <member name="M:NewsSite.Entities.DbModels.DbUser.#ctor(System.String,System.String)">
+            <summary>
+            Создаёт новый экземпляр DbUser на основе входных параметров.
+            </summary>
+            <param name="nameOfUser"> Имя нового пользователя. </param>
+            <param name="emailOfUser"> Почтовый адрес пользователя. </param>
+        </member>
+        <member name="M:NewsSite.Entities.DbModels.DbUser.#ctor">
+            <summary>
+            Пустой конструктор, необходимый для инициализации данных из БД.
+            </summary>
+        </member>
+        <member name="P:NewsSite.Entities.DbModels.DbUser.DbNews">
+            <summary>
+            Коллекция, представляющая все новости, автором которых является этот пользователь.
+            </summary>
+        </member>
+        <member name="T:NewsSite.BL.Role">
+            <summary>
+            Этот класс содержит функционал, который будет реализован в будущем. 
+            На данный момент он бесполезен.
+            </summary>
+        </member>
+    </members>
+</doc>

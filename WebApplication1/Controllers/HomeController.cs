@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using NewsSite.BL;
 using NewsSite.BL.Abstractions;
 using NewsSite.BL.Managers;
 

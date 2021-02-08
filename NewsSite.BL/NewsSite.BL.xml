@@ -1,0 +1,520 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NewsSite.BL</name>
+    </assembly>
+    <members>
+        <member name="T:NewsSite.BL.Abstractions.DbManager">
+            <summary>
+            Абстрактный класс, содержащий общий функционал для Manager-классов. 
+            </summary>
+        </member>
+        <member name="M:NewsSite.BL.Abstractions.DbManager.GetDbContextOptions">
+            <summary>
+            Читает файл appsettings.json и создаёт на основе данных в нём объект DbContextOptions,
+            необходимый для создания объекта контекста.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewsSite.BL.Abstractions.DbManager.WriteLog(System.String,System.String,System.Exception)">
+            <summary>
+            Создаёт объект Log, содержащий данные о результате работы метода.
+            </summary>
+            <param name="nameOfController"> Имя класса, метод которого был завершён. </param>
+            <param name="nameOfMethod"> Имя метода, который был завершён. </param>
+            <param name="ex"> Произошедшее в результате работы исключение. </param>
+            <returns></returns>
+        </member>
+        <member name="M:NewsSite.BL.Abstractions.DbManager.WriteLog(System.String,System.String)">
+            <summary>
+            Создаёт объект Log, содержащий данные о результате работы метода.
+            </summary>
+            <param name="nameOfController"> Имя класса, метод которого был завершён. </param>
+            <param name="nameOfMethod"> Имя метода, который был завершён. </param>
+            <returns></returns>
+            <remarks>
+            В созданном объекте Log результат будет описан, как положительный. Если вы хотите описать другой случай,
+            обратитесь к перегрузке метода, принимающей объект Exception.
+            </remarks>
+        </member>
+        <member name="T:NewsSite.BL.Abstractions.IDbManager">
+            <summary>
+            Представляет абстракцию класса, имеющего доступ к базе данных, содержащего полный для этого функционал.
+            </summary>
+        </member>
+        <member name="M:NewsSite.BL.Abstractions.IDbManager.AddEntityToDb(NewsSite.BL.Abstractions.IDTOModel)">
+            <summary>
+            Добавляет сущность в базу данных на основе параметров входного IDTOModel. 
+            </summary>
+            <param name="inputDTO"> Объект IDTOModel, параметры которого 
+                                    будут основой для добавляемого объекта. </param>
+            <returns> Task(bool), Result которого true, если операция добавления была успешно выполнена. </returns>
+        </member>
+        <member name="M:NewsSite.BL.Abstractions.IDbManager.ReturnEntityOrNullDTOFromDb(System.String,System.Type)">
+            <summary>
+            Возвращает сущность из БД, проводя поиск по входному значению его имени
+            (по параметру Name, имеющегося у имплементаторов IDbObject).
+            </summary>
+            <param name="nameOfEntity"> Имя искомой сущности (в базе данных будет проводится поиск по столбцу Name). </param>
+            <param name="typeOfEntity"> Тип искомой сущности. </param>
+            <returns> Объект IDTOModel с данными о найденной сущности. </returns>
+        </member>
+        <member name="T:NewsSite.BL.Abstractions.IDTOModel">
+            <summary>
+            Представляет абстракцию DTO-объекта, используемого для передачи данных между слоями приложения. 
+            </summary>
+        </member>
+        <member name="M:NewsSite.BL.Abstractions.IDTOModel.GetName">
+            <summary>
+            Возвращает имя этого DTO объекта.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NewsSite.BL.Abstractions.IDTOModel.DbObject">
+            <summary>
+            Представляет собой объект IDbObject, данные которого являются основой этого IDTOModel.
+            </summary>
+        </member>
+        <member name="M:NewsSite.BL.Abstractions.IDTOModel.Equals(NewsSite.Entities.DBAbstractions.IDbObject)">
+            <summary>
+            Сравнивает объект DbObject этой DTO-модели с другим объектом IDbObject.
+            </summary>
+            <param name="dbObject"> Объект IDbObject, который будет сравнён с объектом DbObject этой DTO-модели. </param>
+            <returns></returns>
+        </member>
+        <member name="T:NewsSite.BL.Abstractions.ISimplifiedDbManager">
+            <summary>
+            Представляет интерфейс класса, имеющего доступ к базе данных, содержащего частичный для этого функционал.
+            </summary>
+            <remarks>
+            Рекомендуется использовать, когда нужно вытащить данные из БД.
+            </remarks>
+        </member>
+        <member name="M:NewsSite.BL.Abstractions.ISimplifiedDbManager.ReturnEntityFromDb(System.String,System.Type)">
+            <summary>
+            Возвращает сущность из БД, проводя поиск по входному значению его имени
+            (по параметру Name, имеющегося у имплементаторов IDbObject).
+            </summary>
+            
+            <param name="nameOfEntity"> Имя искомой сущности (в базе данных будет проводится поиск по столбцу Name). </param>
+            <param name="typeOfEntity"> Тип искомой сущности. </param>
+            
+            <returns> Объект IDTOModel с данными о найденной сущности. </returns>
+        </member>
+        <member name="T:NewsSite.BL.DTOModels.DTONews">
+            <summary>
+            Представляет DTO-модель, хранящую данные защищённого объекта DbNews.
+            Доступ к свойствам внутреннего объекта DbNews реализуется через методы этой модели. 
+            </summary>
+            <remarks>
+            Реализует: IDTOModel
+            </remarks>
+        </member>
+        <member name="F:NewsSite.BL.DTOModels.DTONews._dbObject">
+            <summary>
+            Приватный объект DbNews, данные которого являются основой этого DTONews.
+            </summary>
+        </member>
+        <member name="P:NewsSite.BL.DTOModels.DTONews.NewsSite#BL#Abstractions#IDTOModel#DbObject">
+            <summary>
+            Реализует доступ к свойству DbNews DbObject этого экземпляра DTONews.
+            </summary>
+        </member>
+        <member name="M:NewsSite.BL.DTOModels.DTONews.#ctor(NewsSite.Entities.DbModels.DbNews)">
+            <summary>
+            Создаёт экземпляр DTONews.
+            </summary>
+            <param name="dbNews"> объект DbNews, являющегося основой DTONews. </param>
+        </member>
+        <member name="M:NewsSite.BL.DTOModels.DTONews.#ctor(NewsSite.BL.DTOModels.DTOUser,System.String,System.String)">
+            <summary>
+            Создаёт экземпляр DTONews, создавая объект DbNews на основе входных параметров.
+            </summary>
+            
+            <param name="author"> Объект DTOUser, свойство DbObject.Id которого 
+                                  будет сохранено для DbNews.DbUserId . </param>
+            <param name="nameOfNews"> Будет применено для значения DbNews.Name. </param>
+            <param name="nameOfDocument"> Название хранимого документа новостей, 
+                                          будет использовано для создания DbNews.PathToDocument . </param>
+        </member>
+        <member name="M:NewsSite.BL.DTOModels.DTONews.GetInfo">
+            <summary>
+            [дублирует GetName()] 
+            Возвращает информацию DTO-объекта в виде коллекции строк.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewsSite.BL.DTOModels.DTONews.GetName">
+            <summary>
+            Возвращает значение DbObject.Name этого экземпляра DTONews.
+            Если значение является null, пустой строкой или состоящей только из пробелов, возвращает "DefaultName".
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewsSite.BL.DTOModels.DTONews.GetPathToDocument">
+            <summary>
+            Возвращает значение DbObject.PathToDocument этого экземпляра DTONews.
+            Если значение является null, пустой строкой или состоящей только из пробелов, возвращает "Path is not found".
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewsSite.BL.DTOModels.DTONews.GetNameOfDoc">
+            <summary>
+            Возвращает имя документа, на который ссылается значение DbObject.PathToDocument этого экземпляра DTONews.
+            Если значение является null, пустой строкой или состоящей только из пробелов, возвращает "Path is not found".
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewsSite.BL.DTOModels.DTONews.Equals(NewsSite.Entities.DBAbstractions.IDbObject)">
+            <summary>
+            Сравнивает объект DbObject этой DTO-модели с другим объектом IDbObject.
+            </summary>
+            <param name="dbObject"> Объект IDbObject, который будет сравнён с объектом DbObject этой DTO-модели. </param>
+            <returns></returns>
+        </member>
+        <member name="T:NewsSite.BL.DTOModels.DTONews_Text">
+            <summary>
+            Содержит форматированный текст документа, определяемого при создании объекта.
+            </summary>
+        </member>
+        <member name="P:NewsSite.BL.DTOModels.DTONews_Text.Paragraphs">
+            <summary>
+            Содержит текст документа, разбитый на параграфы.
+            </summary>
+        </member>
+        <member name="P:NewsSite.BL.DTOModels.DTONews_Text.Title">
+            <summary>
+            Заголовок новости.
+            </summary>
+        </member>
+        <member name="M:NewsSite.BL.DTOModels.DTONews_Text.#ctor(System.String,System.String)">
+            <summary>
+            Создаёт новый экземпляр DTONews_Text.
+            </summary>
+            <param name="nameOfDoc"> Имя документа (не полный путь и без формата файла), из которого будет взят текст для этого объекта. </param>
+            <param name="titleOfNews"> Название (заголовок) новости. </param>
+        </member>
+        <member name="M:NewsSite.BL.DTOModels.DTONews_Text.EditTextFromFIle(System.String)">
+            <summary>
+            Форматирует текст документа из файла.
+            </summary>
+            
+            <param name="nameOfDoc"> Имя документа (не полный путь и без формата файла), из которого будет взят текст для этого объекта. </param>
+            
+            <returns>
+            Коллекция строк на которые был разбит текст документа (разбивает по параграфам).
+            </returns>
+        </member>
+        <member name="T:NewsSite.BL.DTOModels.DTOUser">
+            <summary>
+            Представляет DTO-модель, хранящую данные защищённого объекта DbUser.
+            Доступ к свойствам объекта DbUser реализуется через методы этой модели. 
+            </summary>
+            <remarks>
+            Реализует: <c>IDTOModel</c>
+            </remarks>
+        </member>
+        <member name="F:NewsSite.BL.DTOModels.DTOUser._dbObject">
+            <summary>
+            Приватный объект DbNews, данные которого являются основой этого DTONews.
+            </summary>
+        </member>
+        <member name="P:NewsSite.BL.DTOModels.DTOUser.NewsSite#BL#Abstractions#IDTOModel#DbObject">
+            <summary>
+            Реализует доступ к свойству DbNews DbObject этого экземпляра DTONews.
+            </summary>
+        </member>
+        <member name="M:NewsSite.BL.DTOModels.DTOUser.#ctor(NewsSite.Entities.DbModels.DbUser)">
+            <summary>
+            Создаёт экземпляр DTOUser.
+            </summary>
+            <param name="dbUser"> объект DbUser, являющегося основой DTOUser. </param>
+        </member>
+        <member name="M:NewsSite.BL.DTOModels.DTOUser.#ctor(System.String,System.String)">
+            <summary>
+            Создаёт экземпляр DTOUser, создавая объект DbUser на основе входных параметров.
+            </summary>
+            <param name="name"> Будет применено для значения DbUser.Name. </param>
+            <param name="email"> Будет применено для значения DbUser.Email. </param>
+        </member>
+        <member name="M:NewsSite.BL.DTOModels.DTOUser.GetInfo">
+            <summary>
+            Возвращает информацию DTO-объекта в виде строки.
+            (совмещает результат GetName() и GetEmail())
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewsSite.BL.DTOModels.DTOUser.GetName">
+            <summary>
+            Возвращает значение _dbObject.Name этого DTO объекта.
+            Если значение является null, пустой строкой или состоит только из пробелов, 
+            возвращает "NameIsNullOrWhiteSpace".
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewsSite.BL.DTOModels.DTOUser.GetEmail">
+            <summary>
+            Возвращает значение _dbObject.Email этого DTO объекта.
+            Если значение является null, пустой строкой или состоит только из пробелов, 
+            возвращает "EmailIsNullOrWhiteSpace".
+            </summary>
+            <returns></returns>
+            <remarks>
+            Внимание! У возвращаемого Email первые три символа будут заменены на звёздочки (*).
+            </remarks>
+        </member>
+        <member name="M:NewsSite.BL.DTOModels.DTOUser.Equals(NewsSite.Entities.DBAbstractions.IDbObject)">
+            <summary>
+            Сравнивает объект DbObject этой DTO-модели с другим объектом IDbObject.
+            </summary>
+            <param name="dbObject"> Объект IDbObject, который будет сравнён с объектом DbObject этой DTO-модели. </param>
+            <returns></returns>
+        </member>
+        <member name="T:NewsSite.BL.DTOModels.NullClasses.NullDTO">
+            <summary>
+            Null-версия имплементатора IDTOModel. Используется для реализации NullObject паттерна.
+            </summary>
+            <remarks>
+            Реализует: IDTOModel
+            </remarks>
+        </member>
+        <member name="F:NewsSite.BL.DTOModels.NullClasses.NullDTO._dbObject">
+            <summary>
+            Приватный объект IDbObject. Используется, как болванка.
+            </summary>
+        </member>
+        <member name="M:NewsSite.BL.DTOModels.NullClasses.NullDTO.#ctor(System.Type)">
+            <summary>
+            Создаёт новый объект NullDTO. 
+            </summary>
+            <param name="typeofDbObject"> На основе этого аргумента будет определён тип внутреннего IDbObject.
+                                          Тип должен быть реализацией IDTOModel. 
+            </param>
+            <remarks>
+            Тип внутреннего IDbObject зависит от входного типа DTO.
+            </remarks>
+        </member>
+        <member name="P:NewsSite.BL.DTOModels.NullClasses.NullDTO.NewsSite#BL#Abstractions#IDTOModel#DbObject">
+            <summary>
+            Предоставляет доступ к закрытому объекту IDbObject этого NullDTO. 
+            </summary>
+        </member>
+        <member name="M:NewsSite.BL.DTOModels.NullClasses.NullDTO.Equals(NewsSite.Entities.DBAbstractions.IDbObject)">
+            <summary>
+            Сравнивает объект DbObject этой DTO-модели с другим объектом IDbObject.
+            </summary>
+            <param name="dbObject"> Объект IDbObject, который будет сравнён с объектом DbObject этой DTO-модели. </param>
+            <returns></returns>
+        </member>
+        <member name="M:NewsSite.BL.DTOModels.NullClasses.NullDTO.GetName">
+            <summary>
+            Возвращает поле Name внутреннего объекта IDbObject.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewsSite.BL.Log">
+            <summary>
+            Содержит данные о результате работы метода.
+            </summary>
+            <remarks>
+            Рекомендуется использовать в качестве возвращаемого объекта для методов, 
+            которые без этого не возвращают ничего.
+            </remarks>
+        </member>
+        <member name="M:NewsSite.BL.Log.#ctor(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Создаёт объект Log на основе входных аргументов.
+            </summary>
+            <param name="nameOfController"> Имя класса, метод которого был завершён. </param>
+            <param name="nameOfMethod"> Имя метода, который был завершён. </param>
+            <param name="message"> Сообщение, описывающее результат работы метода. </param>
+            <param name="result"> Значение оценивающее результат работы метода. По умолчанию - false. </param>
+        </member>
+        <member name="P:NewsSite.BL.Log.Result">
+            <summary>
+            Значение оценивающее результат работы метода. 
+            </summary>
+        </member>
+        <member name="P:NewsSite.BL.Log.NameOfController">
+            <summary>
+            Имя класса, метод которого был завершён.
+            </summary>
+        </member>
+        <member name="P:NewsSite.BL.Log.NameOfMethod">
+            <summary>
+            Имя метода, который был завершён.
+            </summary>
+        </member>
+        <member name="P:NewsSite.BL.Log.Message">
+            <summary>
+            Сообщение, описывающее результат работы метода.
+            </summary>
+        </member>
+        <member name="T:NewsSite.BL.Managers.FileManager">
+            <summary>
+            Содержит методы и параметры для работы с файлами, которые хранит и использует проект.
+            </summary>
+        </member>
+        <member name="F:NewsSite.BL.Managers.FileManager.PathToDocFolder">
+            <summary>
+            Статическое значение пути к папке, содержащей файлы документов (.doc, .docx) с новостями. 
+            По умолчанию путь указывает на папку в документах.
+            </summary>
+        </member>
+        <member name="F:NewsSite.BL.Managers.FileManager.PathToTxtDocFolder">
+            <summary>
+            Статическое значение пути к папке, содержащей текстовые файлы документов (.txt) с новостями. 
+            По умолчанию путь указывает на папку в документах.
+            </summary>
+        </member>
+        <member name="M:NewsSite.BL.Managers.FileManager.SaveFileOfNews(Microsoft.AspNetCore.Http.IFormFile,System.String)">
+            <summary>
+            Сохраняет файл новостей из веб-формы, а так-же сохраняет их копии в формате .txt.
+            </summary>
+            
+            <param name="fileFromForm"> Объект IFormFile, содержащий 
+                                        непосредственно файл из веб-формы, который будет сохранён. </param>
+            <param name="pathSave"> 
+            Путь по которому будет сохранён файл. Может быть (и является по умолчанию) пустой строкой.
+            В этом случае, путь будет создан в теле метода:
+                <code>
+                    if (string.IsNullOrEmpty(pathSave))
+                    {
+                        pathSave = $@"{PathToDocFolder}\{fileFromForm.FileName}";
+                    }
+                </code>
+            </param>
+            
+            <returns>
+            Task(bool), Result которого будет true, если операции сохранения были выполнены.
+            </returns>
+        </member>
+        <member name="M:NewsSite.BL.Managers.FileManager.SaveNewsAsText(System.String,System.String)">
+            <summary>
+            Сохраняет текст из файла, конвертируя его в новый файл .txt .
+            </summary>
+            <param name="pathToDoc"> Путь к документу, откуда будет взят текст. </param>
+            <param name="nameOfFile"> Название файла, из которого будет взят текст. </param>
+        </member>
+        <member name="M:NewsSite.BL.Managers.FileManager.ExistsDirectories_IfNotThenCreate">
+            <summary>
+            Проверяет, существуют ли директории, в которых должны содержаться файлы новостей. 
+            Если они не существуют - создаёт их.
+            </summary>
+        </member>
+        <member name="T:NewsSite.BL.Managers.FullDBManager">
+            <summary>
+            Представляет класс, содержащий функционал для доступа к базе данных (с полным функционалом).
+            </summary>
+            <remarks>
+            Реализует: DbManager, IDbManager
+            </remarks>
+        </member>
+        <member name="F:NewsSite.BL.Managers.FullDBManager._context">
+            <summary>
+            Объект контекста, необходимый для доступа к данным БД.
+            </summary>
+        </member>
+        <member name="M:NewsSite.BL.Managers.FullDBManager.#ctor">
+            <summary>
+            Создаёт экземпляр FullDBManager и инициализирует объект контекста на основе опций из appsettings.json.
+            </summary>
+        </member>
+        <member name="M:NewsSite.BL.Managers.FullDBManager.AddEntityToDb(NewsSite.BL.Abstractions.IDTOModel)">
+            <summary>
+            Добавляет сущность в базу данных на основе параметров входного IDTOModel.
+            </summary>
+            
+            <param name="inputDTO"> Объект IDTOModel, параметры которого 
+                                    будут основой для добавляемого объекта. 
+                                    Тип класса влияет на тип сохраняемой сущности. </param>
+            <remarks>
+            Тип входного inputDTO влияет на тип сохраняемой сущности. </remarks>
+            
+            <returns> Task(bool), Result которого true, если операция добавления была успешно выполнена. 
+            Иначе, если тип класса входного IDTOModel не поддерживается в методе, 
+            сущность не будет сохранена и Result будет равен false.
+            </returns>
+        </member>
+        <member name="M:NewsSite.BL.Managers.FullDBManager.AddEntityToDb(NewsSite.Entities.DBAbstractions.IDbObject)">
+            <summary>
+            Добавляет сущность в базу данных на основе параметров входного IDTOModel.
+            </summary>
+            
+            <param name="inputDbObject"> Объект IDbObject, параметры которого 
+                                         будут основой для добавляемого объекта. 
+                                         Тип класса влияет на тип сохраняемой сущности. </param>
+            <remarks>
+            Тип входного inputDTO влияет на тип сохраняемой сущности. </remarks>
+            
+            <returns> Task Log, Result которого true, если операция добавления была успешно выполнена. 
+            Иначе, будет возвращён Log с описанием ошибки и значением Result - false.
+            Сущность не будет сохранена.
+            </returns>
+        </member>
+        <member name="M:NewsSite.BL.Managers.FullDBManager.ReturnEntityOrNullDTOFromDb(System.String,System.Type)">
+            <summary>
+            Возвращает сущность из БД, проводя поиск по входному значению его имени 
+            (согласно параметру Name, имеющегося у имплементаторов IDbObject).
+            </summary>
+            
+            <param name="nameOfEntity"> Имя искомой сущности (в базе данных будет проводится поиск по столбцу Name). </param>
+            <param name="typeOfEntity"> Тип искомой сущности (должен быть реализатором IDTOModel). </param>
+            
+            <returns> 
+            Объект IDTOModel с данными о найденной сущности. В ином случае - экземпляр NullDTO. 
+            </returns>
+        </member>
+        <member name="F:NewsSite.BL.Managers.FullDBManager.NameOfManager">
+            <summary>
+            Константа имени этого класса. Используется для быстрой записи в метод WriteLog.
+            </summary>
+        </member>
+        <member name="T:NewsSite.BL.Managers.SimplifiedDBManager">
+            <summary>
+            Представляет класс, содержащий функционал для доступа к базе данных (с частичным функционалом).
+            </summary>
+            <remarks>
+            Реализует: DbManager, ISimplifiedDbManager
+            </remarks>
+        </member>
+        <member name="F:NewsSite.BL.Managers.SimplifiedDBManager._context">
+            <summary>
+            Объект контекста, необходимый для доступа к данным БД.
+            </summary>
+        </member>
+        <member name="M:NewsSite.BL.Managers.SimplifiedDBManager.#ctor">
+            <summary>
+            Создаёт экземпляр FullDBManager и инициализирует объект контекста на основе опций из appsettings.json.
+            </summary>
+        </member>
+        <member name="M:NewsSite.BL.Managers.SimplifiedDBManager.ReturnEntityFromDb(System.String,System.Type)">
+            <summary>
+            Возвращает сущность из БД, проводя поиск по входному значению его имени 
+            (согласно параметру Name, имеющегося у имплементаторов IDbObject).
+            </summary>
+            
+            <param name="nameOfEntity"> Имя искомой сущности (в базе данных будет проводится поиск по столбцу Name). </param>
+            <param name="typeOfReturnedDTO"> Тип искомой сущности (должен быть реализатором IDTOModel). </param>
+            
+            <returns> Объект IDTOModel с данными о найденной сущности. </returns>
+            
+            <exception cref="T:System.TypeAccessException"> Если значение typeOfEntity не соответствует ни одному из поддерживаемых в методе. </exception>
+            <exception cref="T:System.NullReferenceException"> Если не была найдена сущность для возврата. </exception>
+        </member>
+        <member name="M:NewsSite.BL.Managers.SimplifiedDBManager.ReturnMultipleNews(System.Int32,System.Boolean)">
+            <summary>
+            Возвращает несколько объектов DTONews с начала или конца таблицы в БД.
+            </summary>
+            
+            <param name="count"> Количество возвращаемых сущностей. </param>
+            <param name="lastNews"> Если true - осуществляет отбор с конца, false - с начала. </param>
+            
+            <returns>
+            Коллекция объектов DTONews, содержащих сведения о найденных сущностях.
+            </returns>
+            
+            <exception cref="T:System.NullReferenceException"> Если не была найдена сущность для возврата. </exception>
+        </member>
+    </members>
+</doc>

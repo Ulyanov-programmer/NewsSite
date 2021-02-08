@@ -1,13 +1,10 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
 using NewsSite.BL.Abstractions;
 using NewsSite.BL.DTOModels;
 using NewsSite.BL.DTOModels.NullClasses;
 using NewsSite.Entities.DBAbstractions;
 using NewsSite.Entities.DbModels;
 using System;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,7 +14,7 @@ namespace NewsSite.BL.Managers
     /// Представляет класс, содержащий функционал для доступа к базе данных (с полным функционалом).
     /// </summary>
     /// <remarks>
-    /// Реализует: <c>IDbManager</c>
+    /// Реализует: DbManager, IDbManager
     /// </remarks>
     public class FullDBManager : DbManager, IDbManager
     {
@@ -27,7 +24,7 @@ namespace NewsSite.BL.Managers
         private readonly NewsSiteContext _context;
 
         /// <summary>
-        /// Создаёт экземпляр FullDBManager.
+        /// Создаёт экземпляр FullDBManager и инициализирует объект контекста на основе опций из appsettings.json.
         /// </summary>
         public FullDBManager()
         {
@@ -36,15 +33,13 @@ namespace NewsSite.BL.Managers
 
         /// <summary>
         /// Добавляет сущность в базу данных на основе параметров входного IDTOModel.
-        /// Поддерживает асинхронность.
         /// </summary>
         /// 
         /// <param name="inputDTO"> Объект IDTOModel, параметры которого 
         ///                         будут основой для добавляемого объекта. 
         ///                         Тип класса влияет на тип сохраняемой сущности. </param>
         /// <remarks>
-        /// Тип класса inputDTO влияет на тип сохраняемой сущности.
-        /// </remarks>
+        /// Тип входного inputDTO влияет на тип сохраняемой сущности. </remarks>
         /// 
         /// <returns> Task(bool), Result которого true, если операция добавления была успешно выполнена. 
         /// Иначе, если тип класса входного IDTOModel не поддерживается в методе, 
@@ -74,6 +69,20 @@ namespace NewsSite.BL.Managers
             return true;
         }
 
+        /// <summary>
+        /// Добавляет сущность в базу данных на основе параметров входного IDTOModel.
+        /// </summary>
+        /// 
+        /// <param name="inputDbObject"> Объект IDbObject, параметры которого 
+        ///                              будут основой для добавляемого объекта. 
+        ///                              Тип класса влияет на тип сохраняемой сущности. </param>
+        /// <remarks>
+        /// Тип входного inputDTO влияет на тип сохраняемой сущности. </remarks>
+        /// 
+        /// <returns> Task Log, Result которого true, если операция добавления была успешно выполнена. 
+        /// Иначе, будет возвращён Log с описанием ошибки и значением Result - false.
+        /// Сущность не будет сохранена.
+        /// </returns>
         public async Task<Log> AddEntityToDb(IDbObject inputDbObject)
         {
             try
@@ -125,10 +134,9 @@ namespace NewsSite.BL.Managers
         /// <param name="nameOfEntity"> Имя искомой сущности (в базе данных будет проводится поиск по столбцу Name). </param>
         /// <param name="typeOfEntity"> Тип искомой сущности (должен быть реализатором IDTOModel). </param>
         /// 
-        /// <returns> Объект IDTOModel с данными о найденной сущности. </returns>
-        /// 
-        /// <exception cref="TypeAccessException"> Если значение typeOfEntity не соответствует ни одному из поддерживаемых в методе. </exception>
-        /// <exception cref="NullReferenceException"> Если не была найдена сущность для возврата. </exception>
+        /// <returns> 
+        /// Объект IDTOModel с данными о найденной сущности. В ином случае - экземпляр NullDTO. 
+        /// </returns>
         public IDTOModel ReturnEntityOrNullDTOFromDb(string nameOfEntity, Type typeOfEntity)
         {
             IDTOModel dbEntity;
@@ -159,7 +167,7 @@ namespace NewsSite.BL.Managers
             {
                 return new NullDTO(typeOfEntity);
             }
-            catch (NullReferenceException)
+            catch (ArgumentNullException)
             {
                 return new NullDTO(typeOfEntity);
             }
@@ -169,6 +177,9 @@ namespace NewsSite.BL.Managers
             }
         }
 
-        public const string NameOfManager = "FullDBManager";
+        /// <summary>
+        /// Константа имени этого класса. Используется для быстрой записи в метод WriteLog.
+        /// </summary>
+        private const string NameOfManager = "FullDBManager";
     }
 }

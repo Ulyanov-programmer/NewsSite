@@ -17,13 +17,15 @@ namespace NewsSite.BL.Managers
     public static class FileManager
     {
         /// <summary>
-        /// Константа пути к папке, содержащей файлы документов (.doc, .docx) с новостями. 
+        /// Статическое значение пути к папке, содержащей файлы документов (.doc, .docx) с новостями. 
+        /// По умолчанию путь указывает на папку в документах.
         /// </summary>
         internal static readonly string PathToDocFolder = Environment.GetFolderPath
                                                          (Environment.SpecialFolder.MyDocuments) + @"\NewsSite\NewsFiles";
 
         /// <summary>
-        /// Константа пути к папке, содержащей текстовые файлы документов (.txt) с новостями. 
+        /// Статическое значение пути к папке, содержащей текстовые файлы документов (.txt) с новостями. 
+        /// По умолчанию путь указывает на папку в документах.
         /// </summary>
         internal static readonly string PathToTxtDocFolder = Environment.GetFolderPath
                                                          (Environment.SpecialFolder.MyDocuments) + @"\NewsSite\NewsTxtFiles";

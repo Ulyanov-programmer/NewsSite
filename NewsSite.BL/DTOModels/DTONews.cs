@@ -2,30 +2,35 @@
 using NewsSite.BL.Managers;
 using NewsSite.Entities.DBAbstractions;
 using NewsSite.Entities.DbModels;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace NewsSite.BL.DTOModels
 {
     /// <summary>
     /// Представляет DTO-модель, хранящую данные защищённого объекта DbNews.
-    /// Доступ к свойствам объекта DbNews реализуется через методы этой модели. 
+    /// Доступ к свойствам внутреннего объекта DbNews реализуется через методы этой модели. 
     /// </summary>
     /// <remarks>
-    /// Реализует: <c>IDTOModel</c>
+    /// Реализует: IDTOModel
     /// </remarks>
     public class DTONews : IDTOModel
     {
+        #region params
+        
         /// <summary>
         /// Приватный объект DbNews, данные которого являются основой этого DTONews.
         /// </summary>
         private readonly DbNews _dbObject;
 
         /// <summary>
-        /// [не функционально] Реализует доступ к свойству DbNews DbObject этого экземпляра DTONews.
+        /// Реализует доступ к свойству DbNews DbObject этого экземпляра DTONews.
         /// </summary>
         IDbObject IDTOModel.DbObject => _dbObject;
 
+        #endregion
+
+        #region constructors
+        
         /// <summary>
         /// Создаёт экземпляр DTONews.
         /// </summary>
@@ -49,8 +54,12 @@ namespace NewsSite.BL.DTOModels
             _dbObject = new DbNews(author._dbObject.Id, nameOfNews, $@"{FileManager.PathToDocFolder}\{nameOfDocument}");
         }
 
+        #endregion
+
+        #region methods
+
         /// <summary>
-        /// [устарело] 
+        /// [дублирует GetName()] 
         /// Возвращает информацию DTO-объекта в виде коллекции строк.
         /// </summary>
         /// <returns></returns>
@@ -115,6 +124,13 @@ namespace NewsSite.BL.DTOModels
             }
         }
 
+        #endregion
+
+        /// <summary>
+        /// Сравнивает объект DbObject этой DTO-модели с другим объектом IDbObject.
+        /// </summary>
+        /// <param name="dbObject"> Объект IDbObject, который будет сравнён с объектом DbObject этой DTO-модели. </param>
+        /// <returns></returns>
         public bool Equals(IDbObject dbObject)
         {
             if (_dbObject.Id == dbObject.Id &&

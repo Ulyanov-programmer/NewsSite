@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NewsSite.Tests.Abstractions;
 using System.ComponentModel.DataAnnotations;
 
 namespace NewsSite.Tests.ViewModelsMosks.Mosks
 {
-    internal enum InitializationVariants
-    {
-        Good,
-        Null,
-        Empty
-    }
-
     internal class RegistrationVM_Mosk
     {
         internal RegistrationVM_Mosk(InitializationVariants variant)
