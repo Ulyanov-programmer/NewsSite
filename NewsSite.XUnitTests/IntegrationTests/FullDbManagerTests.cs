@@ -12,24 +12,24 @@ namespace NewsSite.Tests.IntegrationTests
     {
         [Theory]
         [ClassData(typeof(DbNews_Data))]
-        internal void AddEntityToDb_Test(DbNews_Mosk dbNews_Mosk)
+        internal void AddEntityToDb_Test(DbNews_Mock dbNews_Mock)
         {
             //Arrange
             var fullDBManager = new FullDBManager();
 
             //Act
-            var log = fullDBManager.AddEntityToDb(dbNews_Mosk.DbNewsObject).Result;
-            dbNews_Mosk.MoskLog = new MoskLog(dbNews_Mosk.InitVariant, log);
+            var log = fullDBManager.AddEntityToDb(dbNews_Mock.DbNewsObject).Result;
+            dbNews_Mock.MockLog = new MockLog(dbNews_Mock.InitVariant, log);
 
             //Assert
-            switch (dbNews_Mosk.InitVariant)
+            switch (dbNews_Mock.InitVariant)
             {
                 #region GoodVariant
 
                 case InitializationVariants.Good:
 
-                    Assert.True(dbNews_Mosk.MoskLog.Result,
-                        "The MoskLog should Result.True because InitializationVariants is Good and the method must be executed.");
+                    Assert.True(dbNews_Mock.MockLog.Result,
+                        "The MockLog should Result.True because InitializationVariants is Good and the method must be executed.");
                     break;
 
                 #endregion
@@ -38,8 +38,8 @@ namespace NewsSite.Tests.IntegrationTests
 
                 case InitializationVariants.Null:
 
-                    Assert.False(dbNews_Mosk.MoskLog.Result,
-                        "The MoskLog should Result.False because InitializationVariants is Null and the method should not be executed.");
+                    Assert.False(dbNews_Mock.MockLog.Result,
+                        "The MockLog should Result.False because InitializationVariants is Null and the method should not be executed.");
                     break;
 
                 #endregion
@@ -48,8 +48,8 @@ namespace NewsSite.Tests.IntegrationTests
 
                 case InitializationVariants.Empty:
 
-                    Assert.False(dbNews_Mosk.MoskLog.Result,
-                        "The MoskLog should Result.False because InitializationVariants is Empty and the method should not be executed.");
+                    Assert.False(dbNews_Mock.MockLog.Result,
+                        "The MockLog should Result.False because InitializationVariants is Empty and the method should not be executed.");
                     break;
 
                     #endregion
@@ -58,31 +58,31 @@ namespace NewsSite.Tests.IntegrationTests
 
         [Theory]
         [ClassData(typeof(DbUser_Data))]
-        internal void ReturnEntityFromDb_Test(DbUser_Mosk dbUser_Mosk)
+        internal void ReturnEntityFromDb_Test(DbUser_Mock dbUser_Mock)
         {
             //Arrange
             var fullDBManager = new FullDBManager();
 
-            var taskLog = fullDBManager.AddEntityToDb(dbUser_Mosk.DbUserObject).Result;
+            var taskLog = fullDBManager.AddEntityToDb(dbUser_Mock.DbUserObject).Result;
 
 
-            if (dbUser_Mosk.InitVariant == InitializationVariants.Good)
+            if (dbUser_Mock.InitVariant == InitializationVariants.Good)
             {
                 Assert.True(taskLog.Result, "The AddEntityToDb method taskLog.Result must be true, which means that an object has been added!");
             }
 
             //Act
-            var returnedDTO = fullDBManager.ReturnEntityOrNullDTOFromDb(dbUser_Mosk.DbUserObject.Name, typeof(DTOUser));
+            var returnedDTO = fullDBManager.ReturnEntityOrNullDTOFromDb(dbUser_Mock.DbUserObject.Name, typeof(DTOUser));
             
             //Assert
-            switch (dbUser_Mosk.InitVariant)
+            switch (dbUser_Mock.InitVariant)
             {
                 #region GoodVariant
 
                 case InitializationVariants.Good:
 
-                    Assert.True(dbUser_Mosk.Equals(returnedDTO),
-                        "The MoskLog should Result.True because InitializationVariants is Good and the method must be executed.");
+                    Assert.True(dbUser_Mock.Equals(returnedDTO),
+                        "The MockLog should Result.True because InitializationVariants is Good and the method must be executed.");
                     break;
 
                 #endregion
@@ -91,8 +91,8 @@ namespace NewsSite.Tests.IntegrationTests
 
                 case InitializationVariants.Null:
 
-                    Assert.False(dbUser_Mosk.Equals(returnedDTO),
-                        "The MoskLog should Result.False because InitializationVariants is Null and the method should not be executed.");
+                    Assert.False(dbUser_Mock.Equals(returnedDTO),
+                        "The MockLog should Result.False because InitializationVariants is Null and the method should not be executed.");
                     break;
 
                 #endregion
@@ -101,7 +101,7 @@ namespace NewsSite.Tests.IntegrationTests
 
                 case InitializationVariants.Empty:
 
-                    Assert.False(dbUser_Mosk.Equals(returnedDTO),
+                    Assert.False(dbUser_Mock.Equals(returnedDTO),
                         "The Equals should false because InitializationVariants is Empty and the method should not be executed.");
                     break;
 

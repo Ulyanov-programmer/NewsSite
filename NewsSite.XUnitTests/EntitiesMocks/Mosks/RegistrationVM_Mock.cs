@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NewsSite.Tests.ViewModelsMosks.Mosks
 {
-    internal class RegistrationVM_Mosk
+    internal class RegistrationVM_Mock
     {
-        internal RegistrationVM_Mosk(InitializationVariants variant)
+        internal RegistrationVM_Mock(InitializationVariants variant)
         {
             switch (variant)
             {

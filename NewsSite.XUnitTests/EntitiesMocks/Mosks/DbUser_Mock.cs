@@ -5,11 +5,11 @@ using System;
 
 namespace NewsSite.Tests.EntitiesMosks.Mosks
 {
-    internal class DbUser_Mosk : MoskObject
+    internal class DbUser_Mock : MockObject
     {
         internal readonly DbUser DbUserObject = new DbUser();
 
-        internal DbUser_Mosk(InitializationVariants variant) : base(variant)
+        internal DbUser_Mock(InitializationVariants variant) : base(variant)
         {
             switch (variant)
             {

@@ -4,11 +4,11 @@ using System;
 
 namespace NewsSite.Tests.EntitiesMosks.Mosks
 {
-    internal class DbNews_Mosk : MoskObject
+    internal class DbNews_Mock : MockObject
     {
         internal readonly DbNews DbNewsObject = new DbNews();
 
-        internal DbNews_Mosk(InitializationVariants variant) : base(variant)
+        internal DbNews_Mock(InitializationVariants variant) : base(variant)
         {
             switch (variant)
             {
