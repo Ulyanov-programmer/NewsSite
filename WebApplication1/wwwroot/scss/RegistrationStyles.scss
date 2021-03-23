@@ -13,29 +13,34 @@
 
 	flex: 1 0 auto;
 
-	max-height: 30%;
-
 	.AddNewObjectForm {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		margin-left: 30%;
+		.RegistredForm_ButtonContainer{
+			display: flex;
+			background-color: rgb(80%, 80%, 80%);
+			padding: 10px 50px;
+			margin: 7px 10px;
 
-		flex: 1 0 auto;
-		
-		.AddNewObjectForm_ButtonContainer{
+			.RegistredForm_ButtonContainer__PreInputText{
+				margin-right: 12px;
+			}
+			.RegistredForm_ButtonContainer__Input{
+				font-size: 20px;
+			}
+		}
+		.RegistredForm_SubmitContainer{
 			display: flex;
 			justify-content: center;
 
-			margin: 5px 5px;
+			background-color: rgb(80%, 80%, 80%);
+			margin: 7px 10px;
 
-			.InputFile{
-				opacity: 0;
-  				visibility: hidden;
-  				position: absolute;
+			.RegistredForm_SubmitContainer__SubmitButton{
+				font-size: 35px;
+				background-color: rgb(80%, 80%, 80%);
 			}
-			.InputFile_Lable{
-				background-color: #C0C0C0;
-			}
-		}	
+		}
 	}
 }

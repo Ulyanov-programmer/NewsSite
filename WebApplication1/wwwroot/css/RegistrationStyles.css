@@ -9,24 +9,31 @@
 .FormContainer {
   display: flex;
   flex: 1 0 auto;
-  max-height: 30%;
 }
 .FormContainer .AddNewObjectForm {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  flex: 1 0 auto;
+  margin-left: 30%;
 }
-.FormContainer .AddNewObjectForm .AddNewObjectForm_ButtonContainer {
+.FormContainer .AddNewObjectForm .RegistredForm_ButtonContainer {
+  display: flex;
+  background-color: #cccccc;
+  padding: 10px 50px;
+  margin: 7px 10px;
+}
+.FormContainer .AddNewObjectForm .RegistredForm_ButtonContainer .RegistredForm_ButtonContainer__PreInputText {
+  margin-right: 12px;
+}
+.FormContainer .AddNewObjectForm .RegistredForm_ButtonContainer .RegistredForm_ButtonContainer__Input {
+  font-size: 20px;
+}
+.FormContainer .AddNewObjectForm .RegistredForm_SubmitContainer {
   display: flex;
   justify-content: center;
-  margin: 5px 5px;
+  background-color: #cccccc;
+  margin: 7px 10px;
 }
-.FormContainer .AddNewObjectForm .AddNewObjectForm_ButtonContainer .InputFile {
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
-}
-.FormContainer .AddNewObjectForm .AddNewObjectForm_ButtonContainer .InputFile_Lable {
-  background-color: #C0C0C0;
+.FormContainer .AddNewObjectForm .RegistredForm_SubmitContainer .RegistredForm_SubmitContainer__SubmitButton {
+  font-size: 35px;
+  background-color: #cccccc;
 }
