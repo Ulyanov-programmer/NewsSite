@@ -14,21 +14,23 @@
 </div>
 <div class="FormContainer">
     <form asp-action="Registration" class="AddNewObjectForm">
-        <div class="AddNewObjectForm_ButtonContainer">
-            <span class="RegistredForm_ButtonContainer__PreInput"> Ваше имя: </span>
+        <div class="RegistredForm_ButtonContainer">
+            <span class="RegistredForm_ButtonContainer__PreInputText"> Ваше имя: </span>
             <input asp-for="NameOfUser" type="text" class="RegistredForm_ButtonContainer__Input" required>
         </div>
-        <div class="AddNewObjectForm_ButtonContainer">
-            <span class="RegistredForm_ButtonContainer__PreInput"> Ваш Email: </span>
+        <div class="RegistredForm_ButtonContainer">
+            <span class="RegistredForm_ButtonContainer__PreInputText"> Ваш Email: </span>
             <input asp-for="EmailOfuser" type="email" class="RegistredForm_ButtonContainer__Input" required>
         </div>
-        <div class="AddNewObjectForm_ButtonContainer">
-            <span class="RegistredForm_ButtonContainer__PreInput"> Повторите ваш Email: </span>
+        <div class="RegistredForm_ButtonContainer">
+            <span class="RegistredForm_ButtonContainer__PreInputText"> Повторите ваш Email: </span>
             <input asp-for="EmailOfuserConfirm" type="email" class="RegistredForm_ButtonContainer__Input" required>
         </div>
 
-        <button type="submit">
-            <span> Отправить </span>
-        </button>
+        <div class="RegistredForm_SubmitContainer">
+            <button type="submit" class="RegistredForm_SubmitContainer__SubmitButton">
+                Зарегистрироваться
+            </button>
+        </div>
     </form>
 </div>
