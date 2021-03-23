@@ -2,11 +2,12 @@
 
 $TextColor: black;
 $BorderColor: black;
-$BackgroundColor: #DCDCDC;
-$SecondBackgroundColor: #CDCBCB;
+$BackColor: rgb(86%, 86%, 86%);
+$SecondBackColor: rgb(80%, 80%, 80%);
+$ActiveBackColor: rgb(70%, 70%, 70%);
 
 body{
-	font-family: ms sans serif;
+	font-family: arial;
 }
 
 header{
@@ -25,22 +26,23 @@ header{
 	}
 	.NavigationMenu{
 		display: flex;
-		justify-content: center;
+		justify-content: space-around;
 
-		min-width: 100%;
+		background-color: $SecondBackColor;
 
-		background-color: $SecondBackgroundColor;
+		box-shadow: 0 7px 10px rgba(0,0,0,0.15);
+
+		:hover{
+				background-color: $ActiveBackColor;
+			}
+
 		.NavigationMenu_ButtonContainer{
-			margin: 0 5px;
-
-			border-left: solid 2px $BorderColor;
-			border-right: solid 2px $BorderColor;
+			padding: 1px;
+			display: inline-flex;
 
 			.NavigationMenu_Button{
 				text-decoration: none;
 				color: $TextColor;
-
-				margin: 0px 5px;
 			}
 		}
 	}
@@ -50,7 +52,7 @@ header{
 	display: flex;
 	flex-direction: column;
 
-	background-color: $BackgroundColor;
+	background-color: $BackColor;
 
 	font-size: 30px;
 
@@ -72,26 +74,29 @@ header{
 				display: flex;
 				flex-direction: column;
 
-				min-width: 80%;
-
+				min-width: 96%;
+				:hover{
+					box-shadow: 0 0 30px rgba(0,0,0,0.5);
+				}
 				.NewsBlock_Item{
 						display: flex;
 						flex-direction: column;
 						justify-content: center;
 						
-						background-color: $SecondBackgroundColor;
+						background-color: $SecondBackColor;
 
 						margin: 10px 0px;
-						padding: 5px 0px;
+						padding: 7px 0px;
 
+						:hover{
+							box-shadow: 0 0 0px rgba(0,0,0,0);
+						}
 						.NewsBlock_Item__Ref{
 							display: flex;
 							justify-content: center;
 
 							.NewsBlock_Item__Ref__Title{
 								color: $TextColor;
-
-								font-size: 40px;
 							}
 						}
 					}
@@ -101,11 +106,11 @@ header{
 }
 
 footer{
-	min-height: 10%;
+	min-height: 7%;
 
 	border-top: solid 0.5px $BorderColor;
 
 	font-size: 20px;
 
-	background-color: $SecondBackgroundColor;
+	background-color: $SecondBackColor;
 }

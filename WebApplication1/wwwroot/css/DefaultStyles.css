@@ -1,6 +1,6 @@
 @import "../css/NullStyle.css";
 body {
-  font-family: ms sans serif;
+  font-family: arial;
 }
 
 header {
@@ -18,25 +18,26 @@ header .Title_Container .Title_Container_Title {
 }
 header .NavigationMenu {
   display: flex;
-  justify-content: center;
-  min-width: 100%;
-  background-color: #CDCBCB;
+  justify-content: space-around;
+  background-color: #cccccc;
+  box-shadow: 0 7px 10px rgba(0, 0, 0, 0.15);
+}
+header .NavigationMenu :hover {
+  background-color: #b3b3b3;
 }
 header .NavigationMenu .NavigationMenu_ButtonContainer {
-  margin: 0 5px;
-  border-left: solid 2px black;
-  border-right: solid 2px black;
+  padding: 1px;
+  display: inline-flex;
 }
 header .NavigationMenu .NavigationMenu_ButtonContainer .NavigationMenu_Button {
   text-decoration: none;
   color: black;
-  margin: 0px 5px;
 }
 
 .LayoutBody {
   display: flex;
   flex-direction: column;
-  background-color: #DCDCDC;
+  background-color: #dbdbdb;
   font-size: 30px;
   min-height: 100vh;
 }
@@ -53,15 +54,21 @@ header .NavigationMenu .NavigationMenu_ButtonContainer .NavigationMenu_Button {
 .LayoutBody .MainContentContainer .NewsBlock_Container .NewsBlock {
   display: flex;
   flex-direction: column;
-  min-width: 80%;
+  min-width: 96%;
+}
+.LayoutBody .MainContentContainer .NewsBlock_Container .NewsBlock :hover {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
 .LayoutBody .MainContentContainer .NewsBlock_Container .NewsBlock .NewsBlock_Item {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: #CDCBCB;
+  background-color: #cccccc;
   margin: 10px 0px;
-  padding: 5px 0px;
+  padding: 7px 0px;
+}
+.LayoutBody .MainContentContainer .NewsBlock_Container .NewsBlock .NewsBlock_Item :hover {
+  box-shadow: 0 0 0px rgba(0, 0, 0, 0);
 }
 .LayoutBody .MainContentContainer .NewsBlock_Container .NewsBlock .NewsBlock_Item .NewsBlock_Item__Ref {
   display: flex;
@@ -69,12 +76,11 @@ header .NavigationMenu .NavigationMenu_ButtonContainer .NavigationMenu_Button {
 }
 .LayoutBody .MainContentContainer .NewsBlock_Container .NewsBlock .NewsBlock_Item .NewsBlock_Item__Ref .NewsBlock_Item__Ref__Title {
   color: black;
-  font-size: 40px;
 }
 
 footer {
-  min-height: 10%;
+  min-height: 7%;
   border-top: solid 0.5px black;
   font-size: 20px;
-  background-color: #CDCBCB;
+  background-color: #cccccc;
 }
