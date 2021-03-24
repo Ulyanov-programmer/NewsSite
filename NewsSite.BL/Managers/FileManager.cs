@@ -52,7 +52,7 @@ namespace NewsSite.BL.Managers
         /// </returns>
         public static async Task<bool> SaveFileOfNews(IFormFile fileFromForm, string pathSave = "")
         {
-            if (fileFromForm.ContentType != ".docx")
+            if (fileFromForm.Name != "DocFile")
             { return false; }
 
             string nameOfDoc = fileFromForm.FileName.Remove
