@@ -9,12 +9,10 @@
             Абстрактный класс, содержащий общий функционал для Manager-классов. 
             </summary>
         </member>
-        <member name="M:NewsSite.BL.Abstractions.DbManager.GetDbContextOptions">
-            <summary>
-            Читает файл appsettings.json и создаёт на основе данных в нём объект DbContextOptions,
-            необходимый для создания объекта контекста.
-            </summary>
-            <returns></returns>
+        <member name="M:NewsSite.BL.Abstractions.DbManager.GetDbContextOptions(System.String)">
+            <summary>Читает файл appsettings.json и создаёт на основе данных в нём объект DbContextOptions,
+            необходимый для создания объекта контекста.</summary>
+            <param name="connectionString">Строка подключения (её название) из файла appsettings.json. По умолчанию использует строку к основной БД.</param>
         </member>
         <member name="M:NewsSite.BL.Abstractions.DbManager.WriteLog(System.String,System.String,System.Exception)">
             <summary>
@@ -415,7 +413,7 @@
             Объект контекста, необходимый для доступа к данным БД.
             </summary>
         </member>
-        <member name="M:NewsSite.BL.Managers.FullDBManager.#ctor">
+        <member name="M:NewsSite.BL.Managers.FullDBManager.#ctor(System.String)">
             <summary>
             Создаёт экземпляр FullDBManager и инициализирует объект контекста на основе опций из appsettings.json.
             </summary>

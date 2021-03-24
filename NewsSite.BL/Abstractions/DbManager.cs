@@ -11,20 +11,18 @@ namespace NewsSite.BL.Abstractions
     /// </summary>
     public abstract class DbManager
     {
-        /// <summary>
-        /// Читает файл appsettings.json и создаёт на основе данных в нём объект DbContextOptions,
-        /// необходимый для создания объекта контекста.
-        /// </summary>
-        /// <returns></returns>
-        protected DbContextOptions<NewsSiteContext> GetDbContextOptions()
+        /// <summary>Читает файл appsettings.json и создаёт на основе данных в нём объект DbContextOptions,
+        /// необходимый для создания объекта контекста.</summary>
+        /// <param name="connectionString">Строка подключения (её название) из файла appsettings.json. По умолчанию использует строку к основной БД.</param>
+        protected DbContextOptions<NewsSiteContext> GetDbContextOptions(string connectionString = "DefaultConnection")
         {
-            /* Specifies the fully qualified path to the directory of the appsettings.json file.
-               The first argument is the directory where appsettings.json is located, 
-               the second is the full path to that directory. */
-
+            // Specifies the fully qualified path to the directory of the appsettings.json file.
             string pathToAppsettingsDir = Path.GetFullPath(@"NewsSite\WebApplication1\", AppDomain.CurrentDomain.BaseDirectory
                                               .Remove(AppDomain.CurrentDomain.BaseDirectory.IndexOf("NewsSite")));
             #region Easy to read version. 
+
+            /* The first argument is the directory where appsettings.json is located, 
+               the second is the full path to that directory. */
 
             //string basePath = AppDomain.CurrentDomain.BaseDirectory;
             //basePath = basePath.Remove(basePath.IndexOf("NewsSite."));
@@ -42,8 +40,8 @@ namespace NewsSite.BL.Abstractions
 
 
             return new DbContextOptionsBuilder<NewsSiteContext>()
-                  //Enter the connection string from appsettings.json below.
-                  .UseSqlServer(new SqlConnection(configuration.GetConnectionString("DefaultConnection"))).Options;
+                  //Enter a connection string from appsettings.json below.
+                  .UseSqlServer(new SqlConnection(configuration.GetConnectionString(connectionString))).Options;
         }
 
         #region Logging
