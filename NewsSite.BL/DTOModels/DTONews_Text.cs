@@ -44,7 +44,6 @@ namespace NewsSite.BL.DTOModels
         /// </returns>
         private static IEnumerable<string> EditTextFromFIle(string nameOfDoc)
         {
-            
             string textOfDoc;
 
             using (StreamReader sr = new StreamReader
