@@ -10,12 +10,17 @@ namespace NewsSite.Tests.IntegrationTests
 {
     public class FullDbManagerTests
     {
+        const string TestConnectionString = "TestConnection";
         [Theory]
         [ClassData(typeof(DbNews_Data))]
         internal void AddEntityToDb_Test(DbNews_Mock dbNews_Mock)
         {
             //Arrange
-            var fullDBManager = new FullDBManager();
+            /*
+                Before running this test, make sure that there is at least one copy 
+                in the Users table and that its ID matches the ID used by dbNews_Mosk.
+            */
+            var fullDBManager = new FullDBManager(TestConnectionString);
 
             //Act
             var log = fullDBManager.AddEntityToDb(dbNews_Mock.DbNewsObject).Result;
@@ -61,7 +66,7 @@ namespace NewsSite.Tests.IntegrationTests
         internal void ReturnEntityFromDb_Test(DbUser_Mock dbUser_Mock)
         {
             //Arrange
-            var fullDBManager = new FullDBManager();
+            var fullDBManager = new FullDBManager(TestConnectionString);
 
             var taskLog = fullDBManager.AddEntityToDb(dbUser_Mock.DbUserObject).Result;
 

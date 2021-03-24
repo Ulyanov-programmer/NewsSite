@@ -26,9 +26,16 @@ namespace NewsSite.BL.Managers
         /// <summary>
         /// Создаёт экземпляр FullDBManager и инициализирует объект контекста на основе опций из appsettings.json.
         /// </summary>
-        public FullDBManager()
+        public FullDBManager(string connectionString = "")
         {
-            _context = new NewsSiteContext(GetDbContextOptions());
+            if (string.IsNullOrWhiteSpace(connectionString))
+            {
+                _context = new NewsSiteContext(GetDbContextOptions());
+            }
+            else
+            {
+                _context = new NewsSiteContext(GetDbContextOptions(connectionString));
+            }
         }
 
         /// <summary>
