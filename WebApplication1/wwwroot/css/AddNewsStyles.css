@@ -1,2 +1,23 @@
 @import "../css/DefaultStyles.css";
 @import "../css/RegistrationStyles.css";
+.MainContentContainer .FormContainer .Form .Form_ButtonContainer .InputFile__PreText {
+  padding-right: 15px;
+  font-size: 28px;
+}
+.MainContentContainer .FormContainer .Form .Form_ButtonContainer .InputText {
+  border: solid 1.5px;
+  font-size: 20px;
+}
+.MainContentContainer .FormContainer .Form .Form_ButtonContainer .InputFile {
+  display: none;
+}
+.MainContentContainer .FormContainer .Form .Form_ButtonContainer .InputFile_Lable {
+  padding: 10px;
+  background-color: #9D9D9D;
+  border: solid 2px black;
+}
+.MainContentContainer .FormContainer .Form .Form_ButtonContainer_ButtonContainer {
+  font-size: 35px;
+  background-color: #cccccc;
+  padding: 5px;
+}

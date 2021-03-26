@@ -13,22 +13,22 @@
     </span>
 </div>
 <div class="FormContainer">
-    <form asp-action="Registration" class="AddNewObjectForm">
-        <div class="RegistredForm_ButtonContainer">
-            <span class="RegistredForm_ButtonContainer__PreInputText"> Ваше имя: </span>
-            <input asp-for="NameOfUser" type="text" class="RegistredForm_ButtonContainer__Input" required>
+    <form asp-action="Registration" class="Form">
+        <div class="Form_ButtonContainer">
+            <span class="InputFile__PreText">Ваше имя</span>
+            <input asp-for="NameOfUser" type="text" class="InputText" required>
         </div>
-        <div class="RegistredForm_ButtonContainer">
-            <span class="RegistredForm_ButtonContainer__PreInputText"> Ваш Email: </span>
-            <input asp-for="EmailOfuser" type="email" class="RegistredForm_ButtonContainer__Input" required>
+        <div class="Form_ButtonContainer">
+            <span class="InputFile__PreText">Ваш Email</span>
+            <input asp-for="EmailOfuser" type="email" class="InputText" required>
         </div>
-        <div class="RegistredForm_ButtonContainer">
-            <span class="RegistredForm_ButtonContainer__PreInputText"> Повторите ваш Email: </span>
-            <input asp-for="EmailOfuserConfirm" type="email" class="RegistredForm_ButtonContainer__Input" required>
+        <div class="Form_ButtonContainer">
+            <span class="InputFile__PreText">Повторите ваш Email</span>
+            <input asp-for="EmailOfuserConfirm" type="email" class="InputText" required>
         </div>
 
-        <div class="RegistredForm_SubmitContainer">
-            <button type="submit" class="RegistredForm_SubmitContainer__SubmitButton">
+        <div class="Form_ButtonContainer">
+            <button type="submit" class="Form_ButtonContainer__SubmitButton">
                 Зарегистрироваться
             </button>
         </div>
