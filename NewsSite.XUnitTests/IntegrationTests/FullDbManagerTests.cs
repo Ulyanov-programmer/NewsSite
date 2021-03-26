@@ -10,7 +10,7 @@ namespace NewsSite.Tests.IntegrationTests
 {
     public class FullDbManagerTests
     {
-        const string TestConnectionString = "TestConnection";
+        private const string TestConnectionString = "TestConnection";
         [Theory]
         [ClassData(typeof(DbNews_Data))]
         internal void AddEntityToDb_Test(DbNews_Mock dbNews_Mock)
