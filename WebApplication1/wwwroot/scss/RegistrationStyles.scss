@@ -1,4 +1,6 @@
-﻿@import "../css/DefaultStyles.css";
+@import "../css/DefaultStyles.css";
+
+$ButtonColor: rgb(80%, 80%, 80%);
 
 .RegistrationGreetingContainer{
 	display: flex;
@@ -10,37 +12,32 @@
 
 .FormContainer{
 	display: flex;
+	justify-content: center;
 
-	flex: 1 0 auto;
-
-	.AddNewObjectForm {
+	.Form {
 		display: flex;
 		flex-direction: column;
-		margin-left: 30%;
-		.RegistredForm_ButtonContainer{
+		justify-content: center;
+		
+		.Form_ButtonContainer{
 			display: flex;
-			background-color: rgb(80%, 80%, 80%);
+			background-color: $ButtonColor;
 			padding: 10px 50px;
 			margin: 7px 10px;
+			justify-content: center;
 
-			.RegistredForm_ButtonContainer__PreInputText{
+			.InputFile__PreText{
 				margin-right: 12px;
 			}
-			.RegistredForm_ButtonContainer__Input{
+			.InputText{
+				border: solid 1.5px;
 				font-size: 20px;
 			}
 		}
-		.RegistredForm_SubmitContainer{
-			display: flex;
-			justify-content: center;
-
-			background-color: rgb(80%, 80%, 80%);
-			margin: 7px 10px;
-
-			.RegistredForm_SubmitContainer__SubmitButton{
+		.Form_ButtonContainer__SubmitButton{
 				font-size: 35px;
-				background-color: rgb(80%, 80%, 80%);
+				background-color: $ButtonColor;
+				padding: 5px;
 			}
-		}
 	}
 }
