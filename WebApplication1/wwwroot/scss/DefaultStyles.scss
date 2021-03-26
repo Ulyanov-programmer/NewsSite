@@ -20,8 +20,9 @@ header{
 		justify-content: center;
 
 		.Title_Container_Title{
-			font-size: 40px;
+			font-size: 35px;
 			font-family: Bahnschrift;
+			color: black;
 		}
 	}
 	.NavigationMenu{
@@ -30,7 +31,7 @@ header{
 
 		background-color: $SecondBackColor;
 
-		box-shadow: 0 7px 10px rgba(0,0,0,0.15);
+		box-shadow: 0 12px 10px rgba(0,0,0,0.18);
 
 		:hover{
 				background-color: $ActiveBackColor;
