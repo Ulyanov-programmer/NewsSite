@@ -8,26 +8,26 @@
     <link rel="stylesheet" href="../css/AddNewsStyles.css">
 </head>
 <div class="FormContainer">
-    <form asp-action="AddNews" class="AddNewObjectForm" enctype="multipart/form-data">
-        <div class="AddNewObjectForm_ButtonContainer">
+    <form asp-action="AddNews" class="Form" enctype="multipart/form-data">
+        <div class="Form_ButtonContainer">
+            <span class="InputFile__PreText">Впишите название новости</span>
+            <input asp-for="NameOfNews" class="InputText" type="text" required>
+        </div>
+        <div class="Form_ButtonContainer">
+            <span class="InputFile__PreText">Ваше имя</span>
+            <input asp-for="NameOfAuhtor" class="InputText" type="text" required>
+        </div>
+        <div class="Form_ButtonContainer">
             <input asp-for="DocFile"
                    class="InputFile"
                    id="DocFile"
                    type="file"
                    required accept=".doc,.docx">
             <label for="DocFile" class="InputFile_Lable">
-                <span class="InputFile__Text">Выберите файл для загрузки...</span>
+                Выбрать файл для загрузки
             </label>
         </div>
-        <div class="AddNewObjectForm_ButtonContainer">
-            <span class="InputFile__Text">Впишите название новости:</span>
-            <input asp-for="NameOfNews" class="InputText" type="text" required>
-        </div>
-        <div class="AddNewObjectForm_ButtonContainer">
-            <span class="InputFile__Text">Ваше имя:</span>
-            <input asp-for="NameOfAuhtor" class="InputText" type="text" required>
-        </div>
 
-        <button class="RegContainer_Submit" type="submit"> Отправить новость </button>
+        <button class="Form_ButtonContainer_ButtonContainer" type="submit"> Отправить новость </button>
     </form>
 </div>

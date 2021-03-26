@@ -8,32 +8,29 @@
 
 .FormContainer {
   display: flex;
-  flex: 1 0 auto;
+  justify-content: center;
 }
-.FormContainer .AddNewObjectForm {
+.FormContainer .Form {
   display: flex;
   flex-direction: column;
-  margin-left: 30%;
+  justify-content: center;
 }
-.FormContainer .AddNewObjectForm .RegistredForm_ButtonContainer {
+.FormContainer .Form .Form_ButtonContainer {
   display: flex;
   background-color: #cccccc;
   padding: 10px 50px;
   margin: 7px 10px;
+  justify-content: center;
 }
-.FormContainer .AddNewObjectForm .RegistredForm_ButtonContainer .RegistredForm_ButtonContainer__PreInputText {
+.FormContainer .Form .Form_ButtonContainer .InputFile__PreText {
   margin-right: 12px;
 }
-.FormContainer .AddNewObjectForm .RegistredForm_ButtonContainer .RegistredForm_ButtonContainer__Input {
+.FormContainer .Form .Form_ButtonContainer .InputText {
+  border: solid 1.5px;
   font-size: 20px;
 }
-.FormContainer .AddNewObjectForm .RegistredForm_SubmitContainer {
-  display: flex;
-  justify-content: center;
-  background-color: #cccccc;
-  margin: 7px 10px;
-}
-.FormContainer .AddNewObjectForm .RegistredForm_SubmitContainer .RegistredForm_SubmitContainer__SubmitButton {
+.FormContainer .Form .Form_ButtonContainer__SubmitButton {
   font-size: 35px;
   background-color: #cccccc;
+  padding: 5px;
 }
