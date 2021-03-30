@@ -1,7 +1,27 @@
-﻿@page "/"
+﻿@page "/Index"
 
-<h1>Hello, world!</h1>
+<div class="NewsBlock_Container">
+    <ul class="NewsBlock">
+        
+    </ul>
+</div>
 
-Welcome to your new app.
+@code{
+    [Parameter] public IEnumerable<DTONews> News { get; set; }
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+    /*@foreach (var newsItem in News)
+        {
+            <li class="NewsBlock_Item">
+                <!-- Переделать ссылку. -->
+                <a href="/News/Watch?newsName=@newsItem.GetName()"
+                   class="NewsBlock_Item__Ref">
+
+                    <span class="NewsBlock_Item__Ref__Title">@newsItem.GetName()</span>
+                </a>
+            </li>
+        }*/
+}

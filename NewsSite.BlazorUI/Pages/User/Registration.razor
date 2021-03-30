@@ -1,0 +1,39 @@
+﻿<head>
+    <link rel="stylesheet" href="../css/RegistrationStyles.css">
+</head>
+<div class="RegistrationGreetingContainer">
+    <span class="RegistrationGreetingContainer__String">
+        Мы будем рады Вам на нашем сайте!
+    </span>
+</div>
+<div class="FormContainer">
+    <EditForm Model="RegVM" OnSubmit="@SubmitUser" class="Form">
+        <div class="Form_ButtonContainer">
+            <span class="InputFile__PreText">Ваше имя</span>
+            <InputText @bind-Value="RegVM.NameOfUser" class="InputText" required />
+        </div>
+        <div class="Form_ButtonContainer">
+            <span class="InputFile__PreText">Ваш Email</span>
+            <InputText @bind-Value="RegVM.EmailOfuser" class="InputText" required />
+        </div>
+        <div class="Form_ButtonContainer">
+            <span class="InputFile__PreText">Повторите ваш Email</span>
+            <InputText @bind-Value="RegVM.EmailOfuserConfirm" class="InputText" required />
+        </div>
+
+        <div class="Form_ButtonContainer">
+            <button type="submit" class="Form_ButtonContainer__SubmitButton">
+                Зарегистрироваться
+            </button>
+        </div>
+    </EditForm>
+</div>
+
+@code {
+    RegistrationVM RegVM { get; set; }
+
+    async Task SubmitUser()
+    {
+        //TODO: SubmitUser.
+    }
+}

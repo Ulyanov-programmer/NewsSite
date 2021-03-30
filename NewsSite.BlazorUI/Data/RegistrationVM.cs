@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace NewsSite.UI.ViewModels
+namespace NewsSite.BlazorUI.Data
 {
     public class RegistrationVM
     {

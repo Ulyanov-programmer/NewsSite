@@ -1,0 +1,34 @@
+﻿<link rel="stylesheet" href="../css/AddNewsStyles.css">
+
+<div class="FormContainer">
+    <EditForm Model="NewsVM" OnSubmit="SubmitNews" class="Form" enctype="multipart/form-data">
+        <div class="Form_ButtonContainer">
+            <span class="InputFile__PreText">Впишите название новости</span>
+            <InputText @bind-Value="NewsVM.NameOfNews" class="InputText" required />
+        </div>
+        <div class="Form_ButtonContainer">
+            <span class="InputFile__PreText">Ваше имя</span>
+            <InputText @bind-Value="NewsVM.NameOfAuhtor" class="InputText" required />
+        </div>
+        <div class="Form_ButtonContainer">
+            <InputFile
+                   class="InputFile"
+                   id="DocFile"
+                   required accept=".doc,.docx" />
+            <label for="DocFile" class="InputFile_Lable">
+                Выбрать файл для загрузки
+            </label>
+        </div>
+
+        <button class="Form_ButtonContainer_ButtonContainer" type="submit"> Отправить новость </button>
+    </EditForm>
+</div>
+
+@code {
+    AddNewsVM NewsVM { get; set; }
+
+    async Task SubmitNews()
+    {
+        //TODO: SubmitNews.
+    }
+}

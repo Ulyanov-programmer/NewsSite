@@ -1,10 +1,16 @@
 @import "../css/NullStyle.css";
 body {
   font-family: arial;
+  display: flex;
+  flex-direction: column;
+  background-color: #dbdbdb;
+  font-size: 30px;
+  min-height: 100vh;
 }
 
 header {
-  padding: 10px 0px 20px 0px;
+  padding-top: 5px;
+  margin-bottom: 20px;
   min-height: 70px;
   min-width: 100%;
 }
@@ -35,32 +41,30 @@ header .NavigationMenu .NavigationMenu_ButtonContainer .NavigationMenu_Button {
   color: black;
 }
 
-.LayoutBody {
+.MainContentContainer {
   display: flex;
   flex-direction: column;
   background-color: #dbdbdb;
   font-size: 30px;
   min-height: 100vh;
-}
-.LayoutBody .MainContentContainer {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
-.LayoutBody .MainContentContainer .NewsBlock_Container {
+.MainContentContainer .NewsBlock_Container {
   display: flex;
   justify-content: center;
   min-width: 100%;
 }
-.LayoutBody .MainContentContainer .NewsBlock_Container .NewsBlock {
+.MainContentContainer .NewsBlock_Container .NewsBlock {
   display: flex;
   flex-direction: column;
   min-width: 96%;
 }
-.LayoutBody .MainContentContainer .NewsBlock_Container .NewsBlock :hover {
+.MainContentContainer .NewsBlock_Container .NewsBlock :hover {
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
-.LayoutBody .MainContentContainer .NewsBlock_Container .NewsBlock .NewsBlock_Item {
+.MainContentContainer .NewsBlock_Container .NewsBlock .NewsBlock_Item {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -68,14 +72,14 @@ header .NavigationMenu .NavigationMenu_ButtonContainer .NavigationMenu_Button {
   margin: 10px 0px;
   padding: 7px 0px;
 }
-.LayoutBody .MainContentContainer .NewsBlock_Container .NewsBlock .NewsBlock_Item :hover {
+.MainContentContainer .NewsBlock_Container .NewsBlock .NewsBlock_Item :hover {
   box-shadow: 0 0 0px rgba(0, 0, 0, 0);
 }
-.LayoutBody .MainContentContainer .NewsBlock_Container .NewsBlock .NewsBlock_Item .NewsBlock_Item__Ref {
+.MainContentContainer .NewsBlock_Container .NewsBlock .NewsBlock_Item .NewsBlock_Item__Ref {
   display: flex;
   justify-content: center;
 }
-.LayoutBody .MainContentContainer .NewsBlock_Container .NewsBlock .NewsBlock_Item .NewsBlock_Item__Ref .NewsBlock_Item__Ref__Title {
+.MainContentContainer .NewsBlock_Container .NewsBlock .NewsBlock_Item .NewsBlock_Item__Ref .NewsBlock_Item__Ref__Title {
   color: black;
 }
 

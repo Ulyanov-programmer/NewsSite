@@ -1,0 +1,22 @@
+﻿<link rel="stylesheet" href="../css/WatchStyles.css">
+
+<div class="NewsContainer">
+    <div class="NewsContainer_TitleContainer">
+        <h1 class="NewsContainer__Title"> @News_Text.Title </h1>
+    </div>
+    @foreach (var paragraph in News_Text.Paragraphs)
+    {
+        <div class="NewsContainer_Paragraph">
+            <p class="NewsContainer_Paragraph__Text"> @paragraph </p>
+        </div>
+    }
+</div>
+
+@code {
+    DTONews_Text News_Text { get; set; }
+
+    protected override void OnInitialized()
+    {
+        //TODO: создание News_Text.
+    }
+}
