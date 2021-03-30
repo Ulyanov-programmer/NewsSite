@@ -1,4 +1,5 @@
-﻿<head>
+﻿@page "/Registration"
+<head>
     <link rel="stylesheet" href="../css/RegistrationStyles.css">
 </head>
 <div class="RegistrationGreetingContainer">
@@ -7,7 +8,7 @@
     </span>
 </div>
 <div class="FormContainer">
-    <EditForm Model="RegVM" OnSubmit="@SubmitUser" class="Form">
+    <EditForm Model="@RegVM" OnSubmit="@SubmitUser" class="Form">
         <div class="Form_ButtonContainer">
             <span class="InputFile__PreText">Ваше имя</span>
             <InputText @bind-Value="RegVM.NameOfUser" class="InputText" required />
@@ -30,7 +31,7 @@
 </div>
 
 @code {
-    RegistrationVM RegVM { get; set; }
+    RegistrationVM RegVM = new();
 
     async Task SubmitUser()
     {

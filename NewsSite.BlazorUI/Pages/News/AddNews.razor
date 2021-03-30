@@ -1,7 +1,8 @@
-﻿<link rel="stylesheet" href="../css/AddNewsStyles.css">
+﻿@page "/AddNews"
+<link rel="stylesheet" href="../css/AddNewsStyles.css">
 
 <div class="FormContainer">
-    <EditForm Model="NewsVM" OnSubmit="SubmitNews" class="Form" enctype="multipart/form-data">
+    <EditForm Model="@NewsVM" OnSubmit="@SubmitNews" class="Form" enctype="multipart/form-data">
         <div class="Form_ButtonContainer">
             <span class="InputFile__PreText">Впишите название новости</span>
             <InputText @bind-Value="NewsVM.NameOfNews" class="InputText" required />
@@ -11,10 +12,9 @@
             <InputText @bind-Value="NewsVM.NameOfAuhtor" class="InputText" required />
         </div>
         <div class="Form_ButtonContainer">
-            <InputFile
-                   class="InputFile"
-                   id="DocFile"
-                   required accept=".doc,.docx" />
+            <InputFile class="InputFile"
+                       id="DocFile"
+                       required accept=".doc,.docx" />
             <label for="DocFile" class="InputFile_Lable">
                 Выбрать файл для загрузки
             </label>
@@ -25,7 +25,7 @@
 </div>
 
 @code {
-    AddNewsVM NewsVM { get; set; }
+    AddNewsVM NewsVM = new();
 
     async Task SubmitNews()
     {

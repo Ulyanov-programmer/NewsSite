@@ -1,19 +1,8 @@
-﻿@page "/Index"
+﻿@page "/"
 
 <div class="NewsBlock_Container">
     <ul class="NewsBlock">
-        
-    </ul>
-</div>
-
-@code{
-    [Parameter] public IEnumerable<DTONews> News { get; set; }
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-    }
-    /*@foreach (var newsItem in News)
+        @foreach (var newsItem in News)
         {
             <li class="NewsBlock_Item">
                 <!-- Переделать ссылку. -->
@@ -23,5 +12,19 @@
                     <span class="NewsBlock_Item__Ref__Title">@newsItem.GetName()</span>
                 </a>
             </li>
-        }*/
+        }
+    </ul>
+</div>
+
+@code{
+    public List<DTONews> News = new();
+
+    protected override void OnInitialized()
+    {
+        //TODO: загрузка News-ов.
+        DTOUser user = new("ВАСЯПУПКИН", "ololo@gmail.ru");
+        News.Add(new DTONews(user, "NEWS@!!@!", "fwfwf"));
+        News.Add(new DTONews(user, "@!!@!NEWS", "fwfwf"));
+        News.Add(new DTONews(user, "@!!@!", "fwfwf"));
+    }
 }
