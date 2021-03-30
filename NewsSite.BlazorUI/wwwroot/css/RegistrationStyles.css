@@ -1,0 +1,36 @@
+@import "../css/DefaultStyles.css";
+.RegistrationGreetingContainer {
+  display: flex;
+  justify-content: center;
+  height: 10%;
+  width: 100%;
+}
+
+.FormContainer {
+  display: flex;
+  justify-content: center;
+}
+.FormContainer .Form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.FormContainer .Form .Form_ButtonContainer {
+  display: flex;
+  background-color: #cccccc;
+  padding: 10px 50px;
+  margin: 7px 10px;
+  justify-content: center;
+}
+.FormContainer .Form .Form_ButtonContainer .InputFile__PreText {
+  margin-right: 12px;
+}
+.FormContainer .Form .Form_ButtonContainer .InputText {
+  border: solid 1.5px;
+  font-size: 20px;
+}
+.FormContainer .Form .Form_ButtonContainer__SubmitButton {
+  font-size: 35px;
+  background-color: #cccccc;
+  padding: 5px;
+}

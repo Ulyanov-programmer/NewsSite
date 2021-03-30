@@ -1,0 +1,114 @@
+@import "../css/NullStyle.css";
+body {
+  font-family: arial;
+}
+
+header {
+  padding: 10px 0px 20px 0px;
+  min-height: 70px;
+  min-width: 100%;
+}
+header .Title_Container {
+  display: flex;
+  justify-content: center;
+}
+header .Title_Container .Title_Container_Title {
+  font-size: 35px;
+  font-family: Bahnschrift;
+  color: black;
+}
+header .NavigationMenu {
+  display: flex;
+  justify-content: space-around;
+  background-color: #cccccc;
+  box-shadow: 0 12px 10px rgba(0, 0, 0, 0.18);
+}
+header .NavigationMenu :hover {
+  background-color: #b3b3b3;
+}
+header .NavigationMenu .NavigationMenu_ButtonContainer {
+  padding: 1px;
+  display: inline-flex;
+}
+header .NavigationMenu .NavigationMenu_ButtonContainer .NavigationMenu_Button {
+  text-decoration: none;
+  color: black;
+}
+
+.LayoutBody {
+  display: flex;
+  flex-direction: column;
+  background-color: #dbdbdb;
+  font-size: 30px;
+  min-height: 100vh;
+}
+.LayoutBody .MainContentContainer {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.LayoutBody .MainContentContainer .NewsBlock_Container {
+  display: flex;
+  justify-content: center;
+  min-width: 100%;
+}
+.LayoutBody .MainContentContainer .NewsBlock_Container .NewsBlock {
+  display: flex;
+  flex-direction: column;
+  min-width: 96%;
+}
+.LayoutBody .MainContentContainer .NewsBlock_Container .NewsBlock :hover {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+.LayoutBody .MainContentContainer .NewsBlock_Container .NewsBlock .NewsBlock_Item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #cccccc;
+  margin: 10px 0px;
+  padding: 7px 0px;
+}
+.LayoutBody .MainContentContainer .NewsBlock_Container .NewsBlock .NewsBlock_Item :hover {
+  box-shadow: 0 0 0px rgba(0, 0, 0, 0);
+}
+.LayoutBody .MainContentContainer .NewsBlock_Container .NewsBlock .NewsBlock_Item .NewsBlock_Item__Ref {
+  display: flex;
+  justify-content: center;
+}
+.LayoutBody .MainContentContainer .NewsBlock_Container .NewsBlock .NewsBlock_Item .NewsBlock_Item__Ref .NewsBlock_Item__Ref__Title {
+  color: black;
+}
+
+footer {
+  min-height: 7%;
+  border-top: solid 0.5px black;
+  font-size: 20px;
+  background-color: #cccccc;
+}
+
+.NewsContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 90%;
+  align-items: center;
+  justify-content: center;
+}
+.NewsContainer .NewsContainer_Paragraph {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0px 20px;
+}
+.NewsContainer .NewsContainer_Paragraph .NewsContainer_Paragraph__Title {
+  font-size: 40px;
+  margin: 0px 0px 10px;
+}
+.NewsContainer .NewsContainer_Paragraph .NewsContainer_Paragraph__Text {
+  display: block;
+}
+
+.NewsContainer_TitleContainer {
+  font-size: 50px;
+  margin: 0px 0px 30px;
+}

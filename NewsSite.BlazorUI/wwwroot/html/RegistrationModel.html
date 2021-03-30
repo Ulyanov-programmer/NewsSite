@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title> NewsSite </title>
+    <meta name="description" content="Главная страница NewsSite">
+    <link rel="stylesheet" href="../css/RegistrationStyles.css">
+</head>
+<body class="LayoutBody">
+	<header>
+		<div class="Title_Container">
+			<a href="IndexModel.html" class="Title_Container_Title">The NewsSite</a>
+		</div>
+		<nav class="NavigationMenu">
+			<div class="NavigationMenu_ButtonContainer">
+				<a href="IndexModel.html" class="NavigationMenu_Button"> Главная </a>
+			</div>
+			<div class="NavigationMenu_ButtonContainer">
+				<a href="AddNewsModel.html" class="NavigationMenu_Button"> Добавить новость </a>
+			</div>
+		</nav>
+	</header>
+
+		<main class="MainContentContainer">
+			<div class="RegistrationGreetingContainer">
+				<span class="RegistrationGreetingContainer__String">
+					Мы будем рады Вам на нашем сайте!
+				</span>
+			</div>
+			<div class="FormContainer">
+				<form action="post" class="Form">
+					<div class="Form_ButtonContainer">
+						<span class="InputFile__PreText"> Ваше имя </span>
+						<input type="text" class="InputText" required>
+					</div>
+					<div class="Form_ButtonContainer">
+						<span class="InputFile__PreText"> Ваш Email </span>
+						<input type="Email" class="InputText" required>
+					</div>
+					<div class="Form_ButtonContainer">
+						<button class="Form_ButtonContainer__SubmitButton">
+							Зарегистрироваться
+						</button>
+					</div>
+				</form>
+			</div>
+		</main>
+
+	<footer>
+		<span>Model by Ulyanov Ivan.</span>
+	</footer>
+</body>
+</html>

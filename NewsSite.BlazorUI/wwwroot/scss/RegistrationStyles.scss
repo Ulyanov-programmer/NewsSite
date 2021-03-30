@@ -1,0 +1,43 @@
+@import "../css/DefaultStyles.css";
+
+$ButtonColor: rgb(80%, 80%, 80%);
+
+.RegistrationGreetingContainer{
+	display: flex;
+	justify-content: center;
+
+	height: 10%;
+	width: 100%;
+}
+
+.FormContainer{
+	display: flex;
+	justify-content: center;
+
+	.Form {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		
+		.Form_ButtonContainer{
+			display: flex;
+			background-color: $ButtonColor;
+			padding: 10px 50px;
+			margin: 7px 10px;
+			justify-content: center;
+
+			.InputFile__PreText{
+				margin-right: 12px;
+			}
+			.InputText{
+				border: solid 1.5px;
+				font-size: 20px;
+			}
+		}
+		.Form_ButtonContainer__SubmitButton{
+				font-size: 35px;
+				background-color: $ButtonColor;
+				padding: 5px;
+			}
+	}
+}

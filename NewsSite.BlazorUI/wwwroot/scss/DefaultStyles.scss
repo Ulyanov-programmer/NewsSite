@@ -1,0 +1,117 @@
+@import "../css/NullStyle.css";
+
+$TextColor: black;
+$BorderColor: black;
+$BackColor: rgb(86%, 86%, 86%);
+$SecondBackColor: rgb(80%, 80%, 80%);
+$ActiveBackColor: rgb(70%, 70%, 70%);
+
+body{
+	font-family: arial;
+}
+
+header{
+	padding: 10px 0px 20px 0px;
+	min-height: 70px;
+	min-width: 100%;
+
+	.Title_Container{
+		display: flex;
+		justify-content: center;
+
+		.Title_Container_Title{
+			font-size: 35px;
+			font-family: Bahnschrift;
+			color: black;
+		}
+	}
+	.NavigationMenu{
+		display: flex;
+		justify-content: space-around;
+
+		background-color: $SecondBackColor;
+
+		box-shadow: 0 12px 10px rgba(0,0,0,0.18);
+
+		:hover{
+				background-color: $ActiveBackColor;
+			}
+
+		.NavigationMenu_ButtonContainer{
+			padding: 1px;
+			display: inline-flex;
+
+			.NavigationMenu_Button{
+				text-decoration: none;
+				color: $TextColor;
+			}
+		}
+	}
+}
+
+.LayoutBody {
+	display: flex;
+	flex-direction: column;
+
+	background-color: $BackColor;
+
+	font-size: 30px;
+
+	min-height: 100vh;
+
+	.MainContentContainer{
+		display: flex;
+		flex-direction: column;
+
+		flex-grow: 1;
+
+		.NewsBlock_Container{
+			display: flex;
+			justify-content: center;
+
+			min-width: 100%;
+
+			.NewsBlock{
+				display: flex;
+				flex-direction: column;
+
+				min-width: 96%;
+				:hover{
+					box-shadow: 0 0 30px rgba(0,0,0,0.5);
+				}
+				.NewsBlock_Item{
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						
+						background-color: $SecondBackColor;
+
+						margin: 10px 0px;
+						padding: 7px 0px;
+
+						:hover{
+							box-shadow: 0 0 0px rgba(0,0,0,0);
+						}
+						.NewsBlock_Item__Ref{
+							display: flex;
+							justify-content: center;
+
+							.NewsBlock_Item__Ref__Title{
+								color: $TextColor;
+							}
+						}
+					}
+			}
+		}
+	}
+}
+
+footer{
+	min-height: 7%;
+
+	border-top: solid 0.5px $BorderColor;
+
+	font-size: 20px;
+
+	background-color: $SecondBackColor;
+}
